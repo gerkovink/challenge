@@ -1,0 +1,8 @@
+---
+title: "Lectures"
+---
+
+# Lecture slides
+Hieronder vind je de lecture slides voor de verschillende onderdelen van de cursus.
+
+- [Lecture 1: Introduction to reproducibility, `Quarto` and Research Compendiums](slides/lec-1-speaker.html)
