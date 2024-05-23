@@ -3,18 +3,15 @@ project:
   output-dir: docs
 
 website:
-  title: "reprodev"
+  title: "challenges"
   navbar:
     left:
       - href: index.qmd
         text: About
       - schedule.qmd
       - lectures.qmd
-      - tutorial_1.qmd
-      - tutorial_2.qmd
-      - tutorial_3.qmd
-      - final.qmd
-  repo-url: https://github.com/gerkovink/reprodev
+      - practicals.qmd
+  repo-url: https://github.com/gerkovink/challenges
   repo-actions: [edit, issue]
 
 format:

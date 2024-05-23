@@ -1,0 +1,89 @@
+---
+title: "Data synthesis challenge"
+editor: source
+---
+
+# **Introduction**
+
+In this challenge, you will have to synthetize data. Concretely, you have to synthetic data with *one* of the following two goals in mind:
+
+1. Getting as close as possible to the original data.
+
+2. Getting as close as possible to the inference of a model you estimate in the original data.
+
+For synthetizing the data, we suggest you use the `R` package `mice` ([van Buuren and Groothuis-Oudshoorn 2011](https://www.gerkovink.com/syn/UMCUSynthetic.html#ref-mice)). While `mice` was originally developed to impute missing data, but it can also be used to impute synthetic data (see [Volker and Vink 2021](https://www.gerkovink.com/syn/UMCUSynthetic.html#ref-volker_vink_synthetic_mice_2021)). Other alternatives to create synthetic data are, for example, the R-package `synthpop` ([Nowok, Raab, and Dibben 2016](https://www.gerkovink.com/syn/UMCUSynthetic.html#ref-synthpop)), or the stand-alone software `IVEware` ([“IVEware: Imputation and Variance Estimation Software,” n.d.](https://www.gerkovink.com/syn/UMCUSynthetic.html#ref-iveware)).
+
+
+# **Data**
+
+You will be using the Heart failure clinical records data set, a medical data set from the [UCI Machine Learning Repository](https://archive.ics.uci.edu/). You can find more info about the data and download it [here](https://archive.ics.uci.edu/dataset/519/heart+failure+clinical+records), and download it directly [here](data/heart_failure_clinical_records_dataset.csv). The data set contains medical information of 299 individuals on 13 variables, and is typically used to predict whether or not a patient will survive during the follow-up period, using several biomedical. We strongly recommend you create an R project, and store the data in a folder called 'data'. predictors.
+
+# **Code**
+
+We will be using the following libraries. If you haven't installed them yet, you can install them using `install.packages("desired-library")`.  
+
+```{r}
+#| message: false
+#| warning: false
+library(mice)
+library(readr)
+# add more libraries
+```
+
+If you have created an R project and a data folder, you will have to read the data as follows:
+
+```{r}
+#| message: false
+heart_failure <- read_csv("data/heart_failure_clinical_records_dataset.csv")
+```
+
+If you haven't created an R project, you will have to set up a working directory and refer to the the directory where the file is stored.
+
+The Heart failure clinical records data consists of the following variables:
+
+- `age`: Age in years
+- `anaemia`: Whether the patient has a decrease of red blood cells (No/Yes)
+- `hypertension`: Whether the patient has high blood pressure (No/Yes)
+- `creatinine_phosphokinase`: Level of the creatinine phosphokinase enzyme in the blood (mcg/L)
+- `diabetes`: Whether the patient has diabetes (No/Yes)
+- `ejection_fraction`: Percentage of blood leaving the heart at each contraction
+- `platelets`: Platelets in de blood (kiloplatelets/mL)
+- `sex`: Sex (Female/Male)
+- `serum_creatinine`: Level of serum creatinine in the blood (mg/dL)
+- `serum_sodium`: Level of serum sodium in the blood (mg/dL)
+- `smoking`: Whether the patient smokes (No/Yes)
+- `follow_up`: Follow-up period (days)
+- `deceased`: Whether the patient decreased during the follow-up period
+
+After loading the data, it is always wise to first inspect the data, so that you have an idea what to expect.
+
+```{r}
+head(heart_failure)
+```
+
+```{r}
+summary(heart_failure)
+```
+
+Now, you are ready to got. First, you will have to synthetize the data. Then, you will have to evaluate it with regards to a model of choice, or the original data.
+
+
+# **Creating synthetic data**
+
+Broadly speaking, two methods for creating synthetic data can be distinguished. The first one is based on parametric imputation models, which assumes that the structure of the data is fixed, and draws synthetic values from a pre-specified probability distribution. That is, after estimating a statistical model, the synthetic data are generated from a probability distribution, without making any further use of the observed data. In general, this procedure is less likely to result in an accidental release of disclosive information. However, these parametric methods are often less capable of capturing the complex nature of real-world data sets.
+
+The subtleties of real-world data are often better reproduced with non-parametric imputation models. Using this approach, a non-parametric model is estimated, resulting in a donor pool out of which a single observation per observation and per variable is drawn. These models thus reuse the observed data to serve as synthetic data. Accordingly, much of the values that were in the observed data end up in the synthetic data. However, these observed data are generally combined in unique ways, it is generally not possible to link this information to the original respondents. The non-parametric procedures often yield better inferences, while still being able to prevent disclosure risk (although more research into measures to qualify the remaining risks is required). We will showcase how to generate synthetic data using one such non-parametric method: classification and regression trees (CART).
+
+Now you have a feeling of what the data looks like, we will use these two different ways to create synthetic data: a fully parametric approach, in which the data are synthesized using either linear or logistic regression, and a fully non-parametric approach, in which we synthesize all data using CART.
+
+... ADD MORE TEXT HERE. I GUESS MICE EXPLANATION? ...
+
+# **Evaluating Synthetic data**
+
+Once you have synthetized your data, you have to evaluate it. If you have chosen to evaluate it with regards to the original data, you will have to perform evaluations such as: comparing univariate distributions, multivariate distributions, and more.
+
+If you have chosen to evaluate it with regards to a model, you will have to 1) estimate a model on the original data; and 2) estimate a model on the synthetic data. Then, you will have to compare the results of the two models.
+
+Note that, in both cases, methods are iterative: you synthetize data, evaluate it, and then go back to synthetizing data. You should do this until the results are as close as desired.
+
+... ADD ASSIGNMENT HERE ...

@@ -1,0 +1,499 @@
+---
+title: "The Anatomy of an Answer"
+author: 
+  - name: Gerko Vink
+    orcid: 0000-0001-9767-1924
+    email: g.vink@uu.nl
+    affiliations:
+      - name: Methodology & Statistics @ Utrecht University
+date: 20 Dec 2023
+date-format: "D MMM YYYY"
+execute: 
+  echo: true
+format: 
+  revealjs:
+    theme: [solarized, gerko.scss]
+    progress: true
+    margin: 0.075
+    logo: images/slides/logo.png 
+    toc: false
+    toc-depth: 1
+    toc-title: Outline
+    slide-number: true
+    scrollable: false
+    width: 1200
+    reference-location: margin
+    footer: Gerko Vink @ UU, 20 Dec 2023, Utrecht
+    standalone: true
+---
+
+## Disclaimer
+
+I owe a debt of gratitude to many people as the thoughts and code in these slides are the process of years-long development cycles and discussions with my team, friends, colleagues and peers. When someone has contributed to the content of the slides, I have credited their authorship.
+
+Scientific references are in the footer. Opinions and figures are my own, AI-generated or directly linked.
+
+::: callout-tip
+# Materials
+- slides: [www.gerkovink.com/Anatomy](https://www.gerkovink.com/Anatomy)
+- source: [github.com/gerkovink/Anatomy](https://github.com/gerkovink/Anatomy)
+:::
+
+
+## Terms I may use
+
+- TDGM: True data generating model
+- DGP: Data generating process, closely related to the TDGM, but with all the wacky additional uncertainty
+- Truth: The comparative truth that we are interested in
+- Bias: The distance to the comparative truth
+- Variance: When not everything is the same
+- Estimate: Something that we calculate or guess 
+- Estimand: The thing we aim to estimate and guess
+- Population: That larger entity without sampling variance
+- Sample: The smaller thing with sampling variance
+- Incomplete: There exists a more complete version, but we don't have it
+- Observed: What we have
+- Unobserved: What we would also like to have
+
+## At the start
+
+Let's start with the core:
+
+::: {.callout-note appearance="simple"}
+# Statistical inference
+Statistical inference is the process of drawing conclusions from **truths**
+:::
+
+Truths are boring, but they are convenient. 
+
+- however, for most problems truths require a lot of calculations, tallying or a complete census. 
+- therefore, a proxy of the truth is in most cases sufficient 
+- An example for such a proxy is a **sample**
+- Samples are widely used and have been for a long time<footnote>See [Jelke Bethlehem's CBS discussion paper](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&ved=2ahUKEwjkyPTCs4L3AhUCuKQKHUpmBvIQFnoECAMQAw&url=https%3A%2F%2Fwww.cbs.nl%2F-%2Fmedia%2Fimported%2Fdocuments%2F2009%2F07%2F2009-15-x10-pub.pdf&usg=AOvVaw3BpUW2s_k0MB5yH1o-QGf2) for an overview of the history of sampling within survey statistics</footnote>
+
+
+::: footer 
+$^1$ See [Jelke Bethlehem's CBS discussion paper](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&ved=2ahUKEwjkyPTCs4L3AhUCuKQKHUpmBvIQFnoECAMQAw&url=https%3A%2F%2Fwww.cbs.nl%2F-%2Fmedia%2Fimported%2Fdocuments%2F2009%2F07%2F2009-15-x10-pub.pdf&usg=AOvVaw3BpUW2s_k0MB5yH1o-QGf2) for an overview of the history of survey sampling
+:::
+
+
+## Do we need data?
+Without any data we can still come up with a statistically valid answer. 
+
+ - The answer will not be very *informative*. 
+ - In order for our answer to be more informative, we need more **information**
+
+Some sources of information can already tremendously guide the precision of our answer. 
+
+::: {.callout-tip}
+# In Short
+Information bridges the answer to the truth. Too little information may lead you to a *false truth*. 
+:::
+
+## Being wrong about the truth
+::::{.columns}
+:::{.column width="40%"}
+![](images/anatomy/2. missingness_problem.png){width=90%}
+:::
+
+:::{.column width="60%"}
+- The population is the truth
+- The sample comes from the population, but is generally smaller in size
+- This means that not all cases from the population can be in our sample
+- If not all information from the population is in the sample, then our sample may be *wrong*
+
+::: {.callout-note}
+# Good questions to ask yourself
+1. Why is it important that our sample is not wrong?<br>
+2. How do we know that our sample is not wrong?
+:::
+:::
+::::
+
+## Solving the missingness problem
+::::{.columns}
+:::{.column width="40%"}
+![](images/anatomy/3. random_sampling.png){width=90%}
+:::
+
+:::{.column width="60%"}
+- There are many flavours of sampling
+- If we give every unit in the population the same probability to be sampled, we do **random sampling**
+- The convenience with random sampling is that the missingness problem can be ignored
+- The missingness problem would in this case be: **not every unit in the population has been observed in the sample**
+
+::: {.callout-warning}
+# Hmmm...
+Would that mean that if we simply observe every potential unit, we would be unbiased about the truth?
+:::
+
+:::
+::::
+
+## Sidestep
+::::{.columns}
+:::{.column width="50%"}
+![](images/anatomy/4. sidestep1.png){width=90%}
+:::
+
+:::{.column width="50%"}
+- The problem is a bit larger
+- We have three entities at play, here:
+
+  1. The truth we're interested in
+  2. The proxy that we have (e.g. sample)
+  3. The model that we're running
+  
+- The more features we use, the more we capture about the outcome for the cases in the data
+- The more cases we have, the more we approach the true information
+<br><br><br>
+All these things are related to uncertainty. Our model can still yield biased results when fitted to $\infty$ features. Our inference can still be wrong when obtained on $\infty$ cases. 
+:::
+::::
+
+## Sidestep
+::::{.columns}
+:::{.column width="50%"}
+![](images/anatomy/5. sidestep2.png){width=90%}
+:::
+
+:::{.column width="50%"}
+- The problem is a bit larger
+- We have three entities at play, here:
+
+  1. The truth we're interested in
+  2. The proxy that we have (e.g. sample)
+  3. The model that we're running
+  
+- The more features we use, the more we capture about the outcome for the cases in the data
+- The more cases we have, the more we approach the true information
+<br><br><br>
+
+**Core assumption: all observations are bonafide**
+:::
+::::
+
+## Uncertainty simplified
+::::{.columns}
+:::{.column width="70%"}
+![](images/anatomy/6. Sample_uncertainty.png){width=90%}
+:::
+
+:::{.column width="30%"}
+When we do not have all information ...
+
+1. We need to accept that we are probably wrong
+2. We just have to quantify how wrong we are
+
+<br>
+In some cases we estimate that we are only a bit wrong. In other cases we estimate that we could be very wrong. This is the purpose of testing. 
+<br><br>
+The uncertainty measures about our estimates can be used to create intervals
+:::
+::::
+
+## Confidence in the answer
+::::{.columns}
+:::{.column width="60%"}
+![](images/anatomy/7. confidence_intervals.png){width="90%"}
+:::
+
+::: {.column width="40%"}
+An intuitive approach to evaluating an answer is confidence. In statistics, we often use confidence intervals. Discussing confidence can be hugely informative!
+
+If we sample 100 samples from a population, then a *95% CI* will cover the **true** population value [at least 95 out of 100 times]{style="text-decoration: underline;"}. 
+
+- If the coverage <95: bad estimation process with risk of errors and invalid inference
+- If the coverage >95: inefficient estimation process, but correct conclusions and valid inference. Lower statistical power. 
+:::
+::::
+
+::: footer 
+Neyman, J. (1934). On the Two Different Aspects of the Representative Method: The Method of Stratified Sampling and the Method of Purposive Selection. <br> Journal of the Royal Statistical Society Series A: Statistics in Society, 97(4), 558-606.
+:::
+
+## How do we know that our sample is not....
+::::{.columns}
+:::{.column width="60%"}
+![](images/anatomy/15. replication.png){width="90%"}
+:::
+
+::: {.column width="40%"}
+We can replicate our sample. 
+
+- A replication would be a new sample from the same population or true data generating model obtained by the same data generating process.
+- If we would sample 100 times, we would get 100 different samples
+- If we would estimate 100 times, we would get 100 different estimates with 100 different confidence intervals (e.g. 95% CI)
+- Out of these 100 different intervals, we would expect a nominal coverage. For a 95% CI we'd expect 95 of them to cover the true population value. 
+:::
+::::
+
+## This is a lot of work...
+::::{.columns}
+:::{.column width="60%"}
+![](images/anatomy/16. validation.png){width="80%"}
+:::
+
+::: {.column width="40%"}
+Full sampling validation of a model's inferences is a lot of work. 
+
+- it is the most robust way of obtaining inferential validity
+- it is not always necessary
+
+Under some general assumptions, we can use the same data to validate our model's inferences and predictions.
+
+- these assumptions can be met in practice 
+- but as soon as assumptions are made, we open the door to errors when these assumptions do not hold
+
+:::
+::::
+
+## Assumptions
+Take the following definition:
+
+<center> **a thing that is accepted as true or as certain to happen, without proof.** </center>
+
+Assumptions are a statisticians faith. It is often impossible to prove that they hold in practice, but we choose to believe that they do.
+
+::: {.callout-tip}
+# Sensitivity analyses
+I often use computational evaluation techniques to quantify the scope of the impact of assumptions made. For example, we can test the effect of violating assumptions on our results. We then verify if the inferences are sensitive to violations of the assumptions. We can even verify the extend of when assumptions start becoming influential to our inferences.
+:::
+
+## The holy trinity
+Whenever I evaluate something, I tend to look at three things:
+
+- bias (how far from the truth)
+- uncertainty/variance (how wide is my interval)
+- coverage (how often do I cover the truth with my interval)
+
+<br>
+As a function of model complexity in specific modeling efforts, these components play a role in the bias/variance tradeoff
+
+<center>
+![](https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Bias_and_variance_contributing_to_total_error.svg/2560px-Bias_and_variance_contributing_to_total_error.svg.png){width=40%}
+</center>
+
+## On the individual level
+::::{.columns}
+:::{.column width="60%"}
+![](images/anatomy/8. prediction_intervals.png){width="90%"}
+:::
+
+::: {.column width="40%"}
+Individual intervals can also be hugely informative!
+
+Individual intervals are generally wider than confidence intervals
+
+- This is because it covers inherent uncertainty in the data point on top of sampling uncertainty 
+
+::: {.callout-warning}
+# Be careful
+Narrower intervals mean less uncertainty. 
+
+It does not mean that the answer is correct!
+:::
+
+:::
+::::
+
+## Case: Spaceshuttle Challenger
+36 years ago, on 28 January 1986, 73 seconds into its flight and at an altitude of 9 miles, the space shuttle Challenger experienced an enormous fireball caused by one of its two booster rockets and broke up. The crew compartment continued its trajectory, reaching an altitude of 12 miles, before falling into the Atlantic. All seven crew members, consisting of five astronauts and two payload specialists, were killed.
+
+::::{.columns}
+:::{.column width="40%"}
+![](images/anatomy/chal.jpg){width=90%}
+:::
+:::{.column width="60%"}
+```{r failure, echo = FALSE, message=FALSE, warning=FALSE, fig.height = 4, fig.width=6}
+library(tidyverse)
+library(ggplot2)
+library(alr4)
+set.seed(123)
+Challeng %>% 
+  filter(fail > 0) %>% 
+  ggplot(aes(temp, fail)) +
+  geom_point() +
+  #geom_(height = .1, width = .01) + 
+  geom_smooth(method = "lm", se = FALSE) +
+  ylim(0, 5) + xlim(52, 76) + 
+  ylab("Number of distressed O−rings at each launch") +
+  xlab("Temperature in degrees Fahrenheit") + 
+  theme_classic()
+```
+:::
+::::
+
+## Nothing happened, so we ignored it
+
+::::{.columns}
+:::{.column width="50%"}
+```{r darkdata, echo = FALSE, message=FALSE, warning=FALSE, fig.width = 5}
+set.seed(123)
+Challeng %>% 
+  ggplot(aes(temp, fail)) +
+  geom_point() + 
+  geom_smooth(method = "lm", se = FALSE) +
+  ylim(0, 5) + xlim(52, 76) + 
+  ylab("Number of distressed O−rings at each launch") +
+  xlab("Temperature in degrees Fahrenheit") + 
+  theme_classic()
+```
+:::
+:::{.column width="50%"}
+In the decision to proceed with the launch, there was a presence of dark data. And no-one noticed!
+
+Dark data
+: Information that is not available but necessary to arrive at the correct answer.
+
+This missing information has the potential to mislead people. The notion that we can be misled is essential because it also implies that artificial intelligence can be misled!
+
+::: {.callout-warning appearance="simple"}
+If you don’t have all the information, there is always the possibility of drawing an incorrect conclusion or making a wrong decision.
+:::
+
+:::
+::::
+
+
+
+
+## In Practice
+::::{.columns}
+:::{.column width="30%"}
+![](images/anatomy/9.missingness.png){width=60%}
+:::
+
+::: {.column width="70%"}
+
+We now have a new problem:
+
+- we do not have the whole truth; but merely a sample of the truth
+- we do not even have the whole sample, but merely a sample of the sample of the truth. 
+
+
+::: {.callout-tip appearance="simple"}
+What would be a simple solution to allowing for valid inferences on the incomplete sample? Would that solution work in practice?
+:::
+
+
+:::
+::::
+
+## How to fix the missingness problem
+::::{.columns}
+:::{.column width="50%"}
+![](images/anatomy/11. missingness_solved.png){width=80%}
+:::
+
+::: {.column width="50%"}
+There are two sources of uncertainty that we need to cover when analyzing incomplete data:
+
+1. **Uncertainty about the data values we don't have**:<br>when we don't know what the true observed value should be, we must create a distribution of values with proper variance (uncertainty).
+2. **Uncertainty about the process that generated the values we do have**:<br>nothing can guarantee that our sample is the one true sample. So it is reasonable to assume that the parameters obtained on our sample are biased. 
+
+A straightforward and intuitive solution for analyzing incomplete data in such scenarios is *multiple imputation* (Rubin, 1987).
+:::
+::::
+
+::: footer 
+Rubin, D. B. (1987). Multiple imputation for nonresponse in surveys. John Wiley & Sons.
+:::
+
+## Now how do we know we did well?
+::: callout-important
+# I'm really sorry!
+In practice we don't know if we did well, because we often lack the necessary comparative truths. 
+:::
+
+For example:
+
+1. Predict a future response, but we only have the past
+2. Analyzing incomplete data without a reference about the truth
+3. Estimate the effect between two things that can never occur together
+4. Detecting fraudulent transactions with only access to the own transaction history
+5. Appealing to a new customer base with only data about existing customers
+6. Mixing bonafide observations with bonafide non-observations
+
+# Case 1: How to evaluate with a truth
+
+## Scenario 
+
+# Case 1: How to evaluate without a truth?
+
+## Scenario 
+Let's assume that we have an incomplete data set and that we can impute (fill in) the incomplete values under multiple candidate models
+
+**Challenge**<br>
+Imputing this data set under one model may yield different results than imputing this data set under another model. Identify the best model!
+
+**Problem**<br>
+We have no idea about validity of either model's results: we would need either the true observed values or the estimand before we can judge the performance and validity of the imputation model.
+
+::: callout-important
+# Not all is lost
+We do have a constant in our problem: **the observed values**
+:::
+
+## Solution - overimpute the observed values
+::::{.columns}
+:::{.column width="50%"}
+![](images/anatomy/12. PPC_quadratic.png){width=80%}
+:::
+:::{.column width="50%"}
+![](images/anatomy/13. PPC_linear.png){width=80%}
+:::
+
+
+::::
+
+::: footer
+Cai, M., van Buuren, S., & Vink, G. (2022). Graphical and numerical diagnostic tools to assess multiple imputation models by posterior predictive checking. 
+:::
+
+# Case 2: When you know you're wrong
+
+## Scenario
+
+In a survey about research integrity and fraud we surveyed behaviours and practices in the following format. 
+
+<center>
+![](images/anatomy/14. not_applicable.png){width=60%}
+</center>
+<br>
+Many behaviours were surveyed over multiple groups of people. Some findings:
+
+- In most groups similar behavioural prevalence was observed. 
+- When looking at subgroups, prevalences differ between subgroups.
+- Not applicables were much more prevalent in one group than in other groups
+- There are too few cases and too many patterns with `Not Applicable`'s over features to allow for a pattern-wise analysis (stratified analysis).
+- There are too many `Not Applicables` to allow for *listwise deletion*.
+
+## Some background
+We know: 
+
+1. `Not Applicable` is not randomly distributed over the data. Removing them is therefore not valid!
+2. `Not Applicable` are bonafide missing values: there should be no observations.
+
+::: callout-important
+# There's no such thing as a free lunch
+
+Every imputation will bias the results. For some we know the direction of the bias, for some we have no idea. We do not have access to the truth.
+:::
+
+### What would you do?
+
+## Our solution
+We chose to impute the data as `1 (never)`. There are a couple of reasons why we think that this is the best defendable scenario.
+
+1. `Never` has a semantic similarity to a behaviour not being applicable. However,  `Never` implies intentionality; `Not Applicable` does not.
+2. We know the effect the imputation has on the inference: Filling in `Never` will underestimate intentional behaviours. 
+
+In this case the choice was made to make a **deliberate error**. The estimates obtained would serve as an underestimation of *true behaviour* and can be considered a lower bound estimation. 
+
+## To conclude
+
+<center>
+<iframe width="790" height="475" src="https://www.youtube.com/embed/GiPe1OiKQuk?si=JRskAvV-ObldIOfO" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+</center>
+

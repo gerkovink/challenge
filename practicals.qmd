@@ -1,0 +1,11 @@
+---
+title: "Practicals"
+---
+
+# Practicals
+
+Here you can find the links to the practicals.
+
+- Tutorial 1: [Interactieve verkenning van real-world data problemen](practicas/real-world-data-problems.html)
+- Tutorial 2: [Hands-on met mice in R](practicals/hands-on-mice.html)
+- Tutorial 3: [Data synthese challenge](tutorials/data-synthesis-challenge.html)
