@@ -3,6 +3,8 @@ title: "Lectures"
 ---
 
 # Lecture slides
+
 Hieronder vind je de lecture slides voor de verschillende onderdelen van de cursus.
 
-- [Lecture 1: Introduction to reproducibility, `Quarto` and Research Compendiums](slides/lec-1-speaker.html)
+- [Lecture 1: The Anatomy of an Answer](lectures/anatomy.html)
+- [Lecture 2: From 'dark' data to imputation and beyond to data synthesis](lectures/dark-data.html)
