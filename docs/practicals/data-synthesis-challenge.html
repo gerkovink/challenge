@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>challenges - Practicals</title>
+<title>challenges - Data synthesis challenge</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,25 +20,59 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -68,7 +102,7 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 
 
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="../styles.css">
 </head>
 
 <body class="nav-fixed">
@@ -78,7 +112,7 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">challenges</span>
     </a>
   </div>
@@ -89,19 +123,19 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./index.html"> 
+    <a class="nav-link" href="../index.html"> 
 <span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./schedule.html"> 
+    <a class="nav-link" href="../schedule.html"> 
 <span class="menu-text">Schedule</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./lectures.html"> 
+    <a class="nav-link" href="../lectures.html"> 
 <span class="menu-text">Lectures</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./practicals.html" aria-current="page"> 
+    <a class="nav-link" href="../practicals.html"> 
 <span class="menu-text">Practicals</span></a>
   </li>  
 </ul>
@@ -120,16 +154,20 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#practicals" id="toc-practicals" class="nav-link active" data-scroll-target="#practicals">Practicals</a></li>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><strong>Introduction</strong></a></li>
+  <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data"><strong>Data</strong></a></li>
+  <li><a href="#code" id="toc-code" class="nav-link" data-scroll-target="#code"><strong>Code</strong></a></li>
+  <li><a href="#creating-synthetic-data" id="toc-creating-synthetic-data" class="nav-link" data-scroll-target="#creating-synthetic-data"><strong>Creating synthetic data</strong></a></li>
+  <li><a href="#evaluating-synthetic-data" id="toc-evaluating-synthetic-data" class="nav-link" data-scroll-target="#evaluating-synthetic-data"><strong>Evaluating Synthetic data</strong></a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/gerkovink/challenges/edit/main/practicals.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/gerkovink/challenges/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/gerkovink/challenges/edit/main/practicals/data-synthesis-challenge.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/gerkovink/challenges/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Practicals</h1>
+<h1 class="title">Data synthesis challenge</h1>
 </div>
 
 
@@ -146,14 +184,114 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="practicals" class="level1">
-<h1>Practicals</h1>
-<p>Here you can find the links to the practicals.</p>
+<section id="introduction" class="level1">
+<h1><strong>Introduction</strong></h1>
+<p>In this challenge, you will have to synthetize data. Concretely, you have to synthetic data with <em>one</em> of the following two goals in mind:</p>
+<ol type="1">
+<li><p>Getting as close as possible to the original data.</p></li>
+<li><p>Getting as close as possible to the inference of a model you estimate in the original data.</p></li>
+</ol>
+<p>For synthetizing the data, we suggest you use the <code>R</code> package <code>mice</code> (<a href="https://www.gerkovink.com/syn/UMCUSynthetic.html#ref-mice">van Buuren and Groothuis-Oudshoorn 2011</a>). While <code>mice</code> was originally developed to impute missing data, but it can also be used to impute synthetic data (see <a href="https://www.gerkovink.com/syn/UMCUSynthetic.html#ref-volker_vink_synthetic_mice_2021">Volker and Vink 2021</a>). Other alternatives to create synthetic data are, for example, the R-package <code>synthpop</code> (<a href="https://www.gerkovink.com/syn/UMCUSynthetic.html#ref-synthpop">Nowok, Raab, and Dibben 2016</a>), or the stand-alone software <code>IVEware</code> (<a href="https://www.gerkovink.com/syn/UMCUSynthetic.html#ref-iveware">“IVEware: Imputation and Variance Estimation Software,” n.d.</a>).</p>
+</section>
+<section id="data" class="level1">
+<h1><strong>Data</strong></h1>
+<p>You will be using the Heart failure clinical records data set, a medical data set from the <a href="https://archive.ics.uci.edu/">UCI Machine Learning Repository</a>. You can find more info about the data and download it <a href="https://archive.ics.uci.edu/dataset/519/heart+failure+clinical+records">here</a>, and download it directly <a href="data/heart_failure_clinical_records_dataset.csv">here</a>. The data set contains medical information of 299 individuals on 13 variables, and is typically used to predict whether or not a patient will survive during the follow-up period, using several biomedical. We strongly recommend you create an R project, and store the data in a folder called ‘data’. predictors.</p>
+</section>
+<section id="code" class="level1">
+<h1><strong>Code</strong></h1>
+<p>We will be using the following libraries. If you haven’t installed them yet, you can install them using <code>install.packages("desired-library")</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(mice)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># add more libraries</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>If you have created an R project and a data folder, you will have to read the data as follows:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>heart_failure <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/heart_failure_clinical_records_dataset.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>If you haven’t created an R project, you will have to set up a working directory and refer to the the directory where the file is stored.</p>
+<p>The Heart failure clinical records data consists of the following variables:</p>
 <ul>
-<li>Practical 1: <a href="practicals/real-world-data-problems.html">Interactieve verkenning van real-world&nbsp;data problemen</a></li>
-<li>Practical 2: <a href="practicals/hands-on-mice.html">Hands-on met mice in R</a></li>
-<li>Practical 3: <a href="practicals/data-synthesis-challenge.html">Data synthese challenge</a></li>
+<li><code>age</code>: Age in years</li>
+<li><code>anaemia</code>: Whether the patient has a decrease of red blood cells (No/Yes)</li>
+<li><code>hypertension</code>: Whether the patient has high blood pressure (No/Yes)</li>
+<li><code>creatinine_phosphokinase</code>: Level of the creatinine phosphokinase enzyme in the blood (mcg/L)</li>
+<li><code>diabetes</code>: Whether the patient has diabetes (No/Yes)</li>
+<li><code>ejection_fraction</code>: Percentage of blood leaving the heart at each contraction</li>
+<li><code>platelets</code>: Platelets in de blood (kiloplatelets/mL)</li>
+<li><code>sex</code>: Sex (Female/Male)</li>
+<li><code>serum_creatinine</code>: Level of serum creatinine in the blood (mg/dL)</li>
+<li><code>serum_sodium</code>: Level of serum sodium in the blood (mg/dL)</li>
+<li><code>smoking</code>: Whether the patient smokes (No/Yes)</li>
+<li><code>follow_up</code>: Follow-up period (days)</li>
+<li><code>deceased</code>: Whether the patient decreased during the follow-up period</li>
 </ul>
+<p>After loading the data, it is always wise to first inspect the data, so that you have an idea what to expect.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(heart_failure)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 13
+    age anaemia creatinine_phosphokinase diabetes ejection_fraction
+  &lt;dbl&gt;   &lt;dbl&gt;                    &lt;dbl&gt;    &lt;dbl&gt;             &lt;dbl&gt;
+1    75       0                      582        0                20
+2    55       0                     7861        0                38
+3    65       0                      146        0                20
+4    50       1                      111        0                20
+5    65       1                      160        1                20
+6    90       1                       47        0                40
+# ℹ 8 more variables: high_blood_pressure &lt;dbl&gt;, platelets &lt;dbl&gt;,
+#   serum_creatinine &lt;dbl&gt;, serum_sodium &lt;dbl&gt;, sex &lt;dbl&gt;, smoking &lt;dbl&gt;,
+#   time &lt;dbl&gt;, DEATH_EVENT &lt;dbl&gt;</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(heart_failure)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      age           anaemia       creatinine_phosphokinase    diabetes     
+ Min.   :40.00   Min.   :0.0000   Min.   :  23.0           Min.   :0.0000  
+ 1st Qu.:51.00   1st Qu.:0.0000   1st Qu.: 116.5           1st Qu.:0.0000  
+ Median :60.00   Median :0.0000   Median : 250.0           Median :0.0000  
+ Mean   :60.83   Mean   :0.4314   Mean   : 581.8           Mean   :0.4181  
+ 3rd Qu.:70.00   3rd Qu.:1.0000   3rd Qu.: 582.0           3rd Qu.:1.0000  
+ Max.   :95.00   Max.   :1.0000   Max.   :7861.0           Max.   :1.0000  
+ ejection_fraction high_blood_pressure   platelets      serum_creatinine
+ Min.   :14.00     Min.   :0.0000      Min.   : 25100   Min.   :0.500   
+ 1st Qu.:30.00     1st Qu.:0.0000      1st Qu.:212500   1st Qu.:0.900   
+ Median :38.00     Median :0.0000      Median :262000   Median :1.100   
+ Mean   :38.08     Mean   :0.3512      Mean   :263358   Mean   :1.394   
+ 3rd Qu.:45.00     3rd Qu.:1.0000      3rd Qu.:303500   3rd Qu.:1.400   
+ Max.   :80.00     Max.   :1.0000      Max.   :850000   Max.   :9.400   
+  serum_sodium        sex            smoking            time      
+ Min.   :113.0   Min.   :0.0000   Min.   :0.0000   Min.   :  4.0  
+ 1st Qu.:134.0   1st Qu.:0.0000   1st Qu.:0.0000   1st Qu.: 73.0  
+ Median :137.0   Median :1.0000   Median :0.0000   Median :115.0  
+ Mean   :136.6   Mean   :0.6488   Mean   :0.3211   Mean   :130.3  
+ 3rd Qu.:140.0   3rd Qu.:1.0000   3rd Qu.:1.0000   3rd Qu.:203.0  
+ Max.   :148.0   Max.   :1.0000   Max.   :1.0000   Max.   :285.0  
+  DEATH_EVENT    
+ Min.   :0.0000  
+ 1st Qu.:0.0000  
+ Median :0.0000  
+ Mean   :0.3211  
+ 3rd Qu.:1.0000  
+ Max.   :1.0000  </code></pre>
+</div>
+</div>
+<p>Now, you are ready to got. First, you will have to synthetize the data. Then, you will have to evaluate it with regards to a model of choice, or the original data.</p>
+</section>
+<section id="creating-synthetic-data" class="level1">
+<h1><strong>Creating synthetic data</strong></h1>
+<p>Broadly speaking, two methods for creating synthetic data can be distinguished. The first one is based on parametric imputation models, which assumes that the structure of the data is fixed, and draws synthetic values from a pre-specified probability distribution. That is, after estimating a statistical model, the synthetic data are generated from a probability distribution, without making any further use of the observed data. In general, this procedure is less likely to result in an accidental release of disclosive information. However, these parametric methods are often less capable of capturing the complex nature of real-world data sets.</p>
+<p>The subtleties of real-world data are often better reproduced with non-parametric imputation models. Using this approach, a non-parametric model is estimated, resulting in a donor pool out of which a single observation per observation and per variable is drawn. These models thus reuse the observed data to serve as synthetic data. Accordingly, much of the values that were in the observed data end up in the synthetic data. However, these observed data are generally combined in unique ways, it is generally not possible to link this information to the original respondents. The non-parametric procedures often yield better inferences, while still being able to prevent disclosure risk (although more research into measures to qualify the remaining risks is required). We will showcase how to generate synthetic data using one such non-parametric method: classification and regression trees (CART).</p>
+<p>Now you have a feeling of what the data looks like, we will use these two different ways to create synthetic data: a fully parametric approach, in which the data are synthesized using either linear or logistic regression, and a fully non-parametric approach, in which we synthesize all data using CART.</p>
+<p>… ADD MORE TEXT HERE. I GUESS MICE EXPLANATION? …</p>
+</section>
+<section id="evaluating-synthetic-data" class="level1">
+<h1><strong>Evaluating Synthetic data</strong></h1>
+<p>Once you have synthetized your data, you have to evaluate it. If you have chosen to evaluate it with regards to the original data, you will have to perform evaluations such as: comparing univariate distributions, multivariate distributions, and more.</p>
+<p>If you have chosen to evaluate it with regards to a model, you will have to 1) estimate a model on the original data; and 2) estimate a model on the synthetic data. Then, you will have to compare the results of the two models.</p>
+<p>Note that, in both cases, methods are iterative: you synthetize data, evaluate it, and then go back to synthetizing data. You should do this until the results are as close as desired.</p>
+<p>… ADD ASSIGNMENT HERE …</p>
 
 
 </section>
@@ -573,4 +711,4 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/gerkovink/challenges/edit/main/practicals.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/gerkovink/challenges/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/gerkovink/challenges/edit/main/practicals/data-synthesis-challenge.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/gerkovink/challenges/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
