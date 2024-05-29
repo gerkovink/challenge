@@ -43,9 +43,9 @@ The Heart failure clinical records data consists of the following variables:
 
 - `age`: Age in years
 - `anaemia`: Whether the patient has a decrease of red blood cells (No/Yes)
-- `hypertension`: Whether the patient has high blood pressure (No/Yes)
 - `creatinine_phosphokinase`: Level of the creatinine phosphokinase enzyme in the blood (mcg/L)
 - `diabetes`: Whether the patient has diabetes (No/Yes)
+- `high_blood_pressure`: Whether the patient has high blood pressure (No/Yes)
 - `ejection_fraction`: Percentage of blood leaving the heart at each contraction
 - `platelets`: Platelets in de blood (kiloplatelets/mL)
 - `sex`: Sex (Female/Male)
@@ -53,7 +53,7 @@ The Heart failure clinical records data consists of the following variables:
 - `serum_sodium`: Level of serum sodium in the blood (mg/dL)
 - `smoking`: Whether the patient smokes (No/Yes)
 - `follow_up`: Follow-up period (days)
-- `deceased`: Whether the patient decreased during the follow-up period
+- `DEATH_EVENT`: Whether the patient was deceased during the follow-up period
 
 After loading the data, it is always wise to first inspect the data, so that you have an idea what to expect.
 
@@ -87,3 +87,43 @@ If you have chosen to evaluate it with regards to a model, you will have to 1) e
 Note that, in both cases, methods are iterative: you synthetize data, evaluate it, and then go back to synthetizing data. You should do this until the results are as close as desired.
 
 ... ADD ASSIGNMENT HERE ...
+
+```{r}
+# create synthetic data. Students should do this differently, but still call the object
+# 'syn_data'.
+library(synthpop)
+syn_data <- syn(heart_failure, seed = 1234)$syn
+```
+
+### Performance metrics
+```{r}
+
+# 1. Mean absolute value of mean scaled deviation between original and synthesized variables
+sd <- apply(heart_failure, 2, sd)
+colMeans(abs((syn_data-heart_failure)/sd)) |> mean()
+
+
+# 2. Average deviation of original and synthetic correlation matrix
+mean(cor(heart_failure) - cor(syn_data))
+# 2.1 Average absolute deviation of original and synthetic correlation matrix
+mean(abs(cor(heart_failure) - cor(syn_data)))
+
+
+# 3. Pearson divergence according to densyty ratio package
+# To install, use devtools::install_github("thomvolker/densityratio")
+library(densityratio)
+## Estimate density ratio and check summaries and plots
+densratio <- ulsif(heart_failure, syn_data) 
+summary(densratio) # pearson divergence can be found here
+plot(densratio)
+
+# 4. Train model on synthetic data, use it to predict on observed data
+# Train model
+model <- glm(DEATH_EVENT ~ ., data = syn_data, family = binomial)
+
+# 4.1 Compute confussion matrix of model in synthetic data
+table(syn_data$DEATH_EVENT, predict(model, newdata = syn_data) > 0.5)
+# 4.2 Compute confussion matrix of model in original data
+table(heart_failure$DEATH_EVENT, predict(model, newdata = heart_failure) > 0.5)
+```
+
