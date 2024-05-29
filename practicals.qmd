@@ -6,6 +6,5 @@ title: "Practicals"
 
 Here you can find the links to the practicals.
 
-- Practical 1: [Interactieve verkenning van real-world data problemen](practicals/real-world-data-problems.html)
-- Practical 2: [Hands-on met mice in R](practicals/hands-on-mice.html)
+- Practical 1: [Hands-on met mice in R](https://www.gerkovink.com/quickmice)
 - Practical 3: [Data synthese challenge](practicals/data-synthesis-challenge.html)

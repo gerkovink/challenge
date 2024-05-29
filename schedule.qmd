@@ -5,7 +5,7 @@ title: "Schedule"
 | Timeslot      | Activiteit                                             |
 |---------------|--------------------------------------------------------|
 | 09:00 - 09:30 | Inloop                                                 |
-| 09:30 - 10:30 | [De anatomie van een antwoord](lectures/anatomy.qmd)         |
+| 09:30 - 10:30 | [De anatomie van een antwoord](lectures/anatomy/index.html)         |
 | 10:30 - 10:45 | Pauze                                                  |
 | 10:45 - 11:15 | [Interactieve verkenning van real-world data problemen](practicals/real-world-data-problems.qmd) |  
 | 11:15 - 12:30 | [Van ‘dark’ data naar imputatie en verder naar data synthese](lectures/dark-data.qmd)  |

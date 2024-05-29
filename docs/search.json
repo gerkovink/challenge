@@ -24,8 +24,8 @@
     "objectID": "lectures/anatomy.html#disclaimer",
     "href": "lectures/anatomy.html#disclaimer",
     "title": "The Anatomy of an Answer",
-    "section": "Disclaimer",
-    "text": "Disclaimer\nI owe a debt of gratitude to many people as the thoughts and code in these slides are the process of years-long development cycles and discussions with my team, friends, colleagues and peers. When someone has contributed to the content of the slides, I have credited their authorship.\nScientific references are in the footer. Opinions and figures are my own, AI-generated or directly linked.\n\n\n\n\n\n\nMaterials\n\n\n\nslides: www.gerkovink.com/Anatomy\nsource: github.com/gerkovink/Anatomy"
+    "section": "",
+    "text": "I owe a debt of gratitude to many people as the thoughts and code in these slides are the process of years-long development cycles and discussions with my team, friends, colleagues and peers. When someone has contributed to the content of the slides, I have credited their authorship.\nScientific references are in the footer. Opinions and figures are my own, AI-generated or directly linked.\n\n\n\n\n\n\nMaterials\n\n\n\n\nslides: www.gerkovink.com/Anatomy\nsource: github.com/gerkovink/Anatomy"
   },
   {
     "objectID": "lectures/anatomy.html#terms-i-may-use",
@@ -39,28 +39,28 @@
     "href": "lectures/anatomy.html#at-the-start",
     "title": "The Anatomy of an Answer",
     "section": "At the start",
-    "text": "At the start\nLet’s start with the core:\n\n\n\n\n\n\nStatistical inference\n\n\nStatistical inference is the process of drawing conclusions from truths\n\n\n\nTruths are boring, but they are convenient.\n\nhowever, for most problems truths require a lot of calculations, tallying or a complete census.\ntherefore, a proxy of the truth is in most cases sufficient\nAn example for such a proxy is a sample\nSamples are widely used and have been for a long timeSee Jelke Bethlehem’s CBS discussion paper for an overview of the history of sampling within survey statistics\n\n\n\\(^1\\) See Jelke Bethlehem’s CBS discussion paper for an overview of the history of survey sampling"
+    "text": "At the start\nLet’s start with the core:\n\n\n\n\n\n\nStatistical inference\n\n\n\nStatistical inference is the process of drawing conclusions from truths\n\n\nTruths are boring, but they are convenient.\n\nhowever, for most problems truths require a lot of calculations, tallying or a complete census.\ntherefore, a proxy of the truth is in most cases sufficient\nAn example for such a proxy is a sample\nSamples are widely used and have been for a long timeSee Jelke Bethlehem’s CBS discussion paper for an overview of the history of sampling within survey statistics\n\n\n\\(^1\\) See Jelke Bethlehem’s CBS discussion paper for an overview of the history of survey sampling"
   },
   {
     "objectID": "lectures/anatomy.html#do-we-need-data",
     "href": "lectures/anatomy.html#do-we-need-data",
     "title": "The Anatomy of an Answer",
     "section": "Do we need data?",
-    "text": "Do we need data?\nWithout any data we can still come up with a statistically valid answer.\n\nThe answer will not be very informative.\nIn order for our answer to be more informative, we need more information\n\nSome sources of information can already tremendously guide the precision of our answer.\n\n\n\n\n\n\nIn Short\n\n\nInformation bridges the answer to the truth. Too little information may lead you to a false truth."
+    "text": "Do we need data?\nWithout any data we can still come up with a statistically valid answer.\n\nThe answer will not be very informative.\nIn order for our answer to be more informative, we need more information\n\nSome sources of information can already tremendously guide the precision of our answer.\n\n\n\n\n\n\nIn Short\n\n\n\nInformation bridges the answer to the truth. Too little information may lead you to a false truth."
   },
   {
     "objectID": "lectures/anatomy.html#being-wrong-about-the-truth",
     "href": "lectures/anatomy.html#being-wrong-about-the-truth",
     "title": "The Anatomy of an Answer",
     "section": "Being wrong about the truth",
-    "text": "Being wrong about the truth\n\n\n\n\n\nThe population is the truth\nThe sample comes from the population, but is generally smaller in size\nThis means that not all cases from the population can be in our sample\nIf not all information from the population is in the sample, then our sample may be wrong\n\n\n\n\n\n\n\nGood questions to ask yourself\n\n\n\nWhy is it important that our sample is not wrong?\nHow do we know that our sample is not wrong?"
+    "text": "Being wrong about the truth\n\n\n\n\n\nThe population is the truth\nThe sample comes from the population, but is generally smaller in size\nThis means that not all cases from the population can be in our sample\nIf not all information from the population is in the sample, then our sample may be wrong\n\n\n\n\n\n\n\nGood questions to ask yourself\n\n\n\n\nWhy is it important that our sample is not wrong?\nHow do we know that our sample is not wrong?"
   },
   {
     "objectID": "lectures/anatomy.html#solving-the-missingness-problem",
     "href": "lectures/anatomy.html#solving-the-missingness-problem",
     "title": "The Anatomy of an Answer",
     "section": "Solving the missingness problem",
-    "text": "Solving the missingness problem\n\n\n\n\n\nThere are many flavours of sampling\nIf we give every unit in the population the same probability to be sampled, we do random sampling\nThe convenience with random sampling is that the missingness problem can be ignored\nThe missingness problem would in this case be: not every unit in the population has been observed in the sample\n\n\n\n\n\n\n\nHmmm…\n\n\nWould that mean that if we simply observe every potential unit, we would be unbiased about the truth?"
+    "text": "Solving the missingness problem\n\n\n\n\n\nThere are many flavours of sampling\nIf we give every unit in the population the same probability to be sampled, we do random sampling\nThe convenience with random sampling is that the missingness problem can be ignored\nThe missingness problem would in this case be: not every unit in the population has been observed in the sample\n\n\n\n\n\n\n\nHmmm…\n\n\n\nWould that mean that if we simply observe every potential unit, we would be unbiased about the truth?"
   },
   {
     "objectID": "lectures/anatomy.html#sidestep",
@@ -109,7 +109,7 @@
     "href": "lectures/anatomy.html#assumptions",
     "title": "The Anatomy of an Answer",
     "section": "Assumptions",
-    "text": "Assumptions\nTake the following definition:\n\na thing that is accepted as true or as certain to happen, without proof.\n\nAssumptions are a statisticians faith. It is often impossible to prove that they hold in practice, but we choose to believe that they do.\n\n\n\n\n\n\nSensitivity analyses\n\n\nI often use computational evaluation techniques to quantify the scope of the impact of assumptions made. For example, we can test the effect of violating assumptions on our results. We then verify if the inferences are sensitive to violations of the assumptions. We can even verify the extend of when assumptions start becoming influential to our inferences."
+    "text": "Assumptions\nTake the following definition:\n\na thing that is accepted as true or as certain to happen, without proof.\n\nAssumptions are a statisticians faith. It is often impossible to prove that they hold in practice, but we choose to believe that they do.\n\n\n\n\n\n\nSensitivity analyses\n\n\n\nI often use computational evaluation techniques to quantify the scope of the impact of assumptions made. For example, we can test the effect of violating assumptions on our results. We then verify if the inferences are sensitive to violations of the assumptions. We can even verify the extend of when assumptions start becoming influential to our inferences."
   },
   {
     "objectID": "lectures/anatomy.html#the-holy-trinity",
@@ -123,7 +123,7 @@
     "href": "lectures/anatomy.html#on-the-individual-level",
     "title": "The Anatomy of an Answer",
     "section": "On the individual level",
-    "text": "On the individual level\n\n\n\n\nIndividual intervals can also be hugely informative!\nIndividual intervals are generally wider than confidence intervals\n\nThis is because it covers inherent uncertainty in the data point on top of sampling uncertainty\n\n\n\n\n\n\n\nBe careful\n\n\nNarrower intervals mean less uncertainty.\nIt does not mean that the answer is correct!"
+    "text": "On the individual level\n\n\n\n\nIndividual intervals can also be hugely informative!\nIndividual intervals are generally wider than confidence intervals\n\nThis is because it covers inherent uncertainty in the data point on top of sampling uncertainty\n\n\n\n\n\n\n\nBe careful\n\n\n\nNarrower intervals mean less uncertainty.\nIt does not mean that the answer is correct!"
   },
   {
     "objectID": "lectures/anatomy.html#case-spaceshuttle-challenger",
@@ -158,7 +158,7 @@
     "href": "lectures/anatomy.html#now-how-do-we-know-we-did-well",
     "title": "The Anatomy of an Answer",
     "section": "Now how do we know we did well?",
-    "text": "Now how do we know we did well?\n\n\n\n\n\n\nI’m really sorry!\n\n\nIn practice we don’t know if we did well, because we often lack the necessary comparative truths.\n\n\n\nFor example:\n\nPredict a future response, but we only have the past\nAnalyzing incomplete data without a reference about the truth\nEstimate the effect between two things that can never occur together\nDetecting fraudulent transactions with only access to the own transaction history\nAppealing to a new customer base with only data about existing customers\nMixing bonafide observations with bonafide non-observations"
+    "text": "Now how do we know we did well?\n\n\n\n\n\n\nI’m really sorry!\n\n\n\nIn practice we don’t know if we did well, because we often lack the necessary comparative truths.\n\n\nFor example:\n\nPredict a future response, but we only have the past\nAnalyzing incomplete data without a reference about the truth\nEstimate the effect between two things that can never occur together\nDetecting fraudulent transactions with only access to the own transaction history\nAppealing to a new customer base with only data about existing customers\nMixing bonafide observations with bonafide non-observations"
   },
   {
     "objectID": "lectures/anatomy.html#scenario",
@@ -172,7 +172,7 @@
     "href": "lectures/anatomy.html#scenario-1",
     "title": "The Anatomy of an Answer",
     "section": "Scenario",
-    "text": "Scenario\nLet’s assume that we have an incomplete data set and that we can impute (fill in) the incomplete values under multiple candidate models\nChallenge Imputing this data set under one model may yield different results than imputing this data set under another model. Identify the best model!\nProblem We have no idea about validity of either model’s results: we would need either the true observed values or the estimand before we can judge the performance and validity of the imputation model.\n\n\n\n\n\n\nNot all is lost\n\n\nWe do have a constant in our problem: the observed values"
+    "text": "Scenario\nLet’s assume that we have an incomplete data set and that we can impute (fill in) the incomplete values under multiple candidate models\nChallenge Imputing this data set under one model may yield different results than imputing this data set under another model. Identify the best model!\nProblem We have no idea about validity of either model’s results: we would need either the true observed values or the estimand before we can judge the performance and validity of the imputation model.\n\n\n\n\n\n\nNot all is lost\n\n\n\nWe do have a constant in our problem: the observed values"
   },
   {
     "objectID": "lectures/anatomy.html#solution---overimpute-the-observed-values",
@@ -193,7 +193,7 @@
     "href": "lectures/anatomy.html#some-background",
     "title": "The Anatomy of an Answer",
     "section": "Some background",
-    "text": "Some background\nWe know:\n\nNot Applicable is not randomly distributed over the data. Removing them is therefore not valid!\nNot Applicable are bonafide missing values: there should be no observations.\n\n\n\n\n\n\n\nThere’s no such thing as a free lunch\n\n\nEvery imputation will bias the results. For some we know the direction of the bias, for some we have no idea. We do not have access to the truth.\n\n\n\nWhat would you do?"
+    "text": "Some background\nWe know:\n\nNot Applicable is not randomly distributed over the data. Removing them is therefore not valid!\nNot Applicable are bonafide missing values: there should be no observations.\n\n\n\n\n\n\n\nThere’s no such thing as a free lunch\n\n\n\nEvery imputation will bias the results. For some we know the direction of the bias, for some we have no idea. We do not have access to the truth.\n\n\n\nWhat would you do?"
   },
   {
     "objectID": "lectures/anatomy.html#our-solution",
@@ -207,7 +207,7 @@
     "href": "lectures/anatomy.html#to-conclude",
     "title": "The Anatomy of an Answer",
     "section": "To conclude",
-    "text": "To conclude\n\n\n\n\n\n\n\n\nGerko Vink @ UU, 20 Dec 2023, Utrecht"
+    "text": "To conclude"
   },
   {
     "objectID": "index.html",
@@ -235,7 +235,7 @@
     "href": "practicals.html",
     "title": "Practicals",
     "section": "",
-    "text": "Practicals\nHere you can find the links to the practicals.\n\nPractical 1: Interactieve verkenning van real-world data problemen\nPractical 2: Hands-on met mice in R\nPractical 3: Data synthese challenge"
+    "text": "Practicals\nHere you can find the links to the practicals.\n\nPractical 1: Hands-on met mice in R\nPractical 3: Data synthese challenge"
   },
   {
     "objectID": "practicals/data-synthesis-challenge.html",
@@ -243,5 +243,201 @@
     "title": "Data synthesis challenge",
     "section": "",
     "text": "Introduction\nIn this challenge, you will have to synthetize data. Concretely, you have to synthetic data with one of the following two goals in mind:\n\nGetting as close as possible to the original data.\nGetting as close as possible to the inference of a model you estimate in the original data.\n\nFor synthetizing the data, we suggest you use the R package mice (van Buuren and Groothuis-Oudshoorn 2011). While mice was originally developed to impute missing data, but it can also be used to impute synthetic data (see Volker and Vink 2021). Other alternatives to create synthetic data are, for example, the R-package synthpop (Nowok, Raab, and Dibben 2016), or the stand-alone software IVEware (“IVEware: Imputation and Variance Estimation Software,” n.d.).\n\n\nData\nYou will be using the Heart failure clinical records data set, a medical data set from the UCI Machine Learning Repository. You can find more info about the data and download it here, and download it directly here. The data set contains medical information of 299 individuals on 13 variables, and is typically used to predict whether or not a patient will survive during the follow-up period, using several biomedical. We strongly recommend you create an R project, and store the data in a folder called ‘data’. predictors.\n\n\nCode\nWe will be using the following libraries. If you haven’t installed them yet, you can install them using install.packages(\"desired-library\").\n\nlibrary(mice)\nlibrary(readr)\n# add more libraries\n\nIf you have created an R project and a data folder, you will have to read the data as follows:\n\nheart_failure &lt;- read_csv(\"data/heart_failure_clinical_records_dataset.csv\")\n\nIf you haven’t created an R project, you will have to set up a working directory and refer to the the directory where the file is stored.\nThe Heart failure clinical records data consists of the following variables:\n\nage: Age in years\nanaemia: Whether the patient has a decrease of red blood cells (No/Yes)\nhypertension: Whether the patient has high blood pressure (No/Yes)\ncreatinine_phosphokinase: Level of the creatinine phosphokinase enzyme in the blood (mcg/L)\ndiabetes: Whether the patient has diabetes (No/Yes)\nejection_fraction: Percentage of blood leaving the heart at each contraction\nplatelets: Platelets in de blood (kiloplatelets/mL)\nsex: Sex (Female/Male)\nserum_creatinine: Level of serum creatinine in the blood (mg/dL)\nserum_sodium: Level of serum sodium in the blood (mg/dL)\nsmoking: Whether the patient smokes (No/Yes)\nfollow_up: Follow-up period (days)\ndeceased: Whether the patient decreased during the follow-up period\n\nAfter loading the data, it is always wise to first inspect the data, so that you have an idea what to expect.\n\nhead(heart_failure)\n\n# A tibble: 6 × 13\n    age anaemia creatinine_phosphokinase diabetes ejection_fraction\n  &lt;dbl&gt;   &lt;dbl&gt;                    &lt;dbl&gt;    &lt;dbl&gt;             &lt;dbl&gt;\n1    75       0                      582        0                20\n2    55       0                     7861        0                38\n3    65       0                      146        0                20\n4    50       1                      111        0                20\n5    65       1                      160        1                20\n6    90       1                       47        0                40\n# ℹ 8 more variables: high_blood_pressure &lt;dbl&gt;, platelets &lt;dbl&gt;,\n#   serum_creatinine &lt;dbl&gt;, serum_sodium &lt;dbl&gt;, sex &lt;dbl&gt;, smoking &lt;dbl&gt;,\n#   time &lt;dbl&gt;, DEATH_EVENT &lt;dbl&gt;\n\n\n\nsummary(heart_failure)\n\n      age           anaemia       creatinine_phosphokinase    diabetes     \n Min.   :40.00   Min.   :0.0000   Min.   :  23.0           Min.   :0.0000  \n 1st Qu.:51.00   1st Qu.:0.0000   1st Qu.: 116.5           1st Qu.:0.0000  \n Median :60.00   Median :0.0000   Median : 250.0           Median :0.0000  \n Mean   :60.83   Mean   :0.4314   Mean   : 581.8           Mean   :0.4181  \n 3rd Qu.:70.00   3rd Qu.:1.0000   3rd Qu.: 582.0           3rd Qu.:1.0000  \n Max.   :95.00   Max.   :1.0000   Max.   :7861.0           Max.   :1.0000  \n ejection_fraction high_blood_pressure   platelets      serum_creatinine\n Min.   :14.00     Min.   :0.0000      Min.   : 25100   Min.   :0.500   \n 1st Qu.:30.00     1st Qu.:0.0000      1st Qu.:212500   1st Qu.:0.900   \n Median :38.00     Median :0.0000      Median :262000   Median :1.100   \n Mean   :38.08     Mean   :0.3512      Mean   :263358   Mean   :1.394   \n 3rd Qu.:45.00     3rd Qu.:1.0000      3rd Qu.:303500   3rd Qu.:1.400   \n Max.   :80.00     Max.   :1.0000      Max.   :850000   Max.   :9.400   \n  serum_sodium        sex            smoking            time      \n Min.   :113.0   Min.   :0.0000   Min.   :0.0000   Min.   :  4.0  \n 1st Qu.:134.0   1st Qu.:0.0000   1st Qu.:0.0000   1st Qu.: 73.0  \n Median :137.0   Median :1.0000   Median :0.0000   Median :115.0  \n Mean   :136.6   Mean   :0.6488   Mean   :0.3211   Mean   :130.3  \n 3rd Qu.:140.0   3rd Qu.:1.0000   3rd Qu.:1.0000   3rd Qu.:203.0  \n Max.   :148.0   Max.   :1.0000   Max.   :1.0000   Max.   :285.0  \n  DEATH_EVENT    \n Min.   :0.0000  \n 1st Qu.:0.0000  \n Median :0.0000  \n Mean   :0.3211  \n 3rd Qu.:1.0000  \n Max.   :1.0000  \n\n\nNow, you are ready to got. First, you will have to synthetize the data. Then, you will have to evaluate it with regards to a model of choice, or the original data.\n\n\nCreating synthetic data\nBroadly speaking, two methods for creating synthetic data can be distinguished. The first one is based on parametric imputation models, which assumes that the structure of the data is fixed, and draws synthetic values from a pre-specified probability distribution. That is, after estimating a statistical model, the synthetic data are generated from a probability distribution, without making any further use of the observed data. In general, this procedure is less likely to result in an accidental release of disclosive information. However, these parametric methods are often less capable of capturing the complex nature of real-world data sets.\nThe subtleties of real-world data are often better reproduced with non-parametric imputation models. Using this approach, a non-parametric model is estimated, resulting in a donor pool out of which a single observation per observation and per variable is drawn. These models thus reuse the observed data to serve as synthetic data. Accordingly, much of the values that were in the observed data end up in the synthetic data. However, these observed data are generally combined in unique ways, it is generally not possible to link this information to the original respondents. The non-parametric procedures often yield better inferences, while still being able to prevent disclosure risk (although more research into measures to qualify the remaining risks is required). We will showcase how to generate synthetic data using one such non-parametric method: classification and regression trees (CART).\nNow you have a feeling of what the data looks like, we will use these two different ways to create synthetic data: a fully parametric approach, in which the data are synthesized using either linear or logistic regression, and a fully non-parametric approach, in which we synthesize all data using CART.\n… ADD MORE TEXT HERE. I GUESS MICE EXPLANATION? …\n\n\nEvaluating Synthetic data\nOnce you have synthetized your data, you have to evaluate it. If you have chosen to evaluate it with regards to the original data, you will have to perform evaluations such as: comparing univariate distributions, multivariate distributions, and more.\nIf you have chosen to evaluate it with regards to a model, you will have to 1) estimate a model on the original data; and 2) estimate a model on the synthetic data. Then, you will have to compare the results of the two models.\nNote that, in both cases, methods are iterative: you synthetize data, evaluate it, and then go back to synthetizing data. You should do this until the results are as close as desired.\n… ADD ASSIGNMENT HERE …"
+  },
+  {
+    "objectID": "lectures/anatomy.html",
+    "href": "lectures/anatomy.html",
+    "title": "The Anatomy of an Answer",
+    "section": "",
+    "text": "I owe a debt of gratitude to many people as the thoughts and code in these slides are the process of years-long development cycles and discussions with my team, friends, colleagues and peers. When someone has contributed to the content of the slides, I have credited their authorship.\nScientific references are in the footer. Opinions and figures are my own, AI-generated or directly linked.\n\n\n\n\n\n\nMaterials\n\n\n\n\nslides: www.gerkovink.com/Anatomy\nsource: github.com/gerkovink/Anatomy"
+  },
+  {
+    "objectID": "lectures/anatomy/index.html#disclaimer",
+    "href": "lectures/anatomy/index.html#disclaimer",
+    "title": "The Anatomy of an Answer",
+    "section": "Disclaimer",
+    "text": "Disclaimer\nI owe a debt of gratitude to many people as the thoughts and code in these slides are the process of years-long development cycles and discussions with my team, friends, colleagues and peers. When someone has contributed to the content of the slides, I have credited their authorship.\nScientific references are in the footer. Opinions and figures are my own, AI-generated or directly linked.\n\n\n\n\n\n\nMaterials\n\n\n\nsource: github.com/gerkovink/challenge"
+  },
+  {
+    "objectID": "lectures/anatomy/index.html#terms-i-may-use",
+    "href": "lectures/anatomy/index.html#terms-i-may-use",
+    "title": "The Anatomy of an Answer",
+    "section": "Terms I may use",
+    "text": "Terms I may use\n\nTDGM: True data generating model\nDGP: Data generating process, closely related to the TDGM, but with all the wacky additional uncertainty\nTruth: The comparative truth that we are interested in\nBias: The distance to the comparative truth\nVariance: When not everything is the same\nEstimate: Something that we calculate or guess\nEstimand: The thing we aim to estimate and guess\nPopulation: That larger entity without sampling variance\nSample: The smaller thing with sampling variance\nIncomplete: There exists a more complete version, but we don’t have it\nObserved: What we have\nUnobserved: What we would also like to have"
+  },
+  {
+    "objectID": "lectures/anatomy/index.html#at-the-start",
+    "href": "lectures/anatomy/index.html#at-the-start",
+    "title": "The Anatomy of an Answer",
+    "section": "At the start",
+    "text": "At the start\nLet’s start with the core:\n\n\n\n\n\n\nStatistical inference\n\n\nStatistical inference is the process of drawing conclusions from truths\n\n\n\nTruths are boring, but they are convenient.\n\nhowever, for most problems truths require a lot of calculations, tallying or a complete census.\ntherefore, a proxy of the truth is in most cases sufficient\nAn example for such a proxy is a sample\nSamples are widely used and have been for a long timeSee Jelke Bethlehem’s CBS discussion paper for an overview of the history of sampling within survey statistics\n\n\n\\(^1\\) See Jelke Bethlehem’s CBS discussion paper for an overview of the history of survey sampling"
+  },
+  {
+    "objectID": "lectures/anatomy/index.html#do-we-need-data",
+    "href": "lectures/anatomy/index.html#do-we-need-data",
+    "title": "The Anatomy of an Answer",
+    "section": "Do we need data?",
+    "text": "Do we need data?\nWithout any data we can still come up with a statistically valid answer.\n\nThe answer will not be very informative.\nIn order for our answer to be more informative, we need more information\n\nSome sources of information can already tremendously guide the precision of our answer.\n\n\n\n\n\n\nIn Short\n\n\nInformation bridges the answer to the truth. Too little information may lead you to a false truth."
+  },
+  {
+    "objectID": "lectures/anatomy/index.html#being-wrong-about-the-truth",
+    "href": "lectures/anatomy/index.html#being-wrong-about-the-truth",
+    "title": "The Anatomy of an Answer",
+    "section": "Being wrong about the truth",
+    "text": "Being wrong about the truth\n\n\n\n\n\nThe population is the truth\nThe sample comes from the population, but is generally smaller in size\nThis means that not all cases from the population can be in our sample\nIf not all information from the population is in the sample, then our sample may be wrong\n\n\n\n\n\n\n\nGood questions to ask yourself\n\n\n\nWhy is it important that our sample is not wrong?\nHow do we know that our sample is not wrong?"
+  },
+  {
+    "objectID": "lectures/anatomy/index.html#solving-the-missingness-problem",
+    "href": "lectures/anatomy/index.html#solving-the-missingness-problem",
+    "title": "The Anatomy of an Answer",
+    "section": "Solving the missingness problem",
+    "text": "Solving the missingness problem\n\n\n\n\n\nThere are many flavours of sampling\nIf we give every unit in the population the same probability to be sampled, we do random sampling\nThe convenience with random sampling is that the missingness problem can be ignored\nThe missingness problem would in this case be: not every unit in the population has been observed in the sample\n\n\n\n\n\n\n\nHmmm…\n\n\nWould that mean that if we simply observe every potential unit, we would be unbiased about the truth?"
+  },
+  {
+    "objectID": "lectures/anatomy/index.html#sidestep",
+    "href": "lectures/anatomy/index.html#sidestep",
+    "title": "The Anatomy of an Answer",
+    "section": "Sidestep",
+    "text": "Sidestep\n\n\n\n\n\nThe problem is a bit larger\nWe have three entities at play, here:\n\nThe truth we’re interested in\nThe proxy that we have (e.g. sample)\nThe model that we’re running\n\nThe more features we use, the more we capture about the outcome for the cases in the data\nThe more cases we have, the more we approach the true information  All these things are related to uncertainty. Our model can still yield biased results when fitted to \\(\\infty\\) features. Our inference can still be wrong when obtained on \\(\\infty\\) cases."
+  },
+  {
+    "objectID": "lectures/anatomy/index.html#sidestep-1",
+    "href": "lectures/anatomy/index.html#sidestep-1",
+    "title": "The Anatomy of an Answer",
+    "section": "Sidestep",
+    "text": "Sidestep\n\n\n\n\n\nThe problem is a bit larger\nWe have three entities at play, here:\n\nThe truth we’re interested in\nThe proxy that we have (e.g. sample)\nThe model that we’re running\n\nThe more features we use, the more we capture about the outcome for the cases in the data\nThe more cases we have, the more we approach the true information \n\nCore assumption: all observations are bonafide"
+  },
+  {
+    "objectID": "lectures/anatomy/index.html#uncertainty-simplified",
+    "href": "lectures/anatomy/index.html#uncertainty-simplified",
+    "title": "The Anatomy of an Answer",
+    "section": "Uncertainty simplified",
+    "text": "Uncertainty simplified\n\n\n\n\nWhen we do not have all information …\n\nWe need to accept that we are probably wrong\nWe just have to quantify how wrong we are\n\n In some cases we estimate that we are only a bit wrong. In other cases we estimate that we could be very wrong. This is the purpose of testing.  The uncertainty measures about our estimates can be used to create intervals"
+  },
+  {
+    "objectID": "lectures/anatomy/index.html#confidence-in-the-answer",
+    "href": "lectures/anatomy/index.html#confidence-in-the-answer",
+    "title": "The Anatomy of an Answer",
+    "section": "Confidence in the answer",
+    "text": "Confidence in the answer\n\n\n\n\nAn intuitive approach to evaluating an answer is confidence. In statistics, we often use confidence intervals. Discussing confidence can be hugely informative!\nIf we sample 100 samples from a population, then a 95% CI will cover the true population value at least 95 out of 100 times.\n\nIf the coverage &lt;95: bad estimation process with risk of errors and invalid inference\nIf the coverage &gt;95: inefficient estimation process, but correct conclusions and valid inference. Lower statistical power.\n\n\n\n\nNeyman, J. (1934). On the Two Different Aspects of the Representative Method: The Method of Stratified Sampling and the Method of Purposive Selection.  Journal of the Royal Statistical Society Series A: Statistics in Society, 97(4), 558-606."
+  },
+  {
+    "objectID": "lectures/anatomy/index.html#how-do-we-know-that-our-sample-is-not.",
+    "href": "lectures/anatomy/index.html#how-do-we-know-that-our-sample-is-not.",
+    "title": "The Anatomy of an Answer",
+    "section": "How do we know that our sample is not….",
+    "text": "How do we know that our sample is not….\n\n\n\n\nWe can replicate our sample.\n\nA replication would be a new sample from the same population or true data generating model obtained by the same data generating process.\nIf we would sample 100 times, we would get 100 different samples\nIf we would estimate 100 times, we would get 100 different estimates with 100 different confidence intervals (e.g. 95% CI)\nOut of these 100 different intervals, we would expect a nominal coverage. For a 95% CI we’d expect 95 of them to cover the true population value."
+  },
+  {
+    "objectID": "lectures/anatomy/index.html#this-is-a-lot-of-work",
+    "href": "lectures/anatomy/index.html#this-is-a-lot-of-work",
+    "title": "The Anatomy of an Answer",
+    "section": "This is a lot of work…",
+    "text": "This is a lot of work…\n\n\n\n\nFull sampling validation of a model’s inferences is a lot of work.\n\nit is the most robust way of obtaining inferential validity\nit is not always necessary\n\nUnder some general assumptions, we can use the same data to validate our model’s inferences and predictions.\n\nthese assumptions can be met in practice\nbut as soon as assumptions are made, we open the door to errors when these assumptions do not hold"
+  },
+  {
+    "objectID": "lectures/anatomy/index.html#assumptions",
+    "href": "lectures/anatomy/index.html#assumptions",
+    "title": "The Anatomy of an Answer",
+    "section": "Assumptions",
+    "text": "Assumptions\nTake the following definition:\n\na thing that is accepted as true or as certain to happen, without proof.\n\nAssumptions are a statisticians faith. It is often impossible to prove that they hold in practice, but we choose to believe that they do.\n\n\n\n\n\n\nSensitivity analyses\n\n\nI often use computational evaluation techniques to quantify the scope of the impact of assumptions made. For example, we can test the effect of violating assumptions on our results. We then verify if the inferences are sensitive to violations of the assumptions. We can even verify the extend of when assumptions start becoming influential to our inferences."
+  },
+  {
+    "objectID": "lectures/anatomy/index.html#the-holy-trinity",
+    "href": "lectures/anatomy/index.html#the-holy-trinity",
+    "title": "The Anatomy of an Answer",
+    "section": "The holy trinity",
+    "text": "The holy trinity\nWhenever I evaluate something, I tend to look at three things:\n\nbias (how far from the truth)\nuncertainty/variance (how wide is my interval)\ncoverage (how often do I cover the truth with my interval)\n\n As a function of model complexity in specific modeling efforts, these components play a role in the bias/variance tradeoff"
+  },
+  {
+    "objectID": "lectures/anatomy/index.html#on-the-individual-level",
+    "href": "lectures/anatomy/index.html#on-the-individual-level",
+    "title": "The Anatomy of an Answer",
+    "section": "On the individual level",
+    "text": "On the individual level\n\n\n\n\nIndividual intervals can also be hugely informative!\nIndividual intervals are generally wider than confidence intervals\n\nThis is because it covers inherent uncertainty in the data point on top of sampling uncertainty\n\n\n\n\n\n\n\nBe careful\n\n\nNarrower intervals mean less uncertainty.\nIt does not mean that the answer is correct!"
+  },
+  {
+    "objectID": "lectures/anatomy/index.html#case-spaceshuttle-challenger",
+    "href": "lectures/anatomy/index.html#case-spaceshuttle-challenger",
+    "title": "The Anatomy of an Answer",
+    "section": "Case: Spaceshuttle Challenger",
+    "text": "Case: Spaceshuttle Challenger\n36 years ago, on 28 January 1986, 73 seconds into its flight and at an altitude of 9 miles, the space shuttle Challenger experienced an enormous fireball caused by one of its two booster rockets and broke up. The crew compartment continued its trajectory, reaching an altitude of 12 miles, before falling into the Atlantic. All seven crew members, consisting of five astronauts and two payload specialists, were killed."
+  },
+  {
+    "objectID": "lectures/anatomy/index.html#nothing-happened-so-we-ignored-it",
+    "href": "lectures/anatomy/index.html#nothing-happened-so-we-ignored-it",
+    "title": "The Anatomy of an Answer",
+    "section": "Nothing happened, so we ignored it",
+    "text": "Nothing happened, so we ignored it\n\n\n\n\n\n\n\n\n\n\n\n\nIn the decision to proceed with the launch, there was a presence of dark data. And no-one noticed!\n\nDark data\n\nInformation that is not available but necessary to arrive at the correct answer.\n\n\nThis missing information has the potential to mislead people. The notion that we can be misled is essential because it also implies that artificial intelligence can be misled!\n\n\n\n\n\n\nIf you don’t have all the information, there is always the possibility of drawing an incorrect conclusion or making a wrong decision."
+  },
+  {
+    "objectID": "lectures/anatomy/index.html#in-practice",
+    "href": "lectures/anatomy/index.html#in-practice",
+    "title": "The Anatomy of an Answer",
+    "section": "In Practice",
+    "text": "In Practice\n\n\n\n\nWe now have a new problem:\n\nwe do not have the whole truth; but merely a sample of the truth\nwe do not even have the whole sample, but merely a sample of the sample of the truth.\n\n\n\n\n\n\n\nWhat would be a simple solution to allowing for valid inferences on the incomplete sample? Would that solution work in practice?"
+  },
+  {
+    "objectID": "lectures/anatomy/index.html#how-to-fix-the-missingness-problem",
+    "href": "lectures/anatomy/index.html#how-to-fix-the-missingness-problem",
+    "title": "The Anatomy of an Answer",
+    "section": "How to fix the missingness problem",
+    "text": "How to fix the missingness problem\n\n\n\n\nThere are two sources of uncertainty that we need to cover when analyzing incomplete data:\n\nUncertainty about the data values we don’t have:when we don’t know what the true observed value should be, we must create a distribution of values with proper variance (uncertainty).\nUncertainty about the process that generated the values we do have:nothing can guarantee that our sample is the one true sample. So it is reasonable to assume that the parameters obtained on our sample are biased.\n\nA straightforward and intuitive solution for analyzing incomplete data in such scenarios is multiple imputation (Rubin, 1987).\n\n\n\nRubin, D. B. (1987). Multiple imputation for nonresponse in surveys. John Wiley & Sons."
+  },
+  {
+    "objectID": "lectures/anatomy/index.html#now-how-do-we-know-we-did-well",
+    "href": "lectures/anatomy/index.html#now-how-do-we-know-we-did-well",
+    "title": "The Anatomy of an Answer",
+    "section": "Now how do we know we did well?",
+    "text": "Now how do we know we did well?\n\n\n\n\n\n\nI’m really sorry!\n\n\nIn practice we don’t know if we did well, because we often lack the necessary comparative truths.\n\n\n\nFor example:\n\nPredict a future response, but we only have the past\nAnalyzing incomplete data without a reference about the truth\nEstimate the effect between two things that can never occur together\nDetecting fraudulent transactions with only access to the own transaction history\nAppealing to a new customer base with only data about existing customers\nMixing bonafide observations with bonafide non-observations"
+  },
+  {
+    "objectID": "lectures/anatomy/index.html#scenario",
+    "href": "lectures/anatomy/index.html#scenario",
+    "title": "The Anatomy of an Answer",
+    "section": "Scenario",
+    "text": "Scenario"
+  },
+  {
+    "objectID": "lectures/anatomy/index.html#scenario-1",
+    "href": "lectures/anatomy/index.html#scenario-1",
+    "title": "The Anatomy of an Answer",
+    "section": "Scenario",
+    "text": "Scenario\nLet’s assume that we have an incomplete data set and that we can impute (fill in) the incomplete values under multiple candidate models\nChallenge Imputing this data set under one model may yield different results than imputing this data set under another model. Identify the best model!\nProblem We have no idea about validity of either model’s results: we would need either the true observed values or the estimand before we can judge the performance and validity of the imputation model.\n\n\n\n\n\n\nNot all is lost\n\n\nWe do have a constant in our problem: the observed values"
+  },
+  {
+    "objectID": "lectures/anatomy/index.html#solution---overimpute-the-observed-values",
+    "href": "lectures/anatomy/index.html#solution---overimpute-the-observed-values",
+    "title": "The Anatomy of an Answer",
+    "section": "Solution - overimpute the observed values",
+    "text": "Solution - overimpute the observed values\n\n\n\n\n\n\n\n\nCai, M., van Buuren, S., & Vink, G. (2022). Graphical and numerical diagnostic tools to assess multiple imputation models by posterior predictive checking."
+  },
+  {
+    "objectID": "lectures/anatomy/index.html#scenario-2",
+    "href": "lectures/anatomy/index.html#scenario-2",
+    "title": "The Anatomy of an Answer",
+    "section": "Scenario",
+    "text": "Scenario\nIn a survey about research integrity and fraud we surveyed behaviours and practices in the following format.\n\n\n\n Many behaviours were surveyed over multiple groups of people. Some findings:\n\nIn most groups similar behavioural prevalence was observed.\nWhen looking at subgroups, prevalences differ between subgroups.\nNot applicables were much more prevalent in one group than in other groups\nThere are too few cases and too many patterns with Not Applicable’s over features to allow for a pattern-wise analysis (stratified analysis).\nThere are too many Not Applicables to allow for listwise deletion."
+  },
+  {
+    "objectID": "lectures/anatomy/index.html#some-background",
+    "href": "lectures/anatomy/index.html#some-background",
+    "title": "The Anatomy of an Answer",
+    "section": "Some background",
+    "text": "Some background\nWe know:\n\nNot Applicable is not randomly distributed over the data. Removing them is therefore not valid!\nNot Applicable are bonafide missing values: there should be no observations.\n\n\n\n\n\n\n\nThere’s no such thing as a free lunch\n\n\nEvery imputation will bias the results. For some we know the direction of the bias, for some we have no idea. We do not have access to the truth.\n\n\n\nWhat would you do?"
+  },
+  {
+    "objectID": "lectures/anatomy/index.html#our-solution",
+    "href": "lectures/anatomy/index.html#our-solution",
+    "title": "The Anatomy of an Answer",
+    "section": "Our solution",
+    "text": "Our solution\nWe chose to impute the data as 1 (never). There are a couple of reasons why we think that this is the best defendable scenario.\n\nNever has a semantic similarity to a behaviour not being applicable. However, Never implies intentionality; Not Applicable does not.\nWe know the effect the imputation has on the inference: Filling in Never will underestimate intentional behaviours.\n\nIn this case the choice was made to make a deliberate error. The estimates obtained would serve as an underestimation of true behaviour and can be considered a lower bound estimation."
+  },
+  {
+    "objectID": "lectures/anatomy/index.html#to-conclude",
+    "href": "lectures/anatomy/index.html#to-conclude",
+    "title": "The Anatomy of an Answer",
+    "section": "To conclude",
+    "text": "To conclude\n\n\n\n\n\n\n\n\nGerko Vink @ UU, 31 May 2024, Utrecht"
   }
 ]
