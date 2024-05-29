@@ -6,7 +6,7 @@ author:
     email: g.vink@uu.nl
     affiliations:
       - name: Methodology & Statistics @ Utrecht University
-date: 20 Dec 2023
+date: 31 May 2024
 date-format: "D MMM YYYY"
 execute: 
   echo: true
@@ -15,7 +15,7 @@ format:
     theme: [solarized, gerko.scss]
     progress: true
     margin: 0.075
-    logo: images/slides/logo.png 
+    logo: logo.png 
     toc: false
     toc-depth: 1
     toc-title: Outline
@@ -23,7 +23,7 @@ format:
     scrollable: false
     width: 1200
     reference-location: margin
-    footer: Gerko Vink @ UU, 20 Dec 2023, Utrecht
+    footer: Gerko Vink @ UU, 31 May 2024, Utrecht
     standalone: true
 ---
 
@@ -35,8 +35,7 @@ Scientific references are in the footer. Opinions and figures are my own, AI-gen
 
 ::: callout-tip
 # Materials
-- slides: [www.gerkovink.com/Anatomy](https://www.gerkovink.com/Anatomy)
-- source: [github.com/gerkovink/Anatomy](https://github.com/gerkovink/Anatomy)
+- source: [github.com/gerkovink/challenge](https://github.com/gerkovink/challenge)
 :::
 
 
@@ -93,7 +92,7 @@ Information bridges the answer to the truth. Too little information may lead you
 ## Being wrong about the truth
 ::::{.columns}
 :::{.column width="40%"}
-![](images/anatomy/2. missingness_problem.png){width=90%}
+![](img/2. missingness_problem.png){width=90%}
 :::
 
 :::{.column width="60%"}
@@ -113,7 +112,7 @@ Information bridges the answer to the truth. Too little information may lead you
 ## Solving the missingness problem
 ::::{.columns}
 :::{.column width="40%"}
-![](images/anatomy/3. random_sampling.png){width=90%}
+![](img/3. random_sampling.png){width=90%}
 :::
 
 :::{.column width="60%"}
@@ -133,7 +132,7 @@ Would that mean that if we simply observe every potential unit, we would be unbi
 ## Sidestep
 ::::{.columns}
 :::{.column width="50%"}
-![](images/anatomy/4. sidestep1.png){width=90%}
+![](img/4. sidestep1.png){width=90%}
 :::
 
 :::{.column width="50%"}
@@ -154,7 +153,7 @@ All these things are related to uncertainty. Our model can still yield biased re
 ## Sidestep
 ::::{.columns}
 :::{.column width="50%"}
-![](images/anatomy/5. sidestep2.png){width=90%}
+![](img/5. sidestep2.png){width=90%}
 :::
 
 :::{.column width="50%"}
@@ -176,7 +175,7 @@ All these things are related to uncertainty. Our model can still yield biased re
 ## Uncertainty simplified
 ::::{.columns}
 :::{.column width="70%"}
-![](images/anatomy/6. Sample_uncertainty.png){width=90%}
+![](img/6. Sample_uncertainty.png){width=90%}
 :::
 
 :::{.column width="30%"}
@@ -195,7 +194,7 @@ The uncertainty measures about our estimates can be used to create intervals
 ## Confidence in the answer
 ::::{.columns}
 :::{.column width="60%"}
-![](images/anatomy/7. confidence_intervals.png){width="90%"}
+![](img/7. confidence_intervals.png){width="90%"}
 :::
 
 ::: {.column width="40%"}
@@ -215,7 +214,7 @@ Neyman, J. (1934). On the Two Different Aspects of the Representative Method: Th
 ## How do we know that our sample is not....
 ::::{.columns}
 :::{.column width="60%"}
-![](images/anatomy/15. replication.png){width="90%"}
+![](img/15. replication.png){width="90%"}
 :::
 
 ::: {.column width="40%"}
@@ -231,7 +230,7 @@ We can replicate our sample.
 ## This is a lot of work...
 ::::{.columns}
 :::{.column width="60%"}
-![](images/anatomy/16. validation.png){width="80%"}
+![](img/16. validation.png){width="80%"}
 :::
 
 ::: {.column width="40%"}
@@ -277,7 +276,7 @@ As a function of model complexity in specific modeling efforts, these components
 ## On the individual level
 ::::{.columns}
 :::{.column width="60%"}
-![](images/anatomy/8. prediction_intervals.png){width="90%"}
+![](img/8. prediction_intervals.png){width="90%"}
 :::
 
 ::: {.column width="40%"}
@@ -302,7 +301,7 @@ It does not mean that the answer is correct!
 
 ::::{.columns}
 :::{.column width="40%"}
-![](images/anatomy/chal.jpg){width=90%}
+![](img/chal.jpg){width=90%}
 :::
 :::{.column width="60%"}
 ```{r failure, echo = FALSE, message=FALSE, warning=FALSE, fig.height = 4, fig.width=6}
@@ -361,7 +360,7 @@ If you don’t have all the information, there is always the possibility of draw
 ## In Practice
 ::::{.columns}
 :::{.column width="30%"}
-![](images/anatomy/9.missingness.png){width=60%}
+![](img/9.missingness.png){width=60%}
 :::
 
 ::: {.column width="70%"}
@@ -383,7 +382,7 @@ What would be a simple solution to allowing for valid inferences on the incomple
 ## How to fix the missingness problem
 ::::{.columns}
 :::{.column width="50%"}
-![](images/anatomy/11. missingness_solved.png){width=80%}
+![](img/11. missingness_solved.png){width=80%}
 :::
 
 ::: {.column width="50%"}
@@ -438,10 +437,10 @@ We do have a constant in our problem: **the observed values**
 ## Solution - overimpute the observed values
 ::::{.columns}
 :::{.column width="50%"}
-![](images/anatomy/12. PPC_quadratic.png){width=80%}
+![](img/12. PPC_quadratic.png){width=80%}
 :::
 :::{.column width="50%"}
-![](images/anatomy/13. PPC_linear.png){width=80%}
+![](img/13. PPC_linear.png){width=80%}
 :::
 
 
@@ -458,7 +457,7 @@ Cai, M., van Buuren, S., & Vink, G. (2022). Graphical and numerical diagnostic t
 In a survey about research integrity and fraud we surveyed behaviours and practices in the following format. 
 
 <center>
-![](images/anatomy/14. not_applicable.png){width=60%}
+![](img/14. not_applicable.png){width=60%}
 </center>
 <br>
 Many behaviours were surveyed over multiple groups of people. Some findings:
