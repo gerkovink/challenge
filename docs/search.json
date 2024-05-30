@@ -439,5 +439,565 @@
     "title": "The Anatomy of an Answer",
     "section": "To conclude",
     "text": "To conclude\n\n\n\n\n\n\n\n\nGerko Vink @ UU, 31 May 2024, Utrecht"
+  },
+  {
+    "objectID": "lectures/dark/index.html#disclaimer",
+    "href": "lectures/dark/index.html#disclaimer",
+    "title": "Embrace the darkness",
+    "section": "Disclaimer",
+    "text": "Disclaimer\nI owe a debt of gratitude to many people as the thoughts and code in these slides are the process of years-long development cycles and discussions with my team, friends, colleagues and peers. When someone has contributed to the content of the slides, I have credited their authorship.\nScientific references are in the footer. Opinions and figures are my own, AI-generated or directly linked."
+  },
+  {
+    "objectID": "lectures/dark/index.html#clichés-out-of-the-way",
+    "href": "lectures/dark/index.html#clichés-out-of-the-way",
+    "title": "Embrace the darkness",
+    "section": "Clichés out of the way",
+    "text": "Clichés out of the way\n\nEverything is a missing data problem\n\n\nAll models are wrong, but some are useful\n\n\nHow wrong can a model be to still be useful?"
+  },
+  {
+    "objectID": "lectures/dark/index.html#topics-for-this-lecture",
+    "href": "lectures/dark/index.html#topics-for-this-lecture",
+    "title": "Embrace the darkness",
+    "section": "Topics for this lecture",
+    "text": "Topics for this lecture\n\nProblem of dark data\nStrategies to deal with missing data\nMultiple imputation methodology to analyse incomplete data\nSynthetic data sets for disclosure protection"
+  },
+  {
+    "objectID": "lectures/dark/index.html#why-this-focus",
+    "href": "lectures/dark/index.html#why-this-focus",
+    "title": "Embrace the darkness",
+    "section": "Why this focus?",
+    "text": "Why this focus?\n\nReal data are always incomplete\nAd-hoc fixes do not (always) work\nMultiple imputation as principled and broadly applicable approach\nGoal: get comfortable with a powerful way to deal with incomplete data and also learn to synthesize data\nWe use the mice package in R"
+  },
+  {
+    "objectID": "lectures/dark/index.html#what-is-dark-data",
+    "href": "lectures/dark/index.html#what-is-dark-data",
+    "title": "Embrace the darkness",
+    "section": "What is dark data?",
+    "text": "What is dark data?\n\nDark data are concealed from us, and that very fact means we are at risk of misunderstanding, of drawing incorrect conclusions, and of making poor decisions.\n\n\n\n\n\nGerko Vink @ UU, 31 May 2024, Utrecht"
+  },
+  {
+    "objectID": "lectures/dark/dark.html#disclaimer",
+    "href": "lectures/dark/dark.html#disclaimer",
+    "title": "Embrace the darkness",
+    "section": "Disclaimer",
+    "text": "Disclaimer\nI owe a debt of gratitude to many people as the thoughts and code in these slides are the process of years-long development cycles and discussions with my team, friends, colleagues and peers. When someone has contributed to the content of the slides, I have credited their authorship.\nScientific references are in the footer. Opinions and figures are my own, AI-generated or directly linked."
+  },
+  {
+    "objectID": "lectures/dark/dark.html#clichés-out-of-the-way",
+    "href": "lectures/dark/dark.html#clichés-out-of-the-way",
+    "title": "Embrace the darkness",
+    "section": "Clichés out of the way",
+    "text": "Clichés out of the way\n\nEverything is a missing data problem\n\n\nAll models are wrong, but some are useful\n\n\nHow wrong can a model be to still be useful?"
+  },
+  {
+    "objectID": "lectures/dark/dark.html#topics-for-this-lecture",
+    "href": "lectures/dark/dark.html#topics-for-this-lecture",
+    "title": "Embrace the darkness",
+    "section": "Topics for this lecture",
+    "text": "Topics for this lecture\n\nProblem of dark data\nStrategies to deal with missing data\nMultiple imputation methodology to analyse incomplete data\nSynthetic data sets for disclosure protection"
+  },
+  {
+    "objectID": "lectures/dark/dark.html#what-is-dark-data",
+    "href": "lectures/dark/dark.html#what-is-dark-data",
+    "title": "Embrace the darkness",
+    "section": "What is dark data?",
+    "text": "What is dark data?\n\nDark data are concealed from us, and that very fact means we are at risk of misunderstanding, of drawing incorrect conclusions, and of making poor decisions."
+  },
+  {
+    "objectID": "lectures/dark/dark.html#dark-data-types",
+    "href": "lectures/dark/dark.html#dark-data-types",
+    "title": "Embrace the darkness",
+    "section": "Dark data types",
+    "text": "Dark data types\n\n\n\n\n\n\n\n\n\nNo\nDescription\nNo\nDescription\n\n\n\n\n1\nData We Know Are Missing\n9\nSummaries of Data\n\n\n2\nData We Don’t Know are Missing\n10\nMeasurement Error and Uncertainty\n\n\n3\nChoosing Just Some Cases\n11\nFeedback and Gaming\n\n\n4\nSelf-Selection\n12\nInformation Asymmetry\n\n\n5\nMissing What Matters\n13\nIntentionally Darkened Data\n\n\n6\nData Which Might Have Been\n14\nFabricated and Synthetic Data\n\n\n7\nChanges with Time\n15\nExtrapolating beyond Your Data\n\n\n8\nDefinitions of Data\n16\nData not yet observable"
+  },
+  {
+    "objectID": "lectures/dark/dark.html#concepts-definition",
+    "href": "lectures/dark/dark.html#concepts-definition",
+    "title": "Embrace the darkness",
+    "section": "Concepts: Definition",
+    "text": "Concepts: Definition\n\nMissing values are those values that are not observed\nValues do exist in theory, but we are unable to see them"
+  },
+  {
+    "objectID": "lectures/dark/dark.html#concepts-reasons",
+    "href": "lectures/dark/dark.html#concepts-reasons",
+    "title": "Embrace the darkness",
+    "section": "Concepts: Reasons",
+    "text": "Concepts: Reasons\nMissing or dark data can occur for a lot of reasons. Or for no reason at all. For example\n\nIntentional: Sample, predict, combine, estimate\n\nrouting\nexperimental design\njoin, merge and bind operations\n\nUnintentional:\n\ndropout, refusal, concealed\ntoo far away, too small to observe\npower failure, budget exhausted, bad luck"
+  },
+  {
+    "objectID": "lectures/dark/dark.html#consequences-why-are-missing-values-problematic",
+    "href": "lectures/dark/dark.html#consequences-why-are-missing-values-problematic",
+    "title": "Embrace the darkness",
+    "section": "Consequences: Why are missing values problematic?",
+    "text": "Consequences: Why are missing values problematic?\n\nCannot calculate, not even the mean\nLess information than planned\nEnough statistical power?\nDifferent analyses, different \\(n\\)’s\nSystematic biases in the analysis\nAppropriate confidence interval, \\(p\\)-values?\n\n\nMissing data can severely complicate interpretation and analysis"
+  },
+  {
+    "objectID": "lectures/dark/dark.html#notation-y-r-x",
+    "href": "lectures/dark/dark.html#notation-y-r-x",
+    "title": "Embrace the darkness",
+    "section": "Notation: \\(Y\\), \\(R\\), \\(X\\)",
+    "text": "Notation: \\(Y\\), \\(R\\), \\(X\\)\n\n\n\n\n\n\n\n\n\\(Y\\) random variable with missing data\n\\(Y^\\mathrm{obs}\\) true and observed values of \\(Y\\)\n\\(Y^\\mathrm{mis}\\) true but unobserved values of \\(Y\\)\n\n\n\n\\(X\\) complete covariate\n\n\n\n\\(R\\) response indicator\n\\(R = 1\\) if \\(Y\\) is observed\n\\(R = 0\\) if \\(Y\\) is missing"
+  },
+  {
+    "objectID": "lectures/dark/dark.html#more-notation-marginal-joint-conditional-distribution",
+    "href": "lectures/dark/dark.html#more-notation-marginal-joint-conditional-distribution",
+    "title": "Embrace the darkness",
+    "section": "More notation: Marginal, joint & conditional distribution",
+    "text": "More notation: Marginal, joint & conditional distribution\nhttps://youtu.be/JGeTcRfKgBo?t=60\n\nChapter 1 only, ends at 4:39"
+  },
+  {
+    "objectID": "lectures/dark/dark.html#lessons-from-sam-watson-video",
+    "href": "lectures/dark/dark.html#lessons-from-sam-watson-video",
+    "title": "Embrace the darkness",
+    "section": "Lessons from Sam Watson video",
+    "text": "Lessons from Sam Watson video\n\nWhat is the difference between marginal and joint distribution?\nWhat is the difference between marginal and conditional distribution?"
+  },
+  {
+    "objectID": "lectures/dark/dark.html#types-of-distributions",
+    "href": "lectures/dark/dark.html#types-of-distributions",
+    "title": "Embrace the darkness",
+    "section": "Types of distributions",
+    "text": "Types of distributions\n\nMarginal distribution \\(P(Y)\\)\n\nfrequency distribution/histogram of \\(Y\\)\nnormal distribution with mean \\(\\mu\\) and variance \\(\\sigma^2\\)\n\nJoint distribution \\(P(Y, X)\\)\n\ncontingency table/scatterplot of \\(Y\\) and \\(X\\)\nbivariate normal distribution\n\nConditional distribution \\(P(Y | X)\\)\n\ndistribution of \\(Y\\) at a given value of \\(X\\)\nregression model with normally distributed errors"
+  },
+  {
+    "objectID": "lectures/dark/dark.html#the-complete-data-model",
+    "href": "lectures/dark/dark.html#the-complete-data-model",
+    "title": "Embrace the darkness",
+    "section": "The complete-data model",
+    "text": "The complete-data model\n\nThe model we would like to fit if we had complete data\nThe model of scientific interest\nExamples:\n\n\\(P(Y | X, \\theta)\\): Predict blood pressure \\(Y\\) from health \\(X\\)\n\\(P(\\theta | Y)\\): Estimate gross domestic product \\(\\theta\\) from production \\(Y\\)"
+  },
+  {
+    "objectID": "lectures/dark/dark.html#the-missing-data-model-mechanism",
+    "href": "lectures/dark/dark.html#the-missing-data-model-mechanism",
+    "title": "Embrace the darkness",
+    "section": "The missing data model (mechanism)",
+    "text": "The missing data model (mechanism)\n\nThe model that explains what is observed\nOften not of direct scientific interest\nExamples:\n\n\\(P(R | Y, X, \\psi)\\): Missingness depends on design covariates \\(X\\)\n\\(P(R | Y, \\psi)\\): Missingness depends on incomplete \\(Y\\)"
+  },
+  {
+    "objectID": "lectures/dark/dark.html#missing-data-mechanism-a-key-assumption",
+    "href": "lectures/dark/dark.html#missing-data-mechanism-a-key-assumption",
+    "title": "Embrace the darkness",
+    "section": "Missing data mechanism: A key assumption",
+    "text": "Missing data mechanism: A key assumption\n\nWe assume we know where the missing data are\nCases where the assumption does not hold:\n\n“Tick any of the following” (we don’t know which values are real)\nTruncated data (we don’t know how many values are missing)"
+  },
+  {
+    "objectID": "lectures/dark/dark.html#missing-data-mechanism-definition",
+    "href": "lectures/dark/dark.html#missing-data-mechanism-definition",
+    "title": "Embrace the darkness",
+    "section": "Missing data mechanism: Definition",
+    "text": "Missing data mechanism: Definition\n\nProcess that governs which \\(Y\\)s are observed and which \\(Y\\)s are unobserved (Rubin, 1976)\nSometimes we know this process (e.g.~experimental design, sampling)\nModel by response probability \\(P(R | Y^\\mathrm{obs}, Y^\\mathrm{mis}, X)\\)\nAlso called missing data model"
+  },
+  {
+    "objectID": "lectures/dark/dark.html#mcar-missing-completely-at-random",
+    "href": "lectures/dark/dark.html#mcar-missing-completely-at-random",
+    "title": "Embrace the darkness",
+    "section": "MCAR: Missing Completely at Random",
+    "text": "MCAR: Missing Completely at Random\n\nProbability to be missing is not related to any data\n\n\n\\[\nP(R|Y^\\mathrm{obs}, Y^\\mathrm{mis}, X, \\psi) = P(R|\\psi)\n\\]\n\nExamples\n\ndata transmission error\nrandom sample\n\n\nDavid Hand calls this mechanism Not Data Dependent"
+  },
+  {
+    "objectID": "lectures/dark/dark.html#mar-missing-at-random",
+    "href": "lectures/dark/dark.html#mar-missing-at-random",
+    "title": "Embrace the darkness",
+    "section": "MAR: Missing at Random",
+    "text": "MAR: Missing at Random\n\nProbability to be missing depends on known data\n\n\n\\[\nP(R|Y^\\mathrm{obs}, Y^\\mathrm{mis}, X, \\psi) = P(R|Y^\\mathrm{obs}, X, \\psi)\n\\]\n\nExamples\n\nIncome, where we have \\(X\\) related to wealth\nBranch patterns (e.g. how old are your children?)\n\n\nDavid Hand calls this mechanism Seen Data Dependent"
+  },
+  {
+    "objectID": "lectures/dark/dark.html#mnar-missing-not-at-random",
+    "href": "lectures/dark/dark.html#mnar-missing-not-at-random",
+    "title": "Embrace the darkness",
+    "section": "MNAR: Missing Not at Random",
+    "text": "MNAR: Missing Not at Random\n\nProbability to be missing depends on unknown data\n\n\n\\[\nP(R|Y^\\mathrm{obs}, Y^\\mathrm{mis}, X, \\psi)\n\\]\ndoes not simplify\n\nExamples\n\nIncome, without covariates related to income\nBody weight report\n\n\nDavid Hand calls this mechanism Unseen Data Dependent"
+  },
+  {
+    "objectID": "lectures/dark/dark.html#missing-data-mechanisms-roundup",
+    "href": "lectures/dark/dark.html#missing-data-mechanisms-roundup",
+    "title": "Embrace the darkness",
+    "section": "Missing data mechanisms: roundup",
+    "text": "Missing data mechanisms: roundup\n\nMissing Completely at Random (MCAR)\n\nmissingness is purely random\nrelatively easy to deal with\n\nMissing at Random (MAR)\n\nmissingness related to observed information\nwidely used for principled analysis\n\nMissing Not at Random (MNAR)\n\nmissingness related to unobserved information\ncannot detect this from the data\ndifficult to deal with, need context information"
+  },
+  {
+    "objectID": "lectures/dark/dark.html#missing-data-mechanisms-graphical-representation",
+    "href": "lectures/dark/dark.html#missing-data-mechanisms-graphical-representation",
+    "title": "Embrace the darkness",
+    "section": "Missing data mechanisms: Graphical representation",
+    "text": "Missing data mechanisms: Graphical representation\n\n\nSchafer, J. L. & Graham, J. W. (2002). Missing Data. Psychological Methods, 7 (2), 147-177. doi: 10.1037/1082-989X.7.2.147"
+  },
+  {
+    "objectID": "lectures/dark/dark.html#missing-data-mechanisms-alternative-terminology",
+    "href": "lectures/dark/dark.html#missing-data-mechanisms-alternative-terminology",
+    "title": "Embrace the darkness",
+    "section": "Missing data mechanisms: Alternative terminology",
+    "text": "Missing data mechanisms: Alternative terminology\n\nNot Data Dependent (~MCAR)\n\nIt’s missing for reasons unrelated to the data\nProbability to be missing is constant for all units\nE.g. some students not sitting an exam due to flu symptoms\n\nSeen Data Dependent (~MAR)\n\nIt’s missing for reasons related to data you have got\nProbability to be missing depends on observed data\nE.g. school discouraging lower performing students from sitting exam\n\nUnseen Data Dependent (~MNAR)\n\nMissing because of the values you would have obtained\nProbability to be missing depends on unobserved data\nE.g. students realized revised wrong material, so didn’t sit exam"
+  },
+  {
+    "objectID": "lectures/dark/dark.html#uwe-aickelin-what-to-do-with-the-missing-data",
+    "href": "lectures/dark/dark.html#uwe-aickelin-what-to-do-with-the-missing-data",
+    "title": "Embrace the darkness",
+    "section": "Uwe Aickelin: What to do with the missing data?",
+    "text": "Uwe Aickelin: What to do with the missing data?\nhttps://www.youtube.com/watch?v=oCQbC818KKU"
+  },
+  {
+    "objectID": "lectures/dark/dark.html#lessons-from-uwe-aickelin",
+    "href": "lectures/dark/dark.html#lessons-from-uwe-aickelin",
+    "title": "Embrace the darkness",
+    "section": "Lessons from Uwe Aickelin",
+    "text": "Lessons from Uwe Aickelin\n\nYou could obtain the data, but it’s not there\nQuality of data is going down - big data\nWhy not go back to expert? Impractical\nWhy not delete? What to delete?\nReasons for missing data are important\nMissing (Completely?) at Random\nHow impute? Mean, random, mean per group\nSoftware cannot handle missing data\nForced internet surveys"
+  },
+  {
+    "objectID": "lectures/dark/dark.html#strategies",
+    "href": "lectures/dark/dark.html#strategies",
+    "title": "Embrace the darkness",
+    "section": "Strategies",
+    "text": "Strategies\n\nPrevention\nAd-hoc methods, e.g., single imputation, complete cases\nWeighting methods\nLikelihood methods, EM-algorithm\nMultiple imputation"
+  },
+  {
+    "objectID": "lectures/dark/dark.html#strategies-1",
+    "href": "lectures/dark/dark.html#strategies-1",
+    "title": "Embrace the darkness",
+    "section": "Strategies",
+    "text": "Strategies\n\n\nPrevention\nAd-hoc methods, e.g., single imputation, complete cases\nWeighting methods\nLikelihood methods, EM-algorithm\nMultiple imputation"
+  },
+  {
+    "objectID": "lectures/dark/dark.html#section",
+    "href": "lectures/dark/dark.html#section",
+    "title": "Embrace the darkness",
+    "section": "",
+    "text": "Prevent unintended missing data"
+  },
+  {
+    "objectID": "lectures/dark/dark.html#prevention-strategies",
+    "href": "lectures/dark/dark.html#prevention-strategies",
+    "title": "Embrace the darkness",
+    "section": "1. Prevention strategies",
+    "text": "1. Prevention strategies\n\nDesign: Time intervals, Number of variables, Pilot study\nCollection: Incentives, Match interviewer-respondent, Quick follow-up, Retrieve missing data\nMeasures: Use short forms, Minimize intrusive measures, Clarity, Layout\nTreatment: Minimize burden and intensity"
+  },
+  {
+    "objectID": "lectures/dark/dark.html#strategies-2",
+    "href": "lectures/dark/dark.html#strategies-2",
+    "title": "Embrace the darkness",
+    "section": "Strategies",
+    "text": "Strategies\n\n\nPrevention\nAd-hoc methods, e.g., single imputation, complete cases\nWeighting methods\nLikelihood methods, EM-algorithm\nMultiple imputation"
+  },
+  {
+    "objectID": "lectures/dark/dark.html#section-1",
+    "href": "lectures/dark/dark.html#section-1",
+    "title": "Embrace the darkness",
+    "section": "",
+    "text": "Ad-hoc methods make strong assumptions"
+  },
+  {
+    "objectID": "lectures/dark/dark.html#ad-hoc-strategies",
+    "href": "lectures/dark/dark.html#ad-hoc-strategies",
+    "title": "Embrace the darkness",
+    "section": "2. Ad-hoc strategies",
+    "text": "2. Ad-hoc strategies\n\nListwise deletion\nMean imputation\nRegression imputation\nStochastic regression imputation\nLast observation carried forward (LOCF)\nIndicator method"
+  },
+  {
+    "objectID": "lectures/dark/dark.html#listwise-deletion",
+    "href": "lectures/dark/dark.html#listwise-deletion",
+    "title": "Embrace the darkness",
+    "section": "Listwise deletion",
+    "text": "Listwise deletion\n\nAnalyze only the complete records\nAlso know as: complete-case analysis\nAdvantages\n\nSimple (default in most software)\nUnbiased under MCAR\nConservative standard errors, significance levels\nTwo special properties in regression"
+  },
+  {
+    "objectID": "lectures/dark/dark.html#listwise-deletion-1",
+    "href": "lectures/dark/dark.html#listwise-deletion-1",
+    "title": "Embrace the darkness",
+    "section": "Listwise deletion",
+    "text": "Listwise deletion\n\nDisadvantages\n\nWasteful\nMay not be possible\nLarger standard errors\nBiased under MAR, even for simple statistics like the mean\nInconsistencies in reporting"
+  },
+  {
+    "objectID": "lectures/dark/dark.html#listwise-deletion-special-properties",
+    "href": "lectures/dark/dark.html#listwise-deletion-special-properties",
+    "title": "Embrace the darkness",
+    "section": "Listwise deletion: Special properties",
+    "text": "Listwise deletion: Special properties\n\nFor any regression with missing data in the predictors, estimates under listwise deletion are unbiased as long as the missingness does not depend on the outcome. Even some MNAR cases (Glynn 1986; Little 1992).\nIn logistic regression only: With missing data in either the outcome \\(Y\\) or the predictors \\(X\\) (but not both), estimates of regression weights (but not the intercept) after listwise deletion are unbiased as long as the missingness depends only on \\(Y\\) (and not on \\(X\\)!) (Vach 1994). This property is widely exploited in case-control studies in epidemiology.\nSee FIMD 2.7: https://stefvanbuuren.name/fimd/sec-when.html"
+  },
+  {
+    "objectID": "lectures/dark/dark.html#mean-imputation",
+    "href": "lectures/dark/dark.html#mean-imputation",
+    "title": "Embrace the darkness",
+    "section": "Mean imputation",
+    "text": "Mean imputation\n\nReplace the missing values by the mean of the observed data\nAdvantages\n\nSimple\nUnbiased for the mean, under MCAR"
+  },
+  {
+    "objectID": "lectures/dark/dark.html#mean-imputation-1",
+    "href": "lectures/dark/dark.html#mean-imputation-1",
+    "title": "Embrace the darkness",
+    "section": "Mean imputation",
+    "text": "Mean imputation"
+  },
+  {
+    "objectID": "lectures/dark/dark.html#mean-imputation-2",
+    "href": "lectures/dark/dark.html#mean-imputation-2",
+    "title": "Embrace the darkness",
+    "section": "Mean imputation",
+    "text": "Mean imputation\n\nDisadvantages\n\nDisturbs the distribution\nUnderestimates the variance\nBiases correlations to zero\nBiased under MAR\n\nAVOID (unless you know what you are doing)"
+  },
+  {
+    "objectID": "lectures/dark/dark.html#regression-imputation",
+    "href": "lectures/dark/dark.html#regression-imputation",
+    "title": "Embrace the darkness",
+    "section": "Regression imputation",
+    "text": "Regression imputation\n\nAlso known as prediction\n\nFit model for \\(Y^\\mathrm{obs}\\) under listwise deletion\nPredict \\(Y^\\mathrm{mis}\\) for records with missing \\(Y\\)s\nReplace missing values by prediction\n\nAdvantages\n\nUnder MAR, unbiased estimates of regression coefficients\nGood approximation to the (unknown) true data if explained variance is high\n\nFavourite among data scientists and machine learners"
+  },
+  {
+    "objectID": "lectures/dark/dark.html#regression-imputation-1",
+    "href": "lectures/dark/dark.html#regression-imputation-1",
+    "title": "Embrace the darkness",
+    "section": "Regression imputation",
+    "text": "Regression imputation"
+  },
+  {
+    "objectID": "lectures/dark/dark.html#regression-imputation-2",
+    "href": "lectures/dark/dark.html#regression-imputation-2",
+    "title": "Embrace the darkness",
+    "section": "Regression imputation",
+    "text": "Regression imputation\n\nDisadvantages\n\nArtificially increases correlations\nSystematically underestimates the variance\nToo optimistic \\(p\\)-values and too short confidence intervals\n\nAVOID. Harmful to statistical inference"
+  },
+  {
+    "objectID": "lectures/dark/dark.html#stochastic-regression-imputation",
+    "href": "lectures/dark/dark.html#stochastic-regression-imputation",
+    "title": "Embrace the darkness",
+    "section": "Stochastic regression imputation",
+    "text": "Stochastic regression imputation\n\nLike regression imputation, but adds appropriate noise to the predictions to reflect uncertainty\nAdvantages\n\nPreserves the distribution of \\(Y^\\mathrm{obs}\\)\nPreserves the correlation between \\(Y\\) and \\(X\\) in the imputed data"
+  },
+  {
+    "objectID": "lectures/dark/dark.html#stochastic-regression-imputation-1",
+    "href": "lectures/dark/dark.html#stochastic-regression-imputation-1",
+    "title": "Embrace the darkness",
+    "section": "Stochastic regression imputation",
+    "text": "Stochastic regression imputation"
+  },
+  {
+    "objectID": "lectures/dark/dark.html#stochastic-regression-imputation-2",
+    "href": "lectures/dark/dark.html#stochastic-regression-imputation-2",
+    "title": "Embrace the darkness",
+    "section": "Stochastic regression imputation",
+    "text": "Stochastic regression imputation\n\nDisadvantages\n\nSymmetric and constant error restrictive\nSingle imputation: does not take uncertainty imputed data into account, and incorrectly treats them as real\nNot so simple anymore"
+  },
+  {
+    "objectID": "lectures/dark/dark.html#overview-of-assumptions-needed",
+    "href": "lectures/dark/dark.html#overview-of-assumptions-needed",
+    "title": "Embrace the darkness",
+    "section": "Overview of assumptions needed",
+    "text": "Overview of assumptions needed\n\n\n\n\n\nUnbiased\n\nStandard Error\n\n\n\nMean\nReg Weight\nCorrelation\n\n\n\nListwise\nMCAR\nMCAR\nMCAR\nToo large\n\n\nPairwise\nMCAR\nMCAR\nMCAR\nComplicated\n\n\nMean\nMCAR\n–\n–\nToo small\n\n\nRegression\nMAR\nMAR\n–\nToo small\n\n\nStochastic\nMAR\nMAR\nMAR\nToo small\n\n\nLOCF\n–\n–\n–\nToo small\n\n\nIndicator\n–\n–\n–\nToo small"
+  },
+  {
+    "objectID": "lectures/dark/dark.html#strategies-3",
+    "href": "lectures/dark/dark.html#strategies-3",
+    "title": "Embrace the darkness",
+    "section": "Strategies",
+    "text": "Strategies\n\n\nPrevention\nAd-hoc methods, e.g., single imputation, complete cases\nWeighting methods\nLikelihood methods, EM-algorithm\nMultiple imputation"
+  },
+  {
+    "objectID": "lectures/dark/dark.html#section-2",
+    "href": "lectures/dark/dark.html#section-2",
+    "title": "Embrace the darkness",
+    "section": "",
+    "text": "Weighting minimizes bias with unit nonresponse"
+  },
+  {
+    "objectID": "lectures/dark/dark.html#weighting",
+    "href": "lectures/dark/dark.html#weighting",
+    "title": "Embrace the darkness",
+    "section": "3. Weighting",
+    "text": "3. Weighting\n\nTake the complete cases\nRe-weight any statistic to the distribution of the covariates in the population\nAdvantages\n\nSimple (one set of weights for all incomplete variables)\nReduces bias under MAR assumption\nStandard methodology in official statistics\n\nDisadvantages\n\nDiscards data, increases the variance\nWeights may not be available\nNeeds special variance estimators\nLimited to unit non-response\n\n\nFor inferences purposes, proper imputation strategies prove to quickle become more efficient and more accurate than weighting strategies (Boeschoten et al., 2017).\n\nBoeschoten, L., Vink, G., & Hox, J. J. C. M. (2017). How to Obtain Valid Inference under Unit Nonresponse? Journal of Official Statistics, 33(4), 963-978. https://doi.org/10.1515/jos-2017-0045"
+  },
+  {
+    "objectID": "lectures/dark/dark.html#strategies-4",
+    "href": "lectures/dark/dark.html#strategies-4",
+    "title": "Embrace the darkness",
+    "section": "Strategies",
+    "text": "Strategies\n\n\nPrevention\nAd-hoc methods, e.g., single imputation, complete cases\nWeighting methods\nLikelihood methods, EM-algorithm\nMultiple imputation"
+  },
+  {
+    "objectID": "lectures/dark/dark.html#section-3",
+    "href": "lectures/dark/dark.html#section-3",
+    "title": "Embrace the darkness",
+    "section": "",
+    "text": "Maximum likelihood: The royal road to missing data"
+  },
+  {
+    "objectID": "lectures/dark/dark.html#maximum-likelihood",
+    "href": "lectures/dark/dark.html#maximum-likelihood",
+    "title": "Embrace the darkness",
+    "section": "4. Maximum likelihood",
+    "text": "4. Maximum likelihood\n\nEM-algorithm, Full Information Maximum Likelihood (FIML)\nIterative methods to estimate parameters that “skip over” the missing data\nAdvantages:\n\nTheoretically sound, optimizes likelihood calculation directly\nMany applications, widely accepted\nEasy to apply (when there is software)\n\nDisadvantages:\n\nLocal minima, slow convergence\nDifficult to apply outside standard models\nComplete-data model becomes large and complex"
+  },
+  {
+    "objectID": "lectures/dark/dark.html#strategies-5",
+    "href": "lectures/dark/dark.html#strategies-5",
+    "title": "Embrace the darkness",
+    "section": "Strategies",
+    "text": "Strategies\n\n\nPrevention\nAd-hoc methods, e.g., single imputation, complete cases\nWeighting methods\nLikelihood methods, EM-algorithm\nMultiple imputation"
+  },
+  {
+    "objectID": "lectures/dark/dark.html#section-4",
+    "href": "lectures/dark/dark.html#section-4",
+    "title": "Embrace the darkness",
+    "section": "",
+    "text": "Multiple imputation is an all-round principled method"
+  },
+  {
+    "objectID": "lectures/dark/dark.html#multiple-imputation",
+    "href": "lectures/dark/dark.html#multiple-imputation",
+    "title": "Embrace the darkness",
+    "section": "5. Multiple imputation",
+    "text": "5. Multiple imputation\n\nOne imputation cannot be correct in general\nImputes each missing value \\(m\\) times\nVariation between the \\(m\\) imputed values reflects our ignorance about the unknown value"
+  },
+  {
+    "objectID": "lectures/dark/dark.html#multiple-imputation-workflow",
+    "href": "lectures/dark/dark.html#multiple-imputation-workflow",
+    "title": "Embrace the darkness",
+    "section": "Multiple imputation workflow",
+    "text": "Multiple imputation workflow"
+  },
+  {
+    "objectID": "lectures/dark/dark.html#multiple-imputation---1987",
+    "href": "lectures/dark/dark.html#multiple-imputation---1987",
+    "title": "Embrace the darkness",
+    "section": "Multiple imputation - 1987",
+    "text": "Multiple imputation - 1987"
+  },
+  {
+    "objectID": "lectures/dark/dark.html#acceptance-of-multiple-imputation",
+    "href": "lectures/dark/dark.html#acceptance-of-multiple-imputation",
+    "title": "Embrace the darkness",
+    "section": "Acceptance of multiple imputation",
+    "text": "Acceptance of multiple imputation\n\ncit  &lt;- c(     2022, 87, 746, NA,\n               2021, 78, 644, NA,\n               2020, 67, 575, NA,\n               2019, 62, 512, NA,\n               2018, 67, 462, NA,\n               2017, 72, 402, NA,\n               2016, 84, 370, NA,\n               2015, 62, 337, NA,\n               2014, 59, 326, NA,\n               2013, 46, 251, NA,\n               2012, 47, 230, NA,\n               2011, 55, 208, NA,\n               2010, 44, 184, NA,\n               2009, 37, 138, NA,\n               2008, 29, 116, NA,\n               2007, 34, 125, NA,\n               2006, 19, 85, NA,\n               2005, 21, 79, NA,\n               2004,  7, 58, NA,\n               2003, 18, 45, NA,\n               2002, 16, 41, NA,\n               2001, 14, 38, 57,\n               2000,  8, 21, 33,\n               1999,  6, 26, 47,\n               1998,  6, 14, 22,\n               1997,  6, 18, 29,\n               1996,  5, 13, 28,\n               1995,  3, 5, 20,\n               1994,  4, 6, 34,\n               1993,  3, 6, 15,\n               1992, NA, 4, NA,\n               1991,  3, 4, 19,\n               1990,  2, 3, 15,\n               1989, NA, 2, 11,\n               1988, NA, 1, 13,\n               1987, NA, 3, 10,\n               1986,  2, 3, 5,\n               1985, NA, NA, 1,\n               1984, NA, 1, 2,\n               1983, NA, NA, 5,\n               1982, NA, NA, 2,\n               1981, NA, NA, 1,\n               1980, NA, NA, 5,\n               1979, NA, NA, 2,\n               1978, NA, NA, 1,\n               1977, NA, NA, 2)\ncit &lt;- matrix(cit, nc=4, byrow=TRUE)\ncit &lt;- as.data.frame(cit)\nnames(cit) &lt;- c(\"Year\",\"Title\",\"Abstract\",\"All\")\npar(cex = 0.7, lwd = 0.5)\nplot(x = cit$Year, y = cit$Abstract, type=\"n\",log=\"y\",\n     xlim = c(1975,2022), ylim = c(1, 600),\n     ylab=\"Number of publications (log)\", xlab=\"Year\",\n     pch=24, bg = \"white\",\n     axes=FALSE)\nfills &lt;- viridisLite::viridis(10, alpha = 0.3, option = \"D\", direction = -1)\nrect(xleft = 1975, ybottom = 1, xright = 1996, ytop = 700, \n     col = fills[1], border = NA)\nrect(xleft = 1996, ybottom = 1, xright = 2004, ytop = 700, \n     col = fills[2], border = NA)\nrect(xleft = 2004, ybottom = 1, xright = 2012, ytop = 700, \n     col = fills[3], border = NA)\nrect(xleft = 2012, ybottom = 1, xright = 2023, ytop = 700, \n     col = fills[4], border = NA)\naxis(1, at = seq(1977, 2022, 5), lwd = par(\"lwd\"))\naxis(2, lwd = par(\"lwd\"), las=1)\nlines(x=cit$Year, y=cit$Title, pch=15, type=\"o\")\nlines(x=cit$Year, y=cit$Abstract, pch=24, type=\"o\")\nlines(x=cit$Year, y=cit$All, pch=16, type=\"o\")\nlegend(x=1975,y=200,legend=c('early publications',\n                            '\"multiple imputation\" in abstract',\n                            '\"multiple imputation\" in title'),\n       pch=c(16,2,15), bty=\"n\")\n\n\nSource: Scopus (Feb 6, 2023)"
+  },
+  {
+    "objectID": "lectures/dark/dark.html#multiple-imputation-1",
+    "href": "lectures/dark/dark.html#multiple-imputation-1",
+    "title": "Embrace the darkness",
+    "section": "Multiple imputation",
+    "text": "Multiple imputation\n\nAdvantages\n\nCorrect point and variance estimates\nSplits missing data problem from complete-data analysis\nTheoretical properties well established\nFlexible, widely applicable\nExtensible to MNAR\n\nDisadvantages\n\nNeed to create and work with multiple imputed data sets\nMay not always be most efficient"
+  },
+  {
+    "objectID": "lectures/dark/dark.html#conclusion",
+    "href": "lectures/dark/dark.html#conclusion",
+    "title": "Embrace the darkness",
+    "section": "Conclusion",
+    "text": "Conclusion\n\nMissing data are a fact of life, and actually interesting\nThere are many ways to treat missing data, only few are valid\nAlways try to prevent missing data\nUse ad-hoc methods with caution\nList-wise deletion up to 5% of missing data per variable\nWeighting and likelihood methods are generally valid, but may be complex\nMultiple imputation is an all-round missing-data method\n\n\n\n\n\nGerko Vink @ UU - based on slides by Stef van Buuren and Hanne Oberman and myself - 31 May 2024, Utrecht"
+  },
+  {
+    "objectID": "lectures/dark/dark.html#what-is-the-goal-of-multiple-imputation",
+    "href": "lectures/dark/dark.html#what-is-the-goal-of-multiple-imputation",
+    "title": "Embrace the darkness",
+    "section": "What is the goal of multiple imputation?",
+    "text": "What is the goal of multiple imputation?\nThe goal:\n\nIS NOT to find the correct value for a missing data point\nIS to find an answer to the analysis problem, given that there are (many) data points missing.\n\nWe are not interested in whether the imputed value corresponds to its true counterpart in the population, but we rather sample plausible values that could have been from the posterior predictive distribution"
+  },
+  {
+    "objectID": "lectures/dark/dark.html#demonstration-of-imputation",
+    "href": "lectures/dark/dark.html#demonstration-of-imputation",
+    "title": "Embrace the darkness",
+    "section": "Demonstration of imputation",
+    "text": "Demonstration of imputation\nLet our analysis model be\n\nboys %$% # use the exposition pipe\n  lm(hgt ~ age + tv)"
+  },
+  {
+    "objectID": "lectures/dark/dark.html#demonstration-of-imputation-1",
+    "href": "lectures/dark/dark.html#demonstration-of-imputation-1",
+    "title": "Embrace the darkness",
+    "section": "Demonstration of imputation",
+    "text": "Demonstration of imputation\nwith output\n\nboys %$% \n  lm(hgt ~ age + tv) %&gt;% \n  summary()\n\n\nCall:\nlm(formula = hgt ~ age + tv)\n\nResiduals:\n    Min      1Q  Median      3Q     Max \n-24.679  -5.134  -0.398   5.175  23.778 \n\nCoefficients:\n            Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept) 105.4823     3.4704  30.395  &lt; 2e-16 ***\nage           3.8430     0.3262  11.782  &lt; 2e-16 ***\ntv            0.4919     0.1278   3.849 0.000155 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 8.389 on 221 degrees of freedom\n  (524 observations deleted due to missingness)\nMultiple R-squared:  0.7742,    Adjusted R-squared:  0.7721 \nF-statistic: 378.8 on 2 and 221 DF,  p-value: &lt; 2.2e-16"
+  },
+  {
+    "objectID": "lectures/dark/dark.html#what-have-we-done",
+    "href": "lectures/dark/dark.html#what-have-we-done",
+    "title": "Embrace the darkness",
+    "section": "What have we done?",
+    "text": "What have we done?\nWe have used mice to obtain draws from a posterior predictive distribution of the missing data, conditional on the observed data.\nThe imputed values are mimicking the sampling variation and can be used to infer about the underlying TDGM, if and only if:\n\nThe observed data holds the information about the missing data (MAR/MCAR)"
+  },
+  {
+    "objectID": "lectures/dark/dark.html#imputation-vs-synthetisation",
+    "href": "lectures/dark/dark.html#imputation-vs-synthetisation",
+    "title": "Embrace the darkness",
+    "section": "Imputation vs Synthetisation",
+    "text": "Imputation vs Synthetisation\nInstead of drawing only imputations from the posterior predictive distribution, we might as well overimpute the observed data."
+  },
+  {
+    "objectID": "lectures/dark/dark.html#how-to-draw-synthetic-data-sets-with-mice",
+    "href": "lectures/dark/dark.html#how-to-draw-synthetic-data-sets-with-mice",
+    "title": "Embrace the darkness",
+    "section": "How to draw synthetic data sets with mice",
+    "text": "How to draw synthetic data sets with mice\n\nboys %&gt;% \n  mice(m = 5, method = \"cart\", printFlag = FALSE, where = matrix(TRUE, 748, 9)) %&gt;% \n  complete(\"all\") %&gt;% \n  map(~.x %$% lm(hgt ~ age + tv)) %&gt;% \n  pool() %&gt;% \n  summary()\n\n         term   estimate std.error statistic       df      p.value\n1 (Intercept) 71.4727297 0.7637067 93.586620 71.79955 8.889816e-77\n2         age  6.8882608 0.1210342 56.911699 21.81539 3.232474e-25\n3          tv -0.4038602 0.1028084 -3.928281 33.89849 3.989687e-04\n\n\n\n\n\nBut we make an error!"
+  },
+  {
+    "objectID": "lectures/dark/dark.html#pooling-in-imputation",
+    "href": "lectures/dark/dark.html#pooling-in-imputation",
+    "title": "Embrace the darkness",
+    "section": "Pooling in imputation",
+    "text": "Pooling in imputation\nRubin (1987, p76) defined the following rules:\nFor any number of multiple imputations \\(m\\), the combination of the analysis results for any estimate \\(\\hat{Q}\\) of estimand \\(Q\\) with corresponding variance \\(U\\), can be done in terms of the average of the \\(m\\) complete-data estimates\n\\[\\bar{Q} = \\sum_{l=1}^{m}\\hat{Q}_l / m,\\]\nand the corresponding average of the \\(m\\) complete data variances\n\\[\\bar{U} = \\sum_{l=1}^{m}{U}_l / m.\\]\n\nRubin, D.B. (1987). Multiple Imputation for Nonresponse in Surveys. New York: John Wiley and Sons."
+  },
+  {
+    "objectID": "lectures/dark/dark.html#pooling-in-imputation-1",
+    "href": "lectures/dark/dark.html#pooling-in-imputation-1",
+    "title": "Embrace the darkness",
+    "section": "Pooling in imputation",
+    "text": "Pooling in imputation\nSimply using \\(\\bar{Q}\\) and \\(\\bar{U}_m\\) to obtain our inferences would be to simplistic. In that case we would ignore any possible variation between the separate \\(\\hat{Q}_l\\) and the fact that we only generate a finite set of imputations \\(m\\). Rubin (1987, p. 76) established that the total variance \\(T\\) of \\((Q-\\bar{Q})\\) would equal\n\\[T = \\bar{U} + B + B/m,\\]\nWhere the between imputation variance \\(B\\) is defined as\n\\[B = \\sum_{l=1}^{m}(\\hat{Q}_l - \\bar{Q})^\\prime(\\hat{Q}_l - \\bar{Q}) / (m-1)\\]\nThis assumes that some of the data are observed and remain constant over the synthetic sets\nThe total variance \\(T\\) of \\((Q-\\bar{Q})\\) should (Reiter, 2003) equal\n\\[T = \\bar{U} + B/m.\\]\n\nReiter, J.P. (2003). Inference for Partially Synthetic, Public Use Microdata Sets. Survey Methodology, 29, 181-189."
+  },
+  {
+    "objectID": "lectures/dark/dark.html#so-the-correct-code-is",
+    "href": "lectures/dark/dark.html#so-the-correct-code-is",
+    "title": "Embrace the darkness",
+    "section": "So, the correct code is",
+    "text": "So, the correct code is\n\nboys %&gt;% \n  mice(m = 5, method = \"cart\", printFlag = FALSE, where = matrix(TRUE, 748, 9)) %&gt;% \n  complete(\"all\") %&gt;% \n  map(~.x %$% lm(hgt ~ age + tv)) %&gt;% \n  pool(rule = \"reiter2003\") %&gt;% \n  summary()\n\n         term   estimate  std.error  statistic         df       p.value\n1 (Intercept) 71.3427191 0.67872263 105.113218 4670.20788  0.000000e+00\n2         age  6.9161820 0.09961066  69.432144  178.28359 5.318364e-131\n3          tv -0.4015052 0.09691269  -4.142958   56.62364  1.155999e-04"
+  },
+  {
+    "objectID": "lectures/dark/dark.html#why-multiple-synthetic-sets",
+    "href": "lectures/dark/dark.html#why-multiple-synthetic-sets",
+    "title": "Embrace the darkness",
+    "section": "Why multiple synthetic sets?",
+    "text": "Why multiple synthetic sets?\nThank back about the goal of statistical inference: we want to go back to the true data generating model.\n\nWe do so by reverse engineering the true data generating process\nBased on our observed data\nWe do not know this process; hence multiple synthetic values\n\nThe multiplicity of the solution allows for smoothing over any Monte Carlo error that may arise from generating a single set."
+  },
+  {
+    "objectID": "lectures/dark/dark.html#generating-more-synthetic-data",
+    "href": "lectures/dark/dark.html#generating-more-synthetic-data",
+    "title": "Embrace the darkness",
+    "section": "Generating more synthetic data",
+    "text": "Generating more synthetic data\n\nmira &lt;- boys %&gt;% \n  mice(m = 6, method = \"cart\", printFlag = FALSE, where = matrix(TRUE, 748, 9)) %&gt;% \n  list('1' = rbind(complete(., 1), complete(., 2)),\n       '2' = rbind(complete(., 3), complete(., 4)),\n       '3' = rbind(complete(., 5), complete(., 6))) %&gt;% .[-1] %&gt;% \n  data.table::setattr(\"class\", c(\"mild\", class(.))) %&gt;% \n  map(~.x %$% lm(hgt ~ reg))\n\nmira %&gt;% pool(rule = \"reiter2003\") %&gt;% \n  summary() %&gt;% tibble::column_to_rownames(\"term\") %&gt;% round(3)\n\n            estimate std.error statistic      df p.value\n(Intercept)  152.014     3.746    40.582 112.526       0\nregeast      -17.815     4.461    -3.993 771.076       0\nregwest      -23.092     4.397    -5.252  95.353       0\nregsouth     -27.579     4.451    -6.196 177.098       0\nregcity      -25.928     6.111    -4.243  19.899       0\n\nmira %&gt;% pool(rule = \"reiter2003\", \n              custom.t = \".data$ubar * 2 + .data$b / .data$m\") %&gt;% \n  summary() %&gt;% tibble::column_to_rownames(\"term\") %&gt;% round(3)\n\n            estimate std.error statistic      df p.value\n(Intercept)  152.014     5.118    29.703 112.526   0.000\nregeast      -17.815     6.228    -2.860 771.076   0.004\nregwest      -23.092     5.989    -3.856  95.353   0.000\nregsouth     -27.579     6.125    -4.503 177.098   0.000\nregcity      -25.928     7.928    -3.270  19.899   0.004\n\n\nSome adjustment to the pooling rules is neede to avoid p-inflation.\n\nRaab, Gillian M, Beata Nowok, and Chris Dibben. 2018. “Practical Data Synthesis for Large Samples”. Journal of Privacy and Confidentiality 7 (3):67-97. https://doi.org/10.29012/jpc.v7i3.407."
+  },
+  {
+    "objectID": "lectures/dark/dark.html#some-care-is-needed",
+    "href": "lectures/dark/dark.html#some-care-is-needed",
+    "title": "Embrace the darkness",
+    "section": "Some care is needed",
+    "text": "Some care is needed\nWith synthetic data generation and synthetic data implementation come some risks.\nAny idea?"
+  },
+  {
+    "objectID": "lectures/dark/dark.html#testing-validity",
+    "href": "lectures/dark/dark.html#testing-validity",
+    "title": "Embrace the darkness",
+    "section": "Testing validity",
+    "text": "Testing validity\nNowadays many synthetic data cowboys claim that they can generate synthetic data that looks like the real data that served as input.\nThis is like going to Madam Tusseaud’s: at face value it looks identical, but when experienced in real life it’s just not the same as the living thing.\nMany of these synthetic data packages only focus on marginal or conditional distributions. With mice we also consider the inferential properties of the synthetic data.\nIn general, we argue [^4] that any synthetic data generation procedure should\n\nPreserve marginal distributions\nPreserve conditional distribution\nYield valid inference\nYield synthetic data that are indistinguishable from the real data\n\n\nVolker, T.B.; Vink, G. Anonymiced Shareable Data: Using mice to Create and Analyze Multiply Imputed Synthetic Datasets. Psych 2021, 3, 703-716. https://doi.org/10.3390/psych3040045"
+  },
+  {
+    "objectID": "lectures/dark/dark.html#example-from-simulation",
+    "href": "lectures/dark/dark.html#example-from-simulation",
+    "title": "Embrace the darkness",
+    "section": "Example from simulation",
+    "text": "Example from simulation\nWhen valid synthetic data are generated, the variance of the estimates is correct, such that the confidence intervals cover the population (i.e. true) value sufficiently [^5]. Take e.g. the following proportional odds model from Volker & Vink (2021):\n\n\n\n\n\n\n\n\n\nterm\nestimate\nsynthetic  bias\nsynthetic  cov\n\n\n\n\nage\n0.461\n0.002\n0.939\n\n\nhc\n-0.188\n-0.004\n0.945\n\n\nregeast\n-0.339\n0.092\n0.957\n\n\nregwest\n0.486\n-0.122\n0.944\n\n\nregsouth\n0.646\n-0.152\n0.943\n\n\nregcity\n-0.069\n0.001\n0.972\n\n\nG1\\(|\\)G2\n-6.322\n-0.254\n0.946\n\n\nG2\\(|\\)G3\n-4.501\n-0.246\n0.945\n\n\nG3\\(|\\)G4\n-3.842\n-0.244\n0.948\n\n\nG4\\(|\\)G5\n-2.639\n-0.253\n0.947\n\n\n\n\nVolker, T.B.; Vink, G. Anonymiced Shareable Data: Using mice to Create and Analyze Multiply Imputed Synthetic Datasets. Psych 2021, 3, 703-716. https://doi.org/10.3390/psych3040045"
+  },
+  {
+    "objectID": "lectures/dark/dark.html#end-of-presentation",
+    "href": "lectures/dark/dark.html#end-of-presentation",
+    "title": "Embrace the darkness",
+    "section": "End of presentation",
+    "text": "End of presentation\n\n\n\n\nA. Bacall\n\n\n\n\n\n\n\nGerko Vink @ UU - based on slides by Stef van Buuren, Hanne Oberman and myself - 31 May 2024, Utrecht"
+  },
+  {
+    "objectID": "lectures/dark/dark.html#demonstration-of-imputation-2",
+    "href": "lectures/dark/dark.html#demonstration-of-imputation-2",
+    "title": "Embrace the darkness",
+    "section": "Demonstration of imputation",
+    "text": "Demonstration of imputation\ngenerated on 224 cases. The full data size is\n\nboys %&gt;% dim()\n\n[1] 748   9"
+  },
+  {
+    "objectID": "lectures/dark/dark.html#demonstration-of-imputation-3",
+    "href": "lectures/dark/dark.html#demonstration-of-imputation-3",
+    "title": "Embrace the darkness",
+    "section": "Demonstration of imputation",
+    "text": "Demonstration of imputation\nTo impute and analyze the same model with mice, we can simply run:\n\nboys %&gt;% \n  mice(m = 5, method = \"cart\", printFlag = FALSE) %&gt;% \n  complete(\"all\") %&gt;% \n  map(~.x %$% lm(hgt ~ age + tv)) %&gt;% \n  pool() %&gt;% \n  summary()\n\n         term   estimate  std.error  statistic       df      p.value\n1 (Intercept) 71.5467019 0.61617119 116.114975 735.4492 0.000000e+00\n2         age  7.0475726 0.09475359  74.377898  75.9456 1.043045e-72\n3          tv -0.5577935 0.09163996  -6.086793  39.9114 3.598196e-07"
   }
 ]

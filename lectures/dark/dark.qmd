@@ -1,0 +1,856 @@
+---
+title: "Embrace the darkness"
+author: 
+  - name: Gerko Vink
+    orcid: 0000-0001-9767-1924
+    email: g.vink@uu.nl
+    affiliations:
+      - name: Methodology & Statistics @ Utrecht University
+date: 31 May 2024
+date-format: "D MMM YYYY"
+execute: 
+  echo: true
+format: 
+  revealjs:
+    theme: [solarized, gerko.scss]
+    progress: true
+    margin: 0.075
+    logo: logo.png 
+    toc: false
+    toc-depth: 1
+    toc-title: Outline
+    slide-number: true
+    scrollable: false
+    width: 1200
+    reference-location: margin
+    footer: Gerko Vink @ UU - based on slides by Stef van Buuren, Hanne Oberman and myself - 31 May 2024, Utrecht
+    standalone: true
+---
+
+## Disclaimer
+
+I owe a debt of gratitude to many people as the thoughts and code in these slides are the process of years-long development cycles and discussions with my team, friends, colleagues and peers. When someone has contributed to the content of the slides, I have credited their authorship.
+
+Scientific references are in the footer. Opinions and figures are my own, AI-generated or directly linked.
+
+## Clichés out of the way
+
+> Everything is a missing data problem 
+
+> All models are wrong, but some are useful
+
+> How wrong can a model be to still be useful?
+
+## Topics for this lecture
+- Problem of dark data
+- Strategies to deal with missing data
+- Multiple imputation methodology to analyse incomplete data 
+- Synthetic data sets for disclosure protection
+
+## What is dark data?
+::: .callout-note
+Dark data are concealed from us, and that very fact means we are at risk of misunderstanding, of drawing incorrect conclusions, and of making poor decisions.
+:::
+
+------------------------------------------------------------------------
+
+<center>![](img/darkdata.jpg){height="680"}</center>
+
+------------------------------------------------------------------------
+
+## Dark data types
+
+|  No | Description                    |  No | Description                       |
+|-----------------:|:-----------------|-----------------:|:-----------------|
+|   1 | Data We Know Are Missing       |   9 | Summaries of Data                 |
+|   2 | Data We Don't Know are Missing |  10 | Measurement Error and Uncertainty |
+|   3 | Choosing Just Some Cases       |  11 | Feedback and Gaming               |
+|   4 | Self-Selection                 |  12 | Information Asymmetry             |
+|   5 | Missing What Matters           |  13 | Intentionally Darkened Data       |
+|   6 | Data Which Might Have Been     |  14 | Fabricated and Synthetic Data     |
+|   7 | Changes with Time              |  15 | Extrapolating beyond Your Data    |
+|   8 | Definitions of Data            |  16 | Data not yet observable           |
+|     |                                |     |                                   |
+
+## **Concepts**: Definition
+
+-   Missing values are those values that are not observed
+-   Values do exist in theory, but we are unable to see them
+
+## **Concepts**: Reasons
+
+Missing or dark data can occur for a lot of reasons. Or for no reason at all. For example
+
+-   Intentional: Sample, predict, combine, estimate
+    -   routing
+    -   experimental design
+    -   join, merge and bind operations
+-   Unintentional:
+    -   dropout, refusal, concealed
+    -   too far away, too small to observe
+    -   power failure, budget exhausted, bad luck
+
+## **Consequences**: Why are missing values problematic?
+
+-   Cannot calculate, not even the mean
+-   Less information than planned
+-   Enough statistical power?
+-   Different analyses, different $n$'s
+-   Systematic biases in the analysis
+-   Appropriate confidence interval, $p$-values?
+
+. . .
+
+Missing data can severely complicate interpretation and analysis
+
+
+## **Notation**: $Y$, $R$, $X$
+
+:::: {layout="[ 40, 60 ]"}
+
+::: {#first-column}
+
+![](figures/mdpattern.png){width="400"}
+
+:::
+
+::: {#second-column}
+
+<br>
+
+-   $Y$ random variable with missing data
+-   $Y^\mathrm{obs}$ true and observed values of $Y$
+-   $Y^\mathrm{mis}$ true but unobserved values of $Y$
+
+<br>
+
+-   $X$ complete covariate
+
+<br>
+
+-   $R$ response indicator
+-   $R = 1$ if $Y$ is observed
+-   $R = 0$ if $Y$ is missing
+:::
+
+::::
+
+## Types of distributions
+
+-   **Marginal distribution** $P(Y)$
+    -   frequency distribution/histogram of $Y$
+    -   normal distribution with mean $\mu$ and variance $\sigma^2$
+-   **Joint distribution** $P(Y, X)$
+    -   contingency table/scatterplot of $Y$ and $X$
+    -   bivariate normal distribution
+-   **Conditional distribution** $P(Y | X)$
+    -   distribution of $Y$ at a given value of $X$
+    -   regression model with normally distributed errors
+
+<!-- # Two types of models {background-color="#2a76dd"} -->
+
+## The complete-data model
+
+-   The model we would like to fit if we had complete data
+-   The model of scientific interest
+-   Examples:
+    -   $P(Y | X, \theta)$: Predict blood pressure $Y$ from health $X$
+    -   $P(\theta | Y)$: Estimate gross domestic product $\theta$ from production $Y$
+
+## The missing data model (mechanism)
+
+-   The model that explains what is observed
+-   Often not of direct scientific interest
+-   Examples:
+    -   $P(R | Y, X, \psi)$: Missingness depends on design covariates $X$
+    -   $P(R | Y, \psi)$: Missingness depends on incomplete $Y$
+
+# Missing data mechanisms {background-color="#2a76dd"}
+
+## Missing data mechanism: A key assumption
+
+-   We assume we know **where** the missing data are
+
+-   Cases where the assumption does not hold:
+
+    -   "Tick any of the following" (we don't know which values are real)
+    -   Truncated data (we don't know how many values are missing)
+
+## Missing data mechanism: Definition
+
+-   Process that governs which $Y$s are observed and which $Y$s are unobserved (Rubin, 1976)
+-   Sometimes we know this process (e.g.\~experimental design, sampling)
+-   Model by response probability $P(R | Y^\mathrm{obs}, Y^\mathrm{mis}, X)$
+-   Also called **missing data model**
+
+## MCAR: Missing Completely at Random
+
+-   Probability to be missing is not related to any data
+
+. . . 
+
+$$
+P(R|Y^\mathrm{obs}, Y^\mathrm{mis}, X, \psi) = P(R|\psi)
+$$
+
+-   Examples
+    -   data transmission error
+    -   random sample
+
+David Hand calls this mechanism **Not Data Dependent**
+
+## MAR: Missing at Random
+
+-   Probability to be missing depends on known data
+
+. . . 
+
+$$
+P(R|Y^\mathrm{obs}, Y^\mathrm{mis}, X, \psi) = P(R|Y^\mathrm{obs}, X, \psi)
+$$
+
+-   Examples
+    -   Income, where we have $X$ related to wealth
+    -   Branch patterns (e.g. how old are your children?)
+
+David Hand calls this mechanism **Seen Data Dependent**
+
+## MNAR: Missing Not at Random
+
+-   Probability to be missing depends on unknown data
+
+. . . 
+
+$$
+P(R|Y^\mathrm{obs}, Y^\mathrm{mis}, X, \psi)
+$$
+
+does not simplify
+
+-   Examples
+    -   Income, without covariates related to income
+    -   Body weight report
+
+David Hand calls this mechanism **Unseen Data Dependent**
+
+## Missing data mechanisms: roundup
+
+-   **Missing Completely at Random** (MCAR)
+    -   missingness is purely random
+    -   relatively easy to deal with
+-   **Missing at Random** (MAR)
+    -   missingness related to observed information
+    -   widely used for principled analysis
+-   **Missing Not at Random** (MNAR)
+    -   missingness related to unobserved information
+    -   cannot detect this from the data
+    -   difficult to deal with, need context information
+
+## Missing data mechanisms: Graphical representation
+
+![](figures/DAG.png)
+
+::: footer
+Schafer, J. L. & Graham, J. W. (2002). Missing Data. Psychological Methods, 7 (2), 147-177. [doi: 10.1037/1082-989X.7.2.147](https://pubmed.ncbi.nlm.nih.gov/12090408/)
+:::
+
+## Missing data mechanisms: Alternative terminology
+
+- Not Data Dependent (~MCAR)
+  - It’s missing for reasons unrelated to the data
+  - Probability to be missing is constant for all units
+  - E.g. some students not sitting an exam due to flu symptoms
+- Seen Data Dependent (~MAR)
+  - It’s missing for reasons related to data you have got
+  - Probability to be missing depends on *observed* data 
+  - E.g. school discouraging lower performing students from sitting exam
+- Unseen Data Dependent (~MNAR)
+  - Missing because of the values you would have obtained
+  - Probability to be missing depends on *unobserved* data 
+  - E.g. students realized revised wrong material, so didn’t sit exam
+
+<!-- https://infomdwr.nl/lectures/week_7/1_missing_data_1.pdf -->
+
+
+## Uwe Aickelin: What to do with the missing data?
+
+<https://www.youtube.com/watch?v=oCQbC818KKU>
+
+## Lessons from Uwe Aickelin
+
+-   You could obtain the data, but it's not there
+-   Quality of data is going down - big data
+-   Why not go back to expert? Impractical
+-   Why not delete? What to delete?
+-   Reasons for missing data are important
+-   Missing (Completely?) at Random
+-   How impute? Mean, random, mean per group
+-   Software cannot handle missing data
+-   Forced internet surveys
+
+
+# Strategies to deal with missing data {background-color="#2a76dd"}
+
+## Strategies
+
+1.  Prevention
+2.  Ad-hoc methods, e.g., single imputation, complete cases
+3.  Weighting methods
+4.  Likelihood methods, EM-algorithm
+5.  Multiple imputation
+
+## Strategies
+
+::: {.nonincremental}
+1.  **Prevention**
+2.  Ad-hoc methods, e.g., single imputation, complete cases
+3.  Weighting methods
+4.  Likelihood methods, EM-algorithm
+5.  Multiple imputation
+:::
+
+##  {background-color="#2a76dd"}
+
+::: {style="margin-top: 40px; font-size: 3.5em;"}
+**Prevent unintended missing data**
+:::
+
+## 1. Prevention strategies
+
+-   Design: Time intervals, Number of variables, Pilot study
+-   Collection: Incentives, Match interviewer-respondent, Quick follow-up, Retrieve missing data
+-   Measures: Use short forms, Minimize intrusive measures, Clarity, Layout
+-   Treatment: Minimize burden and intensity
+
+## Strategies
+
+::: {.nonincremental}
+1.  Prevention
+2.  **Ad-hoc methods, e.g., single imputation, complete cases**
+3.  Weighting methods
+4.  Likelihood methods, EM-algorithm
+5.  Multiple imputation
+:::
+
+##  {background-color="#2a76dd"}
+
+::: {style="margin-top: 40px; font-size: 3.5em;"}
+**Ad-hoc methods make strong assumptions**
+:::
+
+## 2. Ad-hoc strategies
+
+-   Listwise deletion
+-   Mean imputation
+-   Regression imputation
+-   Stochastic regression imputation
+-   Last observation carried forward (LOCF)
+-   Indicator method
+
+## Listwise deletion
+
+-   Analyze only the complete records
+-   Also know as: complete-case analysis
+-   Advantages
+    -   Simple (default in most software)
+    -   Unbiased under MCAR
+    -   Conservative standard errors, significance levels
+    -   Two special properties in regression
+
+## Listwise deletion
+
+-   Disadvantages
+    -   Wasteful
+    -   May not be possible
+    -   Larger standard errors
+    -   Biased under MAR, even for simple statistics like the mean
+    -   Inconsistencies in reporting
+
+## Listwise deletion: Special properties
+
+-   For any regression with missing data in the predictors, estimates under listwise deletion are unbiased as long as the missingness does not depend on the outcome. Even some MNAR cases (Glynn 1986; Little 1992).
+-   In logistic regression only: With missing data in either the outcome $Y$ or the predictors $X$ (but not both), estimates of regression weights (but not the intercept) after listwise deletion are unbiased as long as the missingness depends only on $Y$ (and not on $X$!) (Vach 1994). This property is widely exploited in case-control studies in epidemiology.
+-   See FIMD 2.7: <https://stefvanbuuren.name/fimd/sec-when.html>
+
+## Mean imputation
+
+-   Replace the missing values by the mean of the observed data
+-   Advantages
+    -   Simple
+    -   Unbiased for the mean, under MCAR
+
+## Mean imputation
+
+```{r echo = FALSE, duo = TRUE, fig.width=9, fig.height=4.5}
+source("R/mi.hist.R")
+
+## ----load, eval = FALSE--------------------------------------------------
+suppressPackageStartupMessages(library("mice"))
+
+## ----meanimp, echo=TRUE--------------------------------------------------
+imp <- mice(airquality, method = "mean", m = 1, maxit = 1, print = FALSE)
+
+## ----plotmeanimp, duo = TRUE, echo=FALSE, fig.width=4.5, fig.height=2.25----
+lwd <- 0.6
+data <- complete(imp)
+Yobs <- airquality[,"Ozone"]
+Yimp <- data[,"Ozone"]
+par(mfrow = c(1, 2))
+mi.hist(Yimp, Yobs,b=seq(-20,200,10),type="continuous",
+        gray=F,lwd = lwd,
+        obs.lwd=1.5, mis.lwd=1.5, imp.lwd=1.5,
+        obs.col=mdc(4), mis.col=mdc(5), imp.col="transparent",
+        mlt=0.08,main="",xlab="Ozone (ppb)",
+        axes = FALSE)
+box(lwd = 1)
+plot(data[cci(imp),2:1],col=mdc(1), lwd=1.5,ylab="Ozone (ppb)",
+     xlab="Solar Radiation (lang)",ylim=c(-10,170),
+     axes = FALSE)
+points(data[ici(imp),2:1],col=mdc(2),lwd=1.5)
+axis(1, lwd = lwd)
+axis(2, lwd = lwd, las = 1)
+box(lwd = 1)
+```
+
+## Mean imputation
+
+-   Disadvantages
+    -   Disturbs the distribution
+    -   Underestimates the variance
+    -   Biases correlations to zero
+    -   Biased under MAR
+-   AVOID (unless you know what you are doing)
+
+## Regression imputation
+
+-   Also known as **prediction**
+    -   Fit model for $Y^\mathrm{obs}$ under listwise deletion
+    -   Predict $Y^\mathrm{mis}$ for records with missing $Y$s
+    -   Replace missing values by prediction
+-   Advantages
+    -   Under MAR, unbiased estimates of regression coefficients
+    -   Good approximation to the (unknown) true data if explained variance is high
+-   Favourite among data scientists and machine learners
+
+## Regression imputation
+
+```{r echo = FALSE, duo = TRUE, fig.width=9, fig.height=4.5}
+## ----regimp, echo=TRUE---------------------------------------------------
+fit <- lm(Ozone ~ Solar.R, data = airquality)
+pred <- predict(fit, newdata = ic(airquality))
+
+## ----plotregimp, duo = TRUE, echo=FALSE, fig.width=4.5, fig.height=2.25----
+lwd <- 0.6
+Yobs <- airquality[,"Ozone"]
+Yimp <- Yobs
+Yimp[ici(airquality)] <- pred
+ss <- cci(airquality$Solar.R)
+data <- data.frame(Ozone=Yimp, Solar.R=airquality$Solar.R)
+par(mfrow = c(1, 2))
+mi.hist(Yimp[ss], Yobs[ss],b=seq(-20,200,10),type="continuous",
+        gray=F, lwd = lwd,
+        obs.lwd=1.5, mis.lwd=1.5, imp.lwd=1.5,
+        obs.col=mdc(4),mis.col=mdc(5), imp.col="transparent",
+        mlt=0.08,main="",xlab="Ozone (ppb)", axes = FALSE)
+box(lwd = 1)
+plot(data[cci(imp),2:1],col=mdc(1),lwd=1.5,
+     ylab="Ozone (ppb)", xlab="Solar Radiation (lang)",
+     ylim=c(-10,170), axes = FALSE)
+points(data[ici(imp),2:1],col=mdc(2),lwd=1.5)
+axis(1, lwd = lwd)
+axis(2, lwd = lwd, las = 1)
+box(lwd = 1)
+```
+
+## Regression imputation
+
+-   Disadvantages
+    -   Artificially increases correlations
+    -   Systematically underestimates the variance
+    -   Too optimistic $p$-values and too short confidence intervals
+-   AVOID. Harmful to statistical inference
+
+## Stochastic regression imputation
+
+-   Like regression imputation, but adds appropriate noise to the predictions to reflect uncertainty
+-   Advantages
+    -   Preserves the distribution of $Y^\mathrm{obs}$
+    -   Preserves the correlation between $Y$ and $X$ in the imputed data
+
+## Stochastic regression imputation
+
+```{r echo = FALSE, duo = TRUE, fig.width=9, fig.height=4.5}
+## ----sri-----------------------------------------------------------------
+data <- airquality[, c("Ozone", "Solar.R")]
+imp <- mice(data, method = "norm.nob", m = 1, maxit = 1,
+            seed = 4, print = FALSE)
+
+## ----plotsri, duo = TRUE, echo=FALSE, fig.width=4.5, fig.height=2.25-----
+lwd <- 0.6
+data <- complete(imp)
+Yobs <- airquality[, "Ozone"]
+Yimp <- data[, "Ozone"]
+par(mfrow = c(1, 2))
+mi.hist(Yimp, Yobs,
+        b = seq(-20, 200, 10), type = "continuous",
+        gray = FALSE, lwd = lwd,
+        obs.lwd = 1.5, mis.lwd = 1.5, imp.lwd = 1.5,
+        obs.col = mdc(4),mis.col = mdc(5), imp.col = "transparent",
+        mlt = 0.08, main = "", xlab = "Ozone (ppb)")
+box(lwd = 1)
+plot(data[cci(imp), 2:1], col = mdc(1),
+     lwd = 1.5, ylab = "Ozone (ppb)",
+     xlab = "Solar Radiation (lang)", ylim = c(-10, 170),
+     axes = FALSE)
+points(data[ici(imp), 2:1], col = mdc(2), lwd = 1.5)
+axis(1, lwd = lwd)
+axis(2, lwd = lwd, las = 1)
+box(lwd = 1)
+```
+
+## Stochastic regression imputation
+
+-   Disadvantages
+    -   Symmetric and constant error restrictive
+    -   Single imputation: does not take uncertainty imputed data into account, and incorrectly treats them as real
+    -   Not so simple anymore
+
+## Overview of assumptions needed
+
+|            |      |            |             |                |
+|------------|------|:----------:|-------------|----------------|
+|            |      |  Unbiased  |             | Standard Error |
+|            | Mean | Reg Weight | Correlation |                |
+| Listwise   | MCAR |    MCAR    | MCAR        | Too large      |
+| Pairwise   | MCAR |    MCAR    | MCAR        | Complicated    |
+| Mean       | MCAR |     --     | --          | Too small      |
+| Regression | MAR  |    MAR     | --          | Too small      |
+| Stochastic | MAR  |    MAR     | MAR         | Too small      |
+| LOCF       | --   |     --     | --          | Too small      |
+| Indicator  | --   |     --     | --          | Too small      |
+
+## Strategies
+
+::: {.nonincremental}
+1.  Prevention
+2.  Ad-hoc methods, e.g., single imputation, complete cases
+3.  **Weighting methods**
+4.  Likelihood methods, EM-algorithm
+5.  Multiple imputation
+:::
+
+##  {background-color="#2a76dd"}
+
+::: {style="margin-top: 40px; font-size: 3.5em;"}
+**Weighting minimizes bias with unit nonresponse**
+:::
+
+## 3. Weighting
+
+-   Take the complete cases
+-   Re-weight any statistic to the distribution of the covariates in the population
+-   Advantages
+    -   Simple (one set of weights for all incomplete variables)
+    -   Reduces bias under MAR assumption
+    -   Standard methodology in official statistics
+-   Disadvantages
+    -   Discards data, increases the variance
+    -   Weights may not be available
+    -   Needs special variance estimators
+    -   Limited to unit non-response
+
+For inferences purposes, proper imputation strategies prove to quickle become more efficient and more accurate than weighting strategies (Boeschoten et al., 2017).
+
+::: footer
+Boeschoten, L., Vink, G., & Hox, J. J. C. M. (2017). How to Obtain Valid Inference under Unit Nonresponse? Journal of Official Statistics, 33(4), 963-978. [https://doi.org/10.1515/jos-2017-0045](https://doi.org/10.1515/jos-2017-0045)
+:::
+
+## Strategies
+
+::: {.nonincremental}
+1.  Prevention
+2.  Ad-hoc methods, e.g., single imputation, complete cases
+3.  Weighting methods
+4.  **Likelihood methods, EM-algorithm**
+5.  Multiple imputation
+:::
+
+##  {background-color="#2a76dd"}
+
+::: {style="margin-top: 40px; font-size: 3.5em;"}
+**Maximum likelihood: The royal road to missing data**
+:::
+
+## 4. Maximum likelihood
+
+-   EM-algorithm, Full Information Maximum Likelihood (FIML)
+-   Iterative methods to estimate parameters that "skip over" the missing data
+-   Advantages:
+    -   Theoretically sound, optimizes likelihood calculation directly
+    -   Many applications, widely accepted
+    -   Easy to apply (when there is software)
+-   Disadvantages:
+    -   Local minima, slow convergence
+    -   Difficult to apply outside standard models
+    -   Complete-data model becomes large and complex
+
+<!-- ## Maximum likelihood software -->
+
+<!-- -   Mixed models: Proc Mixed (SAS), MLWin -->
+<!-- -   Structural models: AMOS, Mplus, Mx -->
+<!-- -   Rasch analyse: RUMM2030 -->
+
+## Strategies
+
+::: {.nonincremental}
+1.  Prevention
+2.  Ad-hoc methods, e.g., single imputation, complete cases
+3.  Weighting methods
+4.  Likelihood methods, EM-algorithm
+5.  **Multiple imputation**
+:::
+
+##  {background-color="#2a76dd"}
+
+::: {style="margin-top: 40px; font-size: 3.5em;"}
+**Multiple imputation is an all-round principled method**
+:::
+
+## 5. Multiple imputation
+
+-   One imputation cannot be correct in general
+-   Imputes each missing value $m$ times
+-   Variation between the $m$ imputed values reflects our ignorance about the unknown value
+
+## Multiple imputation workflow
+
+<center>![](figures/ch01-miflow-1.png){height="600"}</center>
+
+## Multiple imputation - 1987
+
+::: {layout-ncol="2" layout-valign="bottom"}
+![](figures/rubin1987_cover.jpeg){width="400"}
+
+![](figures/Donald-Rubin-HS-768x768.jpg){width="500"}
+:::
+
+## Multiple imputation
+
+-   Advantages
+    -   Correct point and variance estimates
+    -   Splits missing data problem from complete-data analysis
+    -   Theoretical properties well established
+    -   Flexible, widely applicable
+    -   Extensible to MNAR
+-   Disadvantages
+    -   Need to create and work with multiple imputed data sets
+    -   May not always be most efficient
+
+## What is the goal of multiple imputation?
+
+The goal:
+
+- **IS NOT** to find the correct value for a missing data point
+- **IS** to find an answer to the analysis problem, given that there are (many) data points missing.
+
+We are not interested in whether the imputed value corresponds to its true counterpart in the population, but we rather sample plausible values that could have been from the posterior predictive distribution
+
+## Demonstration of imputation
+Let our analysis model be
+```{r echo=FALSE}
+library(mice)
+library(magrittr)
+library(purrr)
+```
+
+```{r echo = TRUE, eval = FALSE}
+boys %$% # use the exposition pipe
+  lm(hgt ~ age + tv)
+```
+
+## Demonstration of imputation
+with output
+
+```{r}
+boys %$% 
+  lm(hgt ~ age + tv) %>% 
+  summary()
+```
+
+## Demonstration of imputation
+generated on `r boys %$%    lm(hgt ~ age + tv) %>% nobs()` cases. The full data size is
+
+```{r}
+boys %>% dim()
+```
+
+
+## Demonstration of imputation
+To impute and analyze the same model with `mice`, we can simply run:
+
+```{r echo = TRUE, cache = TRUE}
+boys %>% 
+  mice(m = 5, method = "cart", printFlag = FALSE) %>% 
+  complete("all") %>% 
+  map(~.x %$% lm(hgt ~ age + tv)) %>% 
+  pool() %>% 
+  summary()
+```
+<center>
+![](img/imp_process.png){width="60%"}
+</center>
+
+## What have we done?
+We have used `mice` to obtain draws from a posterior predictive distribution of the missing data, conditional on the observed data. 
+
+The imputed values are mimicking the sampling variation and can be used to infer about the underlying TDGM, **if and only if**:
+
+- The observed data holds the information about the missing data (MAR/MCAR)
+
+# Synthetic data generation
+
+## Imputation vs Synthetisation
+Instead of drawing only imputations from the posterior predictive distribution, we might as well overimpute the observed data. 
+![](img/patterns.png)
+
+## How to draw synthetic data sets with `mice`
+```{r echo = TRUE, cache = TRUE}
+boys %>% 
+  mice(m = 5, method = "cart", printFlag = FALSE, where = matrix(TRUE, 748, 9)) %>% 
+  complete("all") %>% 
+  map(~.x %$% lm(hgt ~ age + tv)) %>% 
+  pool() %>% 
+  summary()
+```
+<center>
+![](img/synth_process.png){width="60%"}
+</center>
+But we make an error!
+
+## Pooling in imputation
+Rubin (1987, p76) defined the following rules:
+
+For any number of multiple imputations $m$, the combination of the analysis results for any estimate $\hat{Q}$ of estimand $Q$ with corresponding variance $U$, can be done in terms of the average of the $m$ complete-data estimates
+
+$$\bar{Q} = \sum_{l=1}^{m}\hat{Q}_l / m,$$
+
+and the corresponding average of the $m$ complete data variances
+
+$$\bar{U} = \sum_{l=1}^{m}{U}_l / m.$$ 
+
+::: footer
+Rubin, D.B. (1987). Multiple Imputation for Nonresponse in Surveys. New York: John Wiley and Sons.
+:::
+
+## Pooling in imputation
+Simply using $\bar{Q}$ and $\bar{U}_m$ to obtain our inferences would be to simplistic. In that case we would ignore any possible variation between the separate $\hat{Q}_l$ and the fact that we only generate a finite set of imputations $m$. Rubin (1987, p. 76) established that the total variance $T$ of $(Q-\bar{Q})$ would equal
+
+$$T = \bar{U} + B + B/m,$$
+
+Where the between imputation variance $B$ is defined as 
+
+$$B = \sum_{l=1}^{m}(\hat{Q}_l - \bar{Q})^\prime(\hat{Q}_l - \bar{Q}) / (m-1)$$
+
+**This assumes that some of the data are observed and remain constant over the synthetic sets**
+
+The total variance $T$ of $(Q-\bar{Q})$ should (Reiter, 2003) equal
+
+$$T = \bar{U} + B/m.$$
+
+::: footer
+Reiter, J.P. (2003). Inference for Partially Synthetic, Public Use Microdata Sets. Survey Methodology, 29, 181-189.
+:::
+
+## So, the correct code is 
+```{r echo = TRUE, cache = TRUE}
+boys %>% 
+  mice(m = 5, method = "cart", printFlag = FALSE, where = matrix(TRUE, 748, 9)) %>% 
+  complete("all") %>% 
+  map(~.x %$% lm(hgt ~ age + tv)) %>% 
+  pool(rule = "reiter2003") %>% 
+  summary()
+```
+
+## Why multiple synthetic sets?
+Thank back about the goal of statistical inference: we want to go back to the true data generating model.
+
+1. We do so by reverse engineering the true data generating process
+2. Based on our observed data
+3. We do not know this process; hence multiple synthetic values
+
+The multiplicity of the solution allows for smoothing over any Monte Carlo error that may arise from generating a single set.
+
+## Generating more synthetic data
+```{r echo = TRUE, cache = TRUE}
+mira <- boys %>% 
+  mice(m = 6, method = "cart", printFlag = FALSE, where = matrix(TRUE, 748, 9)) %>% 
+  list('1' = rbind(complete(., 1), complete(., 2)),
+       '2' = rbind(complete(., 3), complete(., 4)),
+       '3' = rbind(complete(., 5), complete(., 6))) %>% .[-1] %>% 
+  data.table::setattr("class", c("mild", class(.))) %>% 
+  map(~.x %$% lm(hgt ~ reg))
+
+mira %>% pool(rule = "reiter2003") %>% 
+  summary() %>% tibble::column_to_rownames("term") %>% round(3)
+
+mira %>% pool(rule = "reiter2003", 
+              custom.t = ".data$ubar * 2 + .data$b / .data$m") %>% 
+  summary() %>% tibble::column_to_rownames("term") %>% round(3)
+```
+Some adjustment to the pooling rules is neede to avoid p-inflation.
+
+::: footer
+Raab, Gillian M, Beata Nowok, and Chris Dibben. 2018. “Practical Data Synthesis for Large Samples”. Journal of Privacy and Confidentiality 7 (3):67-97. [https://doi.org/10.29012/jpc.v7i3.407.](https://doi.org/10.29012/jpc.v7i3.407)
+:::
+
+## Some care is needed
+With synthetic data generation and synthetic data implementation come some risks. 
+
+Any idea?
+
+# What should synthetic data be?
+
+## Testing validity
+Nowadays many synthetic data cowboys claim that they can generate synthetic data that looks like the real data that served as input. 
+
+This is like going to Madam Tusseaud's: at face value it looks identical, but when experienced in real life it's just not the same as the living thing. 
+
+Many of these synthetic data packages only focus on marginal or conditional distributions. With `mice` we also consider the inferential properties of the synthetic data. 
+
+In general, we argue [^4] that any synthetic data generation procedure should
+
+1. Preserve marginal distributions
+2. Preserve conditional distribution
+3. Yield valid inference
+4. Yield synthetic data that are indistinguishable from the real data
+
+
+::: footer
+Volker, T.B.; Vink, G. Anonymiced Shareable Data: Using mice to Create and Analyze Multiply Imputed Synthetic Datasets. Psych 2021, 3, 703-716. [https://doi.org/10.3390/psych3040045](https://doi.org/10.3390/psych3040045)
+:::
+
+## Example from simulation
+When valid synthetic data are generated, the variance of the estimates is correct, such that the confidence intervals cover the population (i.e. true) value sufficiently [^5]. Take e.g. the following proportional odds model from Volker & Vink (2021):
+
+|        term | estimate | synthetic <br> bias   | synthetic <br> cov   |
+|-------------|---------:|-------:|------:|
+| age         | 0.461    | 0.002  | 0.939 |
+| hc          | -0.188   | -0.004 | 0.945 |
+| regeast     | -0.339   | 0.092  | 0.957 |
+| regwest     | 0.486    | -0.122 | 0.944 |
+| regsouth    | 0.646    | -0.152 | 0.943 |
+| regcity     | -0.069   | 0.001  | 0.972 |
+| G1$|$G2     | -6.322   | -0.254 | 0.946 |
+| G2$|$G3     | -4.501   | -0.246 | 0.945 |
+| G3$|$G4     | -3.842   | -0.244 | 0.948 |
+| G4$|$G5     | -2.639   | -0.253 | 0.947 |
+ 
+::: footer
+Volker, T.B.; Vink, G. Anonymiced Shareable Data: Using mice to Create and Analyze Multiply Imputed Synthetic Datasets. Psych 2021, 3, 703-716. [https://doi.org/10.3390/psych3040045](https://doi.org/10.3390/psych3040045)
+:::
+
+## End of presentation
+
+<center>
+![A. Bacall](https://imgc.allpostersimages.com/img/posters/scientist-sits-at-computer-that-has-a-thought-balloon-over-it-that-reads-cartoon_u-L-PGPH660.jpg?artHeight=900&artPerspective=n&artWidth=900){width="60%"}
+</center>
