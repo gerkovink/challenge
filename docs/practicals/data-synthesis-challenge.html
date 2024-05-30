@@ -288,7 +288,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Broadly speaking, two methods for creating synthetic data can be distinguished. The first one is based on parametric imputation models, which assumes that the structure of the data is fixed, and draws synthetic values from a pre-specified probability distribution. That is, after estimating a statistical model, the synthetic data are generated from a probability distribution, without making any further use of the observed data. In general, this procedure is less likely to result in an accidental release of disclosive information. However, these parametric methods are often less capable of capturing the complex nature of real-world data sets.</p>
 <p>The subtleties of real-world data are often better reproduced with non-parametric imputation models. Using this approach, a non-parametric model is estimated, resulting in a donor pool out of which a single observation per observation and per variable is drawn. These models thus reuse the observed data to serve as synthetic data. Accordingly, much of the values that were in the observed data end up in the synthetic data. However, these observed data are generally combined in unique ways, it is generally not possible to link this information to the original respondents. The non-parametric procedures often yield better inferences, while still being able to prevent disclosure risk (although more research into measures to qualify the remaining risks is required). We will showcase how to generate synthetic data using one such non-parametric method: classification and regression trees (CART).</p>
 <p>Now you have a feeling of what the data looks like, start synthesizing the data with <code>mice</code>. Use <a href="https://www.gerkovink.com/miceVignettes/synthetic/synthetic.html">this vignette for inspiration</a></p>
-<p>Some hints: - use your own seed - only unique scores are competing for the prize! - use the <code>make.where</code> and <code>make.method</code> functions to specify the imputation method - use the <code>complete</code> function to extract a single synthetic data from the <code>mids</code> object or calculate the below evaluation measures over all the imputations (extra points) - alternatively, you can use the <code>syn()</code> function from the <code>synthpop</code> package to generate synthetic data - play around with the synthesis method and the number of imputations or iterations to see how the evaluation measures change - good luck!</p>
+<p>Some hints:</p>
+<ul>
+<li>use your own seed - only unique scores are competing for the prize!</li>
+<li>use the <code>make.where</code> and <code>make.method</code> functions to specify the imputation method</li>
+<li>use the <code>complete</code> function to extract a single synthetic data from the <code>mids</code> object or calculate the below evaluation measures over all the imputations (extra points)</li>
+<li>alternatively, you can use the <code>syn()</code> function from the <code>synthpop</code> package to generate synthetic data</li>
+<li>play around with the synthesis method and the number of imputations or iterations to see how the evaluation measures change</li>
+<li>good luck!</li>
+</ul>
 </section>
 <section id="evaluating-synthetic-data" class="level1">
 <h1><strong>Evaluating Synthetic data</strong></h1>
