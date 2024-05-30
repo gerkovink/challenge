@@ -11,7 +11,7 @@ website:
       - schedule.qmd
       - lectures.qmd
       - practicals.qmd
-  repo-url: https://github.com/gerkovink/challenges
+  repo-url: https://github.com/gerkovink/challenge
   repo-actions: [edit, issue]
 
 format:
