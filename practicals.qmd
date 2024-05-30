@@ -7,4 +7,4 @@ title: "Practicals"
 Here you can find the links to the practicals.
 
 - Practical 1: [Hands-on met mice in R](https://www.gerkovink.com/quickmice)
-- Practical 3: [Data synthese challenge](practicals/data-synthesis-challenge.html)
+- Practical 2: [Data synthese challenge](practicals/data-synthesis-challenge.html)

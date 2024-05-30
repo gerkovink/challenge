@@ -74,9 +74,15 @@ Broadly speaking, two methods for creating synthetic data can be distinguished. 
 
 The subtleties of real-world data are often better reproduced with non-parametric imputation models. Using this approach, a non-parametric model is estimated, resulting in a donor pool out of which a single observation per observation and per variable is drawn. These models thus reuse the observed data to serve as synthetic data. Accordingly, much of the values that were in the observed data end up in the synthetic data. However, these observed data are generally combined in unique ways, it is generally not possible to link this information to the original respondents. The non-parametric procedures often yield better inferences, while still being able to prevent disclosure risk (although more research into measures to qualify the remaining risks is required). We will showcase how to generate synthetic data using one such non-parametric method: classification and regression trees (CART).
 
-Now you have a feeling of what the data looks like, we will use these two different ways to create synthetic data: a fully parametric approach, in which the data are synthesized using either linear or logistic regression, and a fully non-parametric approach, in which we synthesize all data using CART.
+Now you have a feeling of what the data looks like, start synthesizing the data with `mice`. Use [this vignette for inspiration](https://www.gerkovink.com/miceVignettes/synthetic/synthetic.html)
 
-... ADD MORE TEXT HERE. I GUESS MICE EXPLANATION? ...
+Some hints:
+- use your own seed - only unique scores are competing for the prize!
+- use the `make.where` and `make.method` functions to specify the imputation method
+- use the `complete` function to extract a single synthetic data from the `mids` object or calculate the below evaluation measures over all the imputations (extra points)
+- alternatively, you can use the `syn()` function from the `synthpop` package to generate synthetic data
+- play around with the synthesis method and the number of imputations or iterations to see how the evaluation measures change
+- good luck!
 
 # **Evaluating Synthetic data**
 
@@ -86,44 +92,48 @@ If you have chosen to evaluate it with regards to a model, you will have to 1) e
 
 Note that, in both cases, methods are iterative: you synthetize data, evaluate it, and then go back to synthetizing data. You should do this until the results are as close as desired.
 
-... ADD ASSIGNMENT HERE ...
+Use the below code block to calculate the desired metrics for evaluating the synthetic data. 
 
-```{r}
+```{r echo = FALSE, eval=FALSE}
 # create synthetic data. Students should do this differently, but still call the object
 # 'syn_data'.
 library(synthpop)
-syn_data <- syn(heart_failure, seed = 1234)$syn
+syn_data <- syn(heart_failure, seed = 12345)$syn
 ```
 
 ### Performance metrics
-```{r}
-
+```{r eval=FALSE}
 # 1. Mean absolute value of mean scaled deviation between original and synthesized variables
 sd <- apply(heart_failure, 2, sd)
-colMeans(abs((syn_data-heart_failure)/sd)) |> mean()
-
+MSD <- colMeans(abs((syn_data-heart_failure)/sd)) |> mean()
 
 # 2. Average deviation of original and synthetic correlation matrix
-mean(cor(heart_failure) - cor(syn_data))
+MDC <- mean(cor(heart_failure) - cor(syn_data))
 # 2.1 Average absolute deviation of original and synthetic correlation matrix
-mean(abs(cor(heart_failure) - cor(syn_data)))
-
+MDC_abs <- mean(abs(cor(heart_failure) - cor(syn_data)))
 
 # 3. Pearson divergence according to density ratio package
 # To install, use devtools::install_github("thomvolker/densityratio")
 library(densityratio)
 ## Estimate density ratio and check summaries and plots
 densratio <- ulsif(heart_failure, syn_data) 
-summary(densratio) # pearson divergence can be found here
-plot(densratio)
+PD <- summary(densratio)$PE
 
 # 4. Train model on synthetic data, use it to predict on observed data
 # Train model
 model <- glm(DEATH_EVENT ~ ., data = syn_data, family = binomial)
 
 # 4.1 Compute confusion matrix of model in synthetic data
-table(syn_data$DEATH_EVENT, predict(model, newdata = syn_data) > 0.5)
+#table(syn_data$DEATH_EVENT, predict(model, newdata = syn_data) > 0.5)
 # 4.2 Compute confusion matrix of model in original data
-table(heart_failure$DEATH_EVENT, predict(model, newdata = heart_failure) > 0.5)
+conf <- table(heart_failure$DEATH_EVENT, predict(model, newdata = heart_failure) > 0.5)
+
+list("Mean Scaled Deviation: mean absolute value" = MSD, 
+               "Correlation: mean deviation" = MDC, 
+               "Correlation: mean absolute deviation" = MDC_abs, 
+               "Pearson Divergence" = PD, 
+               "Confusion Matrix" = conf)
+plot(densratio)
+
 ```
 

@@ -287,105 +287,49 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h1><strong>Creating synthetic data</strong></h1>
 <p>Broadly speaking, two methods for creating synthetic data can be distinguished. The first one is based on parametric imputation models, which assumes that the structure of the data is fixed, and draws synthetic values from a pre-specified probability distribution. That is, after estimating a statistical model, the synthetic data are generated from a probability distribution, without making any further use of the observed data. In general, this procedure is less likely to result in an accidental release of disclosive information. However, these parametric methods are often less capable of capturing the complex nature of real-world data sets.</p>
 <p>The subtleties of real-world data are often better reproduced with non-parametric imputation models. Using this approach, a non-parametric model is estimated, resulting in a donor pool out of which a single observation per observation and per variable is drawn. These models thus reuse the observed data to serve as synthetic data. Accordingly, much of the values that were in the observed data end up in the synthetic data. However, these observed data are generally combined in unique ways, it is generally not possible to link this information to the original respondents. The non-parametric procedures often yield better inferences, while still being able to prevent disclosure risk (although more research into measures to qualify the remaining risks is required). We will showcase how to generate synthetic data using one such non-parametric method: classification and regression trees (CART).</p>
-<p>Now you have a feeling of what the data looks like, we will use these two different ways to create synthetic data: a fully parametric approach, in which the data are synthesized using either linear or logistic regression, and a fully non-parametric approach, in which we synthesize all data using CART.</p>
-<p>… ADD MORE TEXT HERE. I GUESS MICE EXPLANATION? …</p>
+<p>Now you have a feeling of what the data looks like, start synthesizing the data with <code>mice</code>. Use <a href="https://www.gerkovink.com/miceVignettes/synthetic/synthetic.html">this vignette for inspiration</a></p>
+<p>Some hints: - use your own seed - only unique scores are competing for the prize! - use the <code>make.where</code> and <code>make.method</code> functions to specify the imputation method - use the <code>complete</code> function to extract a single synthetic data from the <code>mids</code> object or calculate the below evaluation measures over all the imputations (extra points) - alternatively, you can use the <code>syn()</code> function from the <code>synthpop</code> package to generate synthetic data - play around with the synthesis method and the number of imputations or iterations to see how the evaluation measures change - good luck!</p>
 </section>
 <section id="evaluating-synthetic-data" class="level1">
 <h1><strong>Evaluating Synthetic data</strong></h1>
 <p>Once you have synthetized your data, you have to evaluate it. If you have chosen to evaluate it with regards to the original data, you will have to perform evaluations such as: comparing univariate distributions, multivariate distributions, and more.</p>
 <p>If you have chosen to evaluate it with regards to a model, you will have to 1) estimate a model on the original data; and 2) estimate a model on the synthetic data. Then, you will have to compare the results of the two models.</p>
 <p>Note that, in both cases, methods are iterative: you synthetize data, evaluate it, and then go back to synthetizing data. You should do this until the results are as close as desired.</p>
-<p>… ADD ASSIGNMENT HERE …</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create synthetic data. Students should do this differently, but still call the object</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 'syn_data'.</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(synthpop)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Find out more at https://www.synthpop.org.uk/</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>syn_data <span class="ot">&lt;-</span> <span class="fu">syn</span>(heart_failure, <span class="at">seed =</span> <span class="dv">1234</span>)<span class="sc">$</span>syn</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Warning: In your synthesis there are numeric variables with 5 or fewer levels: anaemia, diabetes, high_blood_pressure, sex, smoking, DEATH_EVENT.
-Consider changing them to factors. You can do it using parameter 'minnumlevels'.
-
-Synthesis
------------
- age anaemia creatinine_phosphokinase diabetes ejection_fraction high_blood_pressure platelets serum_creatinine serum_sodium sex
- smoking time DEATH_EVENT</code></pre>
-</div>
-</div>
+<p>Use the below code block to calculate the desired metrics for evaluating the synthetic data.</p>
 <section id="performance-metrics" class="level3">
 <h3 class="anchored" data-anchor-id="performance-metrics">Performance metrics</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Mean absolute value of mean scaled deviation between original and synthesized variables</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>sd <span class="ot">&lt;-</span> <span class="fu">apply</span>(heart_failure, <span class="dv">2</span>, sd)</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="fu">colMeans</span>(<span class="fu">abs</span>((syn_data<span class="sc">-</span>heart_failure)<span class="sc">/</span>sd)) <span class="sc">|&gt;</span> <span class="fu">mean</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 8139.581</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Average deviation of original and synthetic correlation matrix</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(<span class="fu">cor</span>(heart_failure) <span class="sc">-</span> <span class="fu">cor</span>(syn_data))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] -0.006366011</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 2.1 Average absolute deviation of original and synthetic correlation matrix</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(<span class="fu">abs</span>(<span class="fu">cor</span>(heart_failure) <span class="sc">-</span> <span class="fu">cor</span>(syn_data)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.06019612</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Pearson divergence according to density ratio package</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="co"># To install, use devtools::install_github("thomvolker/densityratio")</span></span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(densityratio)</span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Estimate density ratio and check summaries and plots</span></span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>densratio <span class="ot">&lt;-</span> <span class="fu">ulsif</span>(heart_failure, syn_data) </span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(densratio) <span class="co"># pearson divergence can be found here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-Call:
-ulsif(df_numerator = heart_failure, df_denominator = syn_data)
-
-Kernel Information:
-  Kernel type: Gaussian with L2 norm distances
-  Number of kernels: 200
-
-Optimal sigma: 7.76897
-Optimal lambda: 2.976351
-Optimal kernel weights (loocv): num [1:201] 0.00813 0.00588 0.00588 0.00577 0.00584 ...
- 
-Pearson divergence between P(nu) and P(de): 0.01335
-For a two-sample homogeneity test, use 'summary(x, test = TRUE)'.</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(densratio)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
-</div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="data-synthesis-challenge_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 4. Train model on synthetic data, use it to predict on observed data</span></span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Train model</span></span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">glm</span>(DEATH_EVENT <span class="sc">~</span> ., <span class="at">data =</span> syn_data, <span class="at">family =</span> binomial)</span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 4.1 Compute confusion matrix of model in synthetic data</span></span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(syn_data<span class="sc">$</span>DEATH_EVENT, <span class="fu">predict</span>(model, <span class="at">newdata =</span> syn_data) <span class="sc">&gt;</span> <span class="fl">0.5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>   
-    FALSE TRUE
-  0   195   12
-  1    32   60</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 4.2 Compute confusion matrix of model in original data</span></span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(heart_failure<span class="sc">$</span>DEATH_EVENT, <span class="fu">predict</span>(model, <span class="at">newdata =</span> heart_failure) <span class="sc">&gt;</span> <span class="fl">0.5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>   
-    FALSE TRUE
-  0   195    8
-  1    47   49</code></pre>
-</div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Mean absolute value of mean scaled deviation between original and synthesized variables</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>sd <span class="ot">&lt;-</span> <span class="fu">apply</span>(heart_failure, <span class="dv">2</span>, sd)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>MSD <span class="ot">&lt;-</span> <span class="fu">colMeans</span>(<span class="fu">abs</span>((syn_data<span class="sc">-</span>heart_failure)<span class="sc">/</span>sd)) <span class="sc">|&gt;</span> <span class="fu">mean</span>()</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Average deviation of original and synthetic correlation matrix</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>MDC <span class="ot">&lt;-</span> <span class="fu">mean</span>(<span class="fu">cor</span>(heart_failure) <span class="sc">-</span> <span class="fu">cor</span>(syn_data))</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 2.1 Average absolute deviation of original and synthetic correlation matrix</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>MDC_abs <span class="ot">&lt;-</span> <span class="fu">mean</span>(<span class="fu">abs</span>(<span class="fu">cor</span>(heart_failure) <span class="sc">-</span> <span class="fu">cor</span>(syn_data)))</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Pearson divergence according to density ratio package</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="co"># To install, use devtools::install_github("thomvolker/densityratio")</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(densityratio)</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="do">## Estimate density ratio and check summaries and plots</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>densratio <span class="ot">&lt;-</span> <span class="fu">ulsif</span>(heart_failure, syn_data) </span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>PD <span class="ot">&lt;-</span> <span class="fu">summary</span>(densratio)<span class="sc">$</span>PE</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="co"># 4. Train model on synthetic data, use it to predict on observed data</span></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Train model</span></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">glm</span>(DEATH_EVENT <span class="sc">~</span> ., <span class="at">data =</span> syn_data, <span class="at">family =</span> binomial)</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a><span class="co"># 4.1 Compute confusion matrix of model in synthetic data</span></span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a><span class="co">#table(syn_data$DEATH_EVENT, predict(model, newdata = syn_data) &gt; 0.5)</span></span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a><span class="co"># 4.2 Compute confusion matrix of model in original data</span></span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>conf <span class="ot">&lt;-</span> <span class="fu">table</span>(heart_failure<span class="sc">$</span>DEATH_EVENT, <span class="fu">predict</span>(model, <span class="at">newdata =</span> heart_failure) <span class="sc">&gt;</span> <span class="fl">0.5</span>)</span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a><span class="fu">list</span>(<span class="st">"Mean Scaled Deviation: mean absolute value"</span> <span class="ot">=</span> MSD, </span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>               <span class="st">"Correlation: mean deviation"</span> <span class="ot">=</span> MDC, </span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>               <span class="st">"Correlation: mean absolute deviation"</span> <span class="ot">=</span> MDC_abs, </span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>               <span class="st">"Pearson Divergence"</span> <span class="ot">=</span> PD, </span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>               <span class="st">"Confusion Matrix"</span> <span class="ot">=</span> conf)</span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(densratio)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 
