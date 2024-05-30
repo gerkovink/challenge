@@ -25,19 +25,19 @@ We will be using the following libraries. If you haven't installed them yet, you
 ```{r}
 #| message: false
 #| warning: false
-library(mice)
-library(readr)
+library(mice)     # for imputation and synthesis
+library(magrittr) # for pipes
+library(readr)    # for reading in data
 # add more libraries
 ```
 
-If you have created an R project and a data folder, you will have to read the data as follows:
+You can read in the data as follows:
 
 ```{r}
 #| message: false
-heart_failure <- read_csv("data/heart_failure_clinical_records_dataset.csv")
+heart_failure <- 
+  url("https://www.gerkovink.com/challenge/practicals/data/heart_failure_clinical_records_dataset.csv") %>% read_csv()
 ```
-
-If you haven't created an R project, you will have to set up a working directory and refer to the the directory where the file is stored.
 
 The Heart failure clinical records data consists of the following variables:
 
@@ -109,7 +109,7 @@ mean(cor(heart_failure) - cor(syn_data))
 mean(abs(cor(heart_failure) - cor(syn_data)))
 
 
-# 3. Pearson divergence according to densyty ratio package
+# 3. Pearson divergence according to density ratio package
 # To install, use devtools::install_github("thomvolker/densityratio")
 library(densityratio)
 ## Estimate density ratio and check summaries and plots
@@ -121,9 +121,9 @@ plot(densratio)
 # Train model
 model <- glm(DEATH_EVENT ~ ., data = syn_data, family = binomial)
 
-# 4.1 Compute confussion matrix of model in synthetic data
+# 4.1 Compute confusion matrix of model in synthetic data
 table(syn_data$DEATH_EVENT, predict(model, newdata = syn_data) > 0.5)
-# 4.2 Compute confussion matrix of model in original data
+# 4.2 Compute confusion matrix of model in original data
 table(heart_failure$DEATH_EVENT, predict(model, newdata = heart_failure) > 0.5)
 ```
 
