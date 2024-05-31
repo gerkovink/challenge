@@ -414,10 +414,6 @@ For example:
 5. Appealing to a new customer base with only data about existing customers
 6. Mixing bonafide observations with bonafide non-observations
 
-# Case 1: How to evaluate with a truth
-
-## Scenario 
-
 # Case 1: How to evaluate without a truth?
 
 ## Scenario 
@@ -450,7 +446,53 @@ We do have a constant in our problem: **the observed values**
 Cai, M., van Buuren, S., & Vink, G. (2022). Graphical and numerical diagnostic tools to assess multiple imputation models by posterior predictive checking. 
 :::
 
-# Case 2: When you know you're wrong
+# Case 2: When you suspect your model is wrong
+
+## Scenario
+
+- 1236 citizens of Leiden who were 85 years or older on December 1, 1986 (Lagaay, Van der Meij, and Hijmans 1992). 
+- Visited by a physician between January 1987 and May 1989. 
+- A full medical history, information on current use of drugs, a venous blood sample, and other health-related data were obtained. 
+- BP was routinely measured during the visit. 
+  - Apart from some individuals who were bedridden, BP was measured while seated. 
+  - An Hg manometer was used and BP was rounded to the nearest 5 mmHg. 
+- The mortality status of each individual on March 1, 1994 was retrieved from administrative sources.
+
+::: footer
+Lagaay, A. M., J. C. Van der Meij, and W. Hijmans. 1992. “Validation of Medical History Taking as Part of a Population Based Survey in Subjects Aged 85 and over.” British Medical Journal 304 (6834): 1091–2.
+:::
+
+
+## Problem
+- BP was measured less frequently for very old persons and for persons with health problems. 
+- BP was measured more often if the BP was too high, for example if the respondent indicated a previous diagnosis of hypertension, or if the respondent used any medication against hypertension. 
+- The missing data rate of BP also varied during the period of data collection. 
+  - The rate gradually increases during the first seven months of the sampling period from 5 to 40 percent of the cases, and then suddenly drops to a fairly constant level of 10–15 percent. 
+  - A complicating factor here is that the sequence in which the respondents were interviewed was not random. 
+  - High-risk groups, that is, elderly in hospitals and nursing homes and those over 95, were visited first.
+
+## Survival rate
+![](img/leiden_km.png)
+
+::: footer
+Van Buuren, S. (2018). Flexible imputation of missing data. CRC press. Chapter 9.2
+:::
+
+## Missingness
+![](img/leiden_tab.png){width=50%}
+
+::: footer
+Van Buuren, S. (2018). Flexible imputation of missing data. CRC press. Chapter 9.2
+:::
+
+## Sensitivity analysis
+![](img/leiden-delta.png){width="70%"}
+
+::: footer
+Van Buuren, S. (2018). Flexible imputation of missing data. CRC press. Chapter 9.2
+:::
+
+# Case 3: When you know you're wrong
 
 ## Scenario
 

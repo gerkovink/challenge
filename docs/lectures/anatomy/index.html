@@ -783,19 +783,11 @@ Information that is not available but necessary to arrive at the correct answer.
 </ol>
 </section>
 <section>
-<section id="case-1-how-to-evaluate-with-a-truth" class="title-slide slide level1 center">
-<h1>Case 1: How to evaluate with a truth</h1>
-
-</section>
-<section id="scenario" class="slide level2">
-<h2>Scenario</h2>
-</section></section>
-<section>
 <section id="case-1-how-to-evaluate-without-a-truth" class="title-slide slide level1 center">
 <h1>Case 1: How to evaluate without a truth?</h1>
 
 </section>
-<section id="scenario-1" class="slide level2">
+<section id="scenario" class="slide level2">
 <h2>Scenario</h2>
 <p>Let’s assume that we have an incomplete data set and that we can impute (fill in) the incomplete values under multiple candidate models</p>
 <p><strong>Challenge</strong><br> Imputing this data set under one model may yield different results than imputing this data set under another model. Identify the best model!</p>
@@ -828,8 +820,64 @@ Information that is not available but necessary to arrive at the correct answer.
 </div>
 </section></section>
 <section>
-<section id="case-2-when-you-know-youre-wrong" class="title-slide slide level1 center">
-<h1>Case 2: When you know you’re wrong</h1>
+<section id="case-2-when-you-suspect-your-model-is-wrong" class="title-slide slide level1 center">
+<h1>Case 2: When you suspect your model is wrong</h1>
+
+</section>
+<section id="scenario-1" class="slide level2">
+<h2>Scenario</h2>
+<ul>
+<li>1236 citizens of Leiden who were 85 years or older on December 1, 1986 (Lagaay, Van der Meij, and Hijmans 1992).</li>
+<li>Visited by a physician between January 1987 and May 1989.</li>
+<li>A full medical history, information on current use of drugs, a venous blood sample, and other health-related data were obtained.</li>
+<li>BP was routinely measured during the visit.
+<ul>
+<li>Apart from some individuals who were bedridden, BP was measured while seated.</li>
+<li>An Hg manometer was used and BP was rounded to the nearest 5 mmHg.</li>
+</ul></li>
+<li>The mortality status of each individual on March 1, 1994 was retrieved from administrative sources.</li>
+</ul>
+<div class="footer">
+<p>Lagaay, A. M., J. C. Van der Meij, and W. Hijmans. 1992. “Validation of Medical History Taking as Part of a Population Based Survey in Subjects Aged 85 and over.” British Medical Journal 304 (6834): 1091–2.</p>
+</div>
+</section>
+<section id="problem" class="slide level2">
+<h2>Problem</h2>
+<ul>
+<li>BP was measured less frequently for very old persons and for persons with health problems.</li>
+<li>BP was measured more often if the BP was too high, for example if the respondent indicated a previous diagnosis of hypertension, or if the respondent used any medication against hypertension.</li>
+<li>The missing data rate of BP also varied during the period of data collection.
+<ul>
+<li>The rate gradually increases during the first seven months of the sampling period from 5 to 40 percent of the cases, and then suddenly drops to a fairly constant level of 10–15 percent.</li>
+<li>A complicating factor here is that the sequence in which the respondents were interviewed was not random.</li>
+<li>High-risk groups, that is, elderly in hospitals and nursing homes and those over 95, were visited first.</li>
+</ul></li>
+</ul>
+</section>
+<section id="survival-rate" class="slide level2">
+<h2>Survival rate</h2>
+
+<img data-src="img/leiden_km.png" class="r-stretch"><div class="footer">
+<p>Van Buuren, S. (2018). Flexible imputation of missing data. CRC press. Chapter 9.2</p>
+</div>
+</section>
+<section id="missingness" class="slide level2">
+<h2>Missingness</h2>
+
+<img data-src="img/leiden_tab.png" style="width:50.0%" class="r-stretch"><div class="footer">
+<p>Van Buuren, S. (2018). Flexible imputation of missing data. CRC press. Chapter 9.2</p>
+</div>
+</section>
+<section id="sensitivity-analysis" class="slide level2">
+<h2>Sensitivity analysis</h2>
+
+<img data-src="img/leiden-delta.png" style="width:70.0%" class="r-stretch"><div class="footer">
+<p>Van Buuren, S. (2018). Flexible imputation of missing data. CRC press. Chapter 9.2</p>
+</div>
+</section></section>
+<section>
+<section id="case-3-when-you-know-youre-wrong" class="title-slide slide level1 center">
+<h1>Case 3: When you know you’re wrong</h1>
 
 </section>
 <section id="scenario-2" class="slide level2">

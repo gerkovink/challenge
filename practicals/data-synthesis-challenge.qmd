@@ -5,7 +5,7 @@ editor: source
 
 # **Introduction**
 
-In this challenge, you will have to synthetize data. Concretely, you have to synthetic data with *one* of the following two goals in mind:
+In this challenge, you will have to synthetize data. In real life, you always have to synthetic data with *one* of the following two goals in mind:
 
 1. Getting as close as possible to the original data.
 
