@@ -7,4 +7,4 @@ title: "Lectures"
 Hieronder vind je de lecture slides voor de verschillende onderdelen van de cursus.
 
 - [Lecture 1: The Anatomy of an Answer](lectures/anatomy/index.html)
-- [Lecture 2: From 'dark' data to imputation and beyond to data synthesis](lectures/dark/index.html)
+- [Lecture 2: From 'dark' data to imputation and beyond to data synthesis](lectures/dark/dark.html)
