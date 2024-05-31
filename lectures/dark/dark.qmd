@@ -33,7 +33,7 @@ I owe a debt of gratitude to many people as the thoughts and code in these slide
 
 Scientific references are in the footer. Opinions and figures are my own, AI-generated or directly linked.
 
-## Clichés out of the way
+## Clichés out of the way!
 
 > Everything is a missing data problem 
 
