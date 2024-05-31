@@ -11,7 +11,7 @@ In this challenge, you will have to synthesize data. In real life, you always ha
 
 2. Getting as close as possible to the inference of a model you estimate in the original data.
 
-For synthetizing the data, we suggest you use the `R` package `mice` ([van Buuren and Groothuis-Oudshoorn 2011](https://www.gerkovink.com/syn/UMCUSynthetic.html#ref-mice)). While `mice` was originally developed to impute missing data, but it can also be used to impute synthetic data (see [Volker and Vink 2021](https://www.gerkovink.com/syn/UMCUSynthetic.html#ref-volker_vink_synthetic_mice_2021)). Other alternatives to create synthetic data are, for example, the R-package `synthpop` ([Nowok, Raab, and Dibben 2016](https://www.gerkovink.com/syn/UMCUSynthetic.html#ref-synthpop)), or the stand-alone software `IVEware` ([“IVEware: Imputation and Variance Estimation Software,” n.d.](https://www.gerkovink.com/syn/UMCUSynthetic.html#ref-iveware)).
+For synthetizing (or is it synthesize?) the data, we suggest you use the `R` package `mice` ([van Buuren and Groothuis-Oudshoorn 2011](https://www.gerkovink.com/syn/UMCUSynthetic.html#ref-mice)). While `mice` was originally developed to impute missing data, but it can also be used to impute synthetic data (see [Volker and Vink 2021](https://www.gerkovink.com/syn/UMCUSynthetic.html#ref-volker_vink_synthetic_mice_2021)). Other alternatives to create synthetic data are, for example, the R-package `synthpop` ([Nowok, Raab, and Dibben 2016](https://www.gerkovink.com/syn/UMCUSynthetic.html#ref-synthpop)), or the stand-alone software `IVEware` ([“IVEware: Imputation and Variance Estimation Software,” n.d.](https://www.gerkovink.com/syn/UMCUSynthetic.html#ref-iveware)).
 
 
 # **Data**
