@@ -15,11 +15,13 @@ Aan het einde van deze dag zul je een sterke basis hebben in de belangrijkste im
 # Voorbereiding
 Deelnemers dienen het volgende te installeren voorafgaand aan de cursusdag:
 
-R en RStudio: zie https://posit.co/download/rstudio-desktop/ 
+R en RStudio: zie [https://posit.co/download/rstudio-desktop/](https://posit.co/download/rstudio-desktop/) 
+
+Alternatief: [https://posit.cloud](https://posit.cloud)
 
 Installeer ook alvast het package `mice` en het package `ggmice` van CRAN. De package set `tidyverse` is ook handig.
 
 # Teaching team
 
-[Gerko Vink](https://www.gerkovink.com) & [Carlos Poses](https://carlosposes.github.io)
+[Gerko Vink](https://www.gerkovink.com) & Paolo Colussi
 

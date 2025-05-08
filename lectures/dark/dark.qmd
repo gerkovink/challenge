@@ -6,7 +6,7 @@ author:
     email: g.vink@uu.nl
     affiliations:
       - name: Methodology & Statistics @ Utrecht University
-date: 31 May 2024
+date: 8 May 2025
 date-format: "D MMM YYYY"
 execute: 
   echo: true
@@ -23,7 +23,7 @@ format:
     scrollable: false
     width: 1200
     reference-location: margin
-    footer: Gerko Vink @ UU - based on slides by Stef van Buuren, Hanne Oberman and myself - 31 May 2024, Utrecht
+    footer: Gerko Vink @ UU - based on slides by Stef van Buuren, Hanne Oberman and myself - 8 May 2025, Utrecht
     standalone: true
 ---
 

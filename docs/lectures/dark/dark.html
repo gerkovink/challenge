@@ -8,11 +8,11 @@
 <link href="../../site_libs/quarto-html/light-border.css" rel="stylesheet">
 <link href="../../site_libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.4.551">
+  <meta name="generator" content="quarto-1.5.57">
 
   <meta name="author" content="Gerko Vink">
-  <meta name="dcterms.date" content="2024-05-31">
-  <title>challenges - Embrace the darkness</title>
+  <meta name="dcterms.date" content="2025-05-08">
+  <title>challenges – Embrace the darkness</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -43,7 +43,7 @@
     }
     @media print {
     pre > code.sourceCode { white-space: pre-wrap; }
-    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
     }
     pre.numberSource code
       { counter-reset: source-line 0; }
@@ -71,7 +71,7 @@
     code span.at { color: #657422; } /* Attribute */
     code span.bn { color: #ad0000; } /* BaseN */
     code span.bu { } /* BuiltIn */
-    code span.cf { color: #003b4f; } /* ControlFlow */
+    code span.cf { color: #003b4f; font-weight: bold; } /* ControlFlow */
     code span.ch { color: #20794d; } /* Char */
     code span.cn { color: #8f5902; } /* Constant */
     code span.co { color: #5e5e5e; } /* Comment */
@@ -85,7 +85,7 @@
     code span.fu { color: #4758ab; } /* Function */
     code span.im { color: #00769e; } /* Import */
     code span.in { color: #5e5e5e; } /* Information */
-    code span.kw { color: #003b4f; } /* Keyword */
+    code span.kw { color: #003b4f; font-weight: bold; } /* Keyword */
     code span.op { color: #5e5e5e; } /* Operator */
     code span.ot { color: #003b4f; } /* Other */
     code span.pp { color: #ad0000; } /* Preprocessor */
@@ -408,7 +408,7 @@ Gerko Vink <a href="https://orcid.org/0000-0001-9767-1924" class="quarto-title-a
     </div>
 </div>
 
-  <p class="date">31 May 2024</p>
+  <p class="date">8 May 2025</p>
 </section>
 <section id="disclaimer" class="slide level2">
 <h2>Disclaimer</h2>
@@ -450,7 +450,7 @@ Gerko Vink <a href="https://orcid.org/0000-0001-9767-1924" class="quarto-title-a
 </section>
 <section id="dark-data-types" class="slide level2">
 <h2>Dark data types</h2>
-<table>
+<table class="caption-top">
 <colgroup>
 <col style="width: 25%">
 <col style="width: 25%">
@@ -564,6 +564,9 @@ Gerko Vink <a href="https://orcid.org/0000-0001-9767-1924" class="quarto-title-a
 </section>
 <section id="notation-y-r-x" class="slide level2">
 <h2><strong>Notation</strong>: <span class="math inline">\(Y\)</span>, <span class="math inline">\(R\)</span>, <span class="math inline">\(X\)</span></h2>
+<div>
+
+</div>
 <div class="quarto-layout-panel" data-layout="[ 40, 60 ]">
 <div class="quarto-layout-row">
 <div id="first-column" class="quarto-layout-cell" style="flex-basis: 40.0%;justify-content: center;">
@@ -983,7 +986,7 @@ P(R|Y^\mathrm{obs}, Y^\mathrm{mis}, X, \psi)
 </section>
 <section id="overview-of-assumptions-needed" class="slide level2">
 <h2>Overview of assumptions needed</h2>
-<table>
+<table class="caption-top">
 <tbody>
 <tr class="odd">
 <td></td>
@@ -1168,12 +1171,15 @@ P(R|Y^\mathrm{obs}, Y^\mathrm{mis}, X, \psi)
 </section>
 <section id="multiple-imputation---1987" class="slide level2">
 <h2>Multiple imputation - 1987</h2>
+<div>
+
+</div>
 <div class="quarto-layout-panel" data-layout-ncol="2">
 <div class="quarto-layout-row quarto-layout-valign-bottom">
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="quarto-layout-cell" style="flex-basis: 44.4%;justify-content: center;">
 <p><img data-src="figures/rubin1987_cover.jpeg" width="400"></p>
 </div>
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="quarto-layout-cell" style="flex-basis: 55.6%;justify-content: center;">
 <p><img data-src="figures/Donald-Rubin-HS-768x768.jpg" width="500"></p>
 </div>
 </div>
@@ -1432,7 +1438,7 @@ regcity      -25.928     7.928    -3.270  19.899   0.004</code></pre>
 <section id="example-from-simulation" class="slide level2">
 <h2>Example from simulation</h2>
 <p>When valid synthetic data are generated, the variance of the estimates is correct, such that the confidence intervals cover the population (i.e.&nbsp;true) value sufficiently [^5]. Take e.g.&nbsp;the following proportional odds model from Volker &amp; Vink (2021):</p>
-<table>
+<table class="caption-top">
 <colgroup>
 <col style="width: 34%">
 <col style="width: 26%">
@@ -1528,7 +1534,7 @@ regcity      -25.928     7.928    -3.270  19.899   0.004</code></pre>
 <div class="quarto-auto-generated-content">
 <p><img src="logo.png" class="slide-logo"></p>
 <div class="footer footer-default">
-<p>Gerko Vink @ UU - based on slides by Stef van Buuren, Hanne Oberman and myself - 31 May 2024, Utrecht</p>
+<p>Gerko Vink @ UU - based on slides by Stef van Buuren, Hanne Oberman and myself - 8 May 2025, Utrecht</p>
 </div>
 </div>
 </section></section>
@@ -1812,18 +1818,7 @@ regcity      -25.928     7.928    -3.270  19.899   0.004</code></pre>
         }
         return false;
       }
-      const clipboard = new window.ClipboardJS('.code-copy-button', {
-        text: function(trigger) {
-          const codeEl = trigger.previousElementSibling.cloneNode(true);
-          for (const childEl of codeEl.children) {
-            if (isCodeAnnotation(childEl)) {
-              childEl.remove();
-            }
-          }
-          return codeEl.innerText;
-        }
-      });
-      clipboard.on('success', function(e) {
+      const onCopySuccess = function(e) {
         // button target
         const button = e.trigger;
         // don't keep focus
@@ -1855,7 +1850,29 @@ regcity      -25.928     7.928    -3.270  19.899   0.004</code></pre>
         }, 1000);
         // clear code selection
         e.clearSelection();
+      }
+      const getTextToCopy = function(trigger) {
+          const codeEl = trigger.previousElementSibling.cloneNode(true);
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+      }
+      const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+        text: getTextToCopy
       });
+      clipboard.on('success', onCopySuccess);
+      if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+        // For code content inside modals, clipBoardJS needs to be initialized with a container option
+        // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+        const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+          text: getTextToCopy,
+          container: window.document.getElementById('quarto-embedded-source-code-modal')
+        });
+        clipboardModal.on('success', onCopySuccess);
+      }
         var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
         var mailtoRegex = new RegExp(/^mailto:/);
           var filterRegex = new RegExp('/' + window.location.host + '/');
@@ -1863,7 +1880,7 @@ regcity      -25.928     7.928    -3.270  19.899   0.004</code></pre>
             return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
         }
         // Inspect non-navigation links and adorn them if external
-     	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+     	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
         for (var i=0; i<links.length; i++) {
           const link = links[i];
           if (!isInternal(link.href)) {
