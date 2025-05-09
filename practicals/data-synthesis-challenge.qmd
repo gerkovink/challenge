@@ -114,7 +114,8 @@ MDC <- mean(cor(heart_failure) - cor(syn_data))
 MDC_abs <- mean(abs(cor(heart_failure) - cor(syn_data)))
 
 # 3. Pearson divergence according to density ratio package
-# To install, use devtools::install_github("thomvolker/densityratio")
+# To install, use 
+# install.packages('densityratio', repos = 'https://thomvolker.r-universe.dev')
 library(densityratio)
 ## Estimate density ratio and check summaries and plots
 densratio <- ulsif(heart_failure, syn_data) 

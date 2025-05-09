@@ -1,6 +1,0 @@
----
-title: "real-world-data-problems"
-editor: visual
----
-
-This is not really a tutorial yet, just a placeholder.

@@ -317,27 +317,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>MDC_abs <span class="ot">&lt;-</span> <span class="fu">mean</span>(<span class="fu">abs</span>(<span class="fu">cor</span>(heart_failure) <span class="sc">-</span> <span class="fu">cor</span>(syn_data)))</span>
 <span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Pearson divergence according to density ratio package</span></span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="co"># To install, use devtools::install_github("thomvolker/densityratio")</span></span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(densityratio)</span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="do">## Estimate density ratio and check summaries and plots</span></span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>densratio <span class="ot">&lt;-</span> <span class="fu">ulsif</span>(heart_failure, syn_data) </span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>PD <span class="ot">&lt;-</span> <span class="fu">summary</span>(densratio)<span class="sc">$</span>PE</span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="co"># 4. Train model on synthetic data, use it to predict on observed data</span></span>
-<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Train model</span></span>
-<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">glm</span>(DEATH_EVENT <span class="sc">~</span> ., <span class="at">data =</span> syn_data, <span class="at">family =</span> binomial)</span>
-<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a><span class="co"># 4.1 Compute confusion matrix of model in synthetic data</span></span>
-<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a><span class="co">#table(syn_data$DEATH_EVENT, predict(model, newdata = syn_data) &gt; 0.5)</span></span>
-<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a><span class="co"># 4.2 Compute confusion matrix of model in original data</span></span>
-<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>conf <span class="ot">&lt;-</span> <span class="fu">table</span>(heart_failure<span class="sc">$</span>DEATH_EVENT, <span class="fu">predict</span>(model, <span class="at">newdata =</span> heart_failure) <span class="sc">&gt;</span> <span class="fl">0.5</span>)</span>
-<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a><span class="fu">list</span>(<span class="st">"Mean Scaled Deviation: mean absolute value"</span> <span class="ot">=</span> MSD, </span>
-<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>               <span class="st">"Correlation: mean deviation"</span> <span class="ot">=</span> MDC, </span>
-<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>               <span class="st">"Correlation: mean absolute deviation"</span> <span class="ot">=</span> MDC_abs, </span>
-<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>               <span class="st">"Pearson Divergence"</span> <span class="ot">=</span> PD, </span>
-<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>               <span class="st">"Confusion Matrix"</span> <span class="ot">=</span> conf)</span>
-<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(densratio)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="co"># To install, use </span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages('densityratio', repos = 'https://thomvolker.r-universe.dev')</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(densityratio)</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="do">## Estimate density ratio and check summaries and plots</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>densratio <span class="ot">&lt;-</span> <span class="fu">ulsif</span>(heart_failure, syn_data) </span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>PD <span class="ot">&lt;-</span> <span class="fu">summary</span>(densratio)<span class="sc">$</span>PE</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a><span class="co"># 4. Train model on synthetic data, use it to predict on observed data</span></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Train model</span></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">glm</span>(DEATH_EVENT <span class="sc">~</span> ., <span class="at">data =</span> syn_data, <span class="at">family =</span> binomial)</span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a><span class="co"># 4.1 Compute confusion matrix of model in synthetic data</span></span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a><span class="co">#table(syn_data$DEATH_EVENT, predict(model, newdata = syn_data) &gt; 0.5)</span></span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a><span class="co"># 4.2 Compute confusion matrix of model in original data</span></span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>conf <span class="ot">&lt;-</span> <span class="fu">table</span>(heart_failure<span class="sc">$</span>DEATH_EVENT, <span class="fu">predict</span>(model, <span class="at">newdata =</span> heart_failure) <span class="sc">&gt;</span> <span class="fl">0.5</span>)</span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a><span class="fu">list</span>(<span class="st">"Mean Scaled Deviation: mean absolute value"</span> <span class="ot">=</span> MSD, </span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>               <span class="st">"Correlation: mean deviation"</span> <span class="ot">=</span> MDC, </span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>               <span class="st">"Correlation: mean absolute deviation"</span> <span class="ot">=</span> MDC_abs, </span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>               <span class="st">"Pearson Divergence"</span> <span class="ot">=</span> PD, </span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a>               <span class="st">"Confusion Matrix"</span> <span class="ot">=</span> conf)</span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(densratio)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 
